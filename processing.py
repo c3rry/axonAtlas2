@@ -160,32 +160,107 @@ def threshold(input_path, output_dir, threshold=100):
     
     return output_path
 
-
-
-def skeletonize(input_path, output_dir):
+def arrayStats(input_path):
     """
-    Skeletonize white pixels (255) in a binary TIFF stack (axon images).
+    Print basic statistics of a numpy array.
     
     Args:
-        input_path (str): Path to input binary TIFF stack (white=axon=255, black=0)
-        output_dir (str): Directory to save skeletonized stack
-    
-    Returns:
-        str: Path to the skeletonized TIFF stack
-    
-    Requires:
-        pip install tifffile scikit-image numpy
+        arr (np.ndarray): Input numpy array
+        name (str): Name to identify the array in output (default: "Array")
     """
+
+    arr = imread(input_path)
+
+    print(f"  Shape: {arr.shape}")
+    print(f"  Dtype: {arr.dtype}")
+    print(f"  Min: {np.min(arr)}")
+    print(f"  Max: {np.max(arr)}")
+    print(f"  Mean: {np.mean(arr)}")
+    print(f"  Std Dev: {np.std(arr)}")
+    print(f"  Non-zero count: {np.count_nonzero(arr)}")
+    print(f"arr: {arr}")
+
+
+
+def skeletonize2(input_path, output_dir, num_top_bins_to_combine =5):
+    """
+    Processes a multipage TIFF by separating pixels into 10 bins, saving each
+    bin as a separate file, and also creating a composite TIFF from the sum
+    of the top N multiplied bins.
+
+    Args:
+        input_path (str): Path to the input multi-page TIFF file.
+        output_dir (str): Directory where the output subfolder will be created.
+        num_top_bins_to_combine (int): The number of top (brightest) bins to
+                                       multiply and combine.
+
+    Returns:
+        str: Path to the composite TIFF file created from the top bins.
+
+    Requires:
+        pip install tifffile numpy
+    """
+    # --- 1. Setup output path ---
     os.makedirs(output_dir, exist_ok=True)
     orig_name = os.path.basename(input_path)
     name, ext = os.path.splitext(orig_name)
-    output_path = os.path.join(output_dir, f"{name}_skeletonize{ext}")
+    output_folder = os.path.join(output_dir, f"{name}_binned_tiffs")
+    os.makedirs(output_folder, exist_ok=True)
+
+    # --- 2. Load the image stack ---
+    print(f"Loading TIFF stack from: {input_path}")
     stack = imread(input_path)
-    # Ensure binary (0, 255) -> (0, 1)
-    binary_stack = (stack > 0).astype(np.uint8)
-    # Skeletonize (works for 2D or 3D)
-    skeleton = skeletonize_3d(binary_stack)
-    # Convert back to 0, 255 for saving
-    skeleton = (skeleton > 0).astype(np.uint8) * 255
-    imwrite(output_path, skeleton, photometric='minisblack')
-    return output_path
+    stack = stack.astype(np.float32)
+
+    # --- 3. Define bins and multipliers for the top bins ---
+    bins = np.array([25.5, 51, 76.5, 102, 127.5, 153, 178.5, 204, 229.5])
+    
+    # These multipliers will be applied to the top N bins.
+    # For N=5, this generates [0.2, 0.4, 0.6, 0.8, 1.0]
+    top_multipliers = np.linspace(0.2, 1.0, num=num_top_bins_to_combine)
+
+    # --- 4. Isolate bins, save them, and combine top bins ---
+    print(f"Saving 10 binned sub-tiffs to: {output_folder}")
+    indices = np.digitize(stack, bins)
+    
+    # Initialize an empty array to hold the sum of the multiplied top bins
+    combined_top_bins_stack = np.zeros_like(stack, dtype=np.float32)
+
+    for i in range(10): # Loop through each of the 10 bins
+        mask = (indices == i)
+        
+        # Create and save the individual sub-tiff for the current bin
+        sub_stack = np.zeros_like(stack, dtype=np.uint8)
+        sub_stack[mask] = stack[mask]
+
+        if i == 0: range_str = f"0.0-{bins[0]}"
+        elif i < len(bins): range_str = f"{bins[i-1]}-{bins[i]}"
+        else: range_str = f"{bins[-1]}-255.0"
+
+        sub_tiff_path = os.path.join(output_folder, f"bin_{i}_{range_str}.tif")
+        imwrite(sub_tiff_path, sub_stack, photometric='minisblack')
+        print(f"  - Saved bin {i} to {os.path.basename(sub_tiff_path)}")
+
+        # Check if the current bin is one of the top bins to be combined
+        if i >= (10 - num_top_bins_to_combine):
+            # Calculate which multiplier to use (e.g., the 5th bin gets the 1st multiplier)
+            multiplier_index = i - (10 - num_top_bins_to_combine)
+            multiplier = top_multipliers[multiplier_index]
+            
+            print(f"  - Adding bin {i} to composite with multiplier {multiplier:.2f}")
+            
+            # Apply multiplier to the pixels in this bin and add to the composite stack
+            combined_top_bins_stack[mask] = stack[mask] * multiplier
+
+    # --- 5. Save the combined top-bins tiff ---
+    print("\nSaving combined top bins TIFF...")
+    combined_path = os.path.join(output_folder, f"combined_top_{num_top_bins_to_combine}_skeletonize.tif")
+    
+    # Clip values to ensure they are within the 0-255 range and convert to 8-bit
+    combined_top_bins_stack = np.clip(combined_top_bins_stack, 0, 255)
+    output_stack = combined_top_bins_stack.astype(np.uint8)
+    
+    imwrite(combined_path, output_stack, photometric='minisblack')
+    print(f"Saved composite TIFF to: {combined_path}")
+
+    return combined_path

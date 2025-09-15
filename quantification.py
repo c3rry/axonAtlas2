@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import os
 from bg_atlasapi import BrainGlobeAtlas
+import brainglobe_heatmap as bgh
+
 
 def calculate_axon_percentage(axon_mask_path, atlas_name='allen_mouse_25um'):
     """
@@ -33,6 +35,9 @@ def calculate_axon_percentage(axon_mask_path, atlas_name='allen_mouse_25um'):
     lookup_df = atlas.lookup_df
     
     print(f"Processing {len(lookup_df)} brain regions...")
+
+    # Assume axis 0 is the left/right hemisphere axis (check atlas documentation if unsure)
+    midline = annotation.shape[0] // 2
     
     # Calculate axon percentages per region
     for region_id, region_info in lookup_df.iterrows():
@@ -40,38 +45,36 @@ def calculate_axon_percentage(axon_mask_path, atlas_name='allen_mouse_25um'):
         if region_id == 0 or region_info['acronym'] == 'root': 
             continue
         
-        # Create region mask
-        region_mask = (annotation == region_id)
-        total_voxels = np.sum(region_mask)
-        
-        # Skip empty regions
-        if total_voxels == 0:
-            continue
-            
-        # Calculate axon voxels in region
-        axon_in_region = np.logical_and(axon_mask, region_mask)
-        axon_voxels = np.sum(axon_in_region)
-        
-        # Calculate percentage
-        percentage = (axon_voxels / total_voxels) * 100
-        
-        # Print progress for current region
-        print(f"{region_info['acronym']}: {percentage:.4f}%")
-        
-        # Combine all info from lookup_df with new metrics
-        result = region_info.to_dict()
-        result.update({
-            'axon_voxels': axon_voxels,
-            'total_voxels': total_voxels,
-            'percentage': percentage
-        })
-        results.append(result)
-    
-    # Create final dataframe and sort
+        for hemi, hemi_suffix, hemi_slice in [
+            ('Left', '_left', slice(0, midline)),
+            ('Right', '_right', slice(midline, annotation.shape[0]))
+        ]:
+            region_mask = (annotation[hemi_slice, :, :] == region_id)
+            total_voxels = np.sum(region_mask)
+            if total_voxels == 0:
+                continue
+
+            axon_in_region = np.logical_and(axon_mask[hemi_slice, :, :], region_mask)
+            axon_voxels = np.sum(axon_in_region)
+            percentage = (axon_voxels / total_voxels) * 100
+
+            acronym_hemi = region_info['acronym'] + hemi_suffix
+            print(f"{acronym_hemi}: {percentage:.4f}%")
+
+            result = region_info.to_dict()
+            result.update({
+                'acronym': acronym_hemi,
+                'hemisphere': hemi,
+                'axon_voxels': axon_voxels,
+                'total_voxels': total_voxels,
+                'percentage': percentage
+            })
+            results.append(result)
+
     result_df = pd.DataFrame(results)
     result_df = result_df.sort_values('percentage', ascending=False)
-    
-    print(f"\nCompleted! Processed {len(result_df)} regions.")
+
+    print(f"\nCompleted! Processed {len(result_df)} region-hemisphere pairs.")
     return result_df
 
 def plot_top_regions(df, top_n=20):
@@ -116,10 +119,10 @@ def volumeExtract(directory, mode="threshold"):
                 return os.path.join(root, file)
     return None
 
-def bg_heatmap(
+'''def bg_heatmap(
     values,
-    vmin=None,
-    vmax=None,
+    vmin,
+    vmax,
     cmap='Reds',
     atlas_name='allen_mouse_25um',
     thickness=1000,
@@ -159,6 +162,88 @@ def bg_heatmap(
             vmax=vmax,
             cmap=cmap,
             annotate_regions=annotate_regions,
-            format=format,
-        ).show()
+            format=format
+        ).show()'''
 
+def bg_heatmap(
+    values,
+    vmin,
+    vmax,
+    orientation='frontal',
+    cmap='Reds',
+    atlas_name='allen_mouse_25um',
+    thickness=1000,
+    annotate_regions=True,
+    format='2D',
+    figsize=(10, 8)
+):
+    """
+    Processes a dictionary of brain region data and plots the left and right
+    hemispheres together on a single heatmap view.
+
+    Args:
+        values (dict): A single dictionary mapping region acronyms to values.
+                       Keys must end in '_left' or '_right'.
+        vmin (float): The minimum value for the color scale.
+        vmax (float): The maximum value for the color scale.
+        orientation (str): Orientation of the brain slice ('frontal', 'sagittal', 'horizontal').
+        cmap (str): Matplotlib colormap name.
+        atlas_name (str): Name of the brain atlas to use.
+        thickness (int): Thickness of the slice in microns.
+        annotate_regions (bool): Whether to annotate region labels on the plot.
+        format (str): The format of the plot, must be '2D'.
+        figsize (tuple): Figure size for the plot.
+
+    Returns:
+        tuple: A tuple containing the matplotlib figure and axes objects.
+
+    Requires:
+        pip install pandas matplotlib bg-heatmap numpy
+    """
+    # --- 1. Data Processing: Split the single dictionary into two ---
+    left_dict = {}
+    right_dict = {}
+    for key, value in values.items():
+        if isinstance(key, str) and pd.notna(value):
+            if key.endswith('_left'):
+                base_key = key.removesuffix('_left')
+                if base_key != 'nan':
+                    left_dict[base_key] = value
+            elif key.endswith('_right'):
+                base_key = key.removesuffix('_right')
+                if base_key != 'nan':
+                    right_dict[base_key] = value
+
+    # --- 2. Visualization ---
+    if format == '2D':
+        # Create a figure with a single subplot
+        fig, ax = plt.subplots(1, 1, figsize=figsize)
+        
+        # --- Plot Left Hemisphere ---
+        hm_left = bgh.Heatmap(
+            left_dict, position=None, orientation=orientation, hemisphere='left',
+            thickness=thickness, atlas_name=atlas_name, format=format, cmap=cmap,
+            annotate_regions=annotate_regions, vmin=vmin, vmax=vmax
+        )
+        # Plot on the single axis, but don't show the colorbar yet
+        hm_left.plot_subplot(fig=fig, ax=ax, show_cbar=False)
+
+        # --- Plot Right Hemisphere ---
+        hm_right = bgh.Heatmap(
+            right_dict, position=None, orientation=orientation, hemisphere='right',
+            thickness=thickness, atlas_name=atlas_name, format=format, cmap=cmap,
+            annotate_regions=annotate_regions, vmin=vmin, vmax=vmax
+        )
+        # Plot on the same axis, and now show the colorbar
+        hm_right.plot_subplot(fig=fig, ax=ax, show_cbar=True)
+        
+        ax.set_title(f"Combined Projection Heatmap - {orientation.capitalize()} View", fontsize=16)
+        plt.tight_layout()
+        plt.show()
+        return fig, ax
+    
+    elif format == '3D':
+        raise NotImplementedError("3D plotting is not yet implemented in this function.")
+    else:
+        raise ValueError("format must be '2D'")
+        
