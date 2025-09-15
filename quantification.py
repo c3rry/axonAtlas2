@@ -169,7 +169,6 @@ def bg_heatmap(
     values,
     vmin,
     vmax,
-    orientation='frontal',
     cmap='Reds',
     atlas_name='allen_mouse_25um',
     thickness=1000,
@@ -179,23 +178,22 @@ def bg_heatmap(
 ):
     """
     Processes a dictionary of brain region data and plots the left and right
-    hemispheres together on a single heatmap view.
+    hemispheres together on a single heatmap for each standard orientation.
 
     Args:
         values (dict): A single dictionary mapping region acronyms to values.
                        Keys must end in '_left' or '_right'.
         vmin (float): The minimum value for the color scale.
         vmax (float): The maximum value for the color scale.
-        orientation (str): Orientation of the brain slice ('frontal', 'sagittal', 'horizontal').
         cmap (str): Matplotlib colormap name.
         atlas_name (str): Name of the brain atlas to use.
         thickness (int): Thickness of the slice in microns.
         annotate_regions (bool): Whether to annotate region labels on the plot.
         format (str): The format of the plot, must be '2D'.
-        figsize (tuple): Figure size for the plot.
+        figsize (tuple): Figure size for each plot.
 
     Returns:
-        tuple: A tuple containing the matplotlib figure and axes objects.
+        None
 
     Requires:
         pip install pandas matplotlib bg-heatmap numpy
@@ -214,36 +212,39 @@ def bg_heatmap(
                 if base_key != 'nan':
                     right_dict[base_key] = value
 
-    # --- 2. Visualization ---
-    if format == '2D':
-        # Create a figure with a single subplot
-        fig, ax = plt.subplots(1, 1, figsize=figsize)
-        
-        # --- Plot Left Hemisphere ---
-        hm_left = bgh.Heatmap(
-            left_dict, position=None, orientation=orientation, hemisphere='left',
-            thickness=thickness, atlas_name=atlas_name, format=format, cmap=cmap,
-            annotate_regions=annotate_regions, vmin=vmin, vmax=vmax
-        )
-        # Plot on the single axis, but don't show the colorbar yet
-        hm_left.plot_subplot(fig=fig, ax=ax, show_cbar=False)
-
-        # --- Plot Right Hemisphere ---
-        hm_right = bgh.Heatmap(
-            right_dict, position=None, orientation=orientation, hemisphere='right',
-            thickness=thickness, atlas_name=atlas_name, format=format, cmap=cmap,
-            annotate_regions=annotate_regions, vmin=vmin, vmax=vmax
-        )
-        # Plot on the same axis, and now show the colorbar
-        hm_right.plot_subplot(fig=fig, ax=ax, show_cbar=True)
-        
-        ax.set_title(f"Combined Projection Heatmap - {orientation.capitalize()} View", fontsize=16)
-        plt.tight_layout()
-        plt.show()
-        return fig, ax
+    # --- 2. Visualization Loop ---
+    orientations = ["frontal", "sagittal", "horizontal"]
     
-    elif format == '3D':
-        raise NotImplementedError("3D plotting is not yet implemented in this function.")
-    else:
-        raise ValueError("format must be '2D'")
+    for orientation in orientations:
+        if format == '2D':
+            print(f"Rendering {orientation.capitalize()} view...")
+            # Create a figure with a single subplot for each orientation
+            fig, ax = plt.subplots(1, 1, figsize=figsize)
+            
+            # --- Plot Left Hemisphere ---
+            hm_left = bgh.Heatmap(
+                left_dict, position=None, orientation=orientation, hemisphere='left',
+                thickness=thickness, atlas_name=atlas_name, format=format, cmap=cmap,
+                annotate_regions=annotate_regions, vmin=vmin, vmax=vmax
+            )
+            # Plot on the single axis, but don't show the colorbar yet
+            hm_left.plot_subplot(fig=fig, ax=ax, show_cbar=False)
+
+            # --- Plot Right Hemisphere ---
+            hm_right = bgh.Heatmap(
+                right_dict, position=None, orientation=orientation, hemisphere='right',
+                thickness=thickness, atlas_name=atlas_name, format=format, cmap=cmap,
+                annotate_regions=annotate_regions, vmin=vmin, vmax=vmax
+            )
+            # Plot on the same axis, and now show the colorbar
+            hm_right.plot_subplot(fig=fig, ax=ax, show_cbar=True)
+            
+            ax.set_title(f"Combined Projection Heatmap - {orientation.capitalize()} View", fontsize=16)
+            plt.tight_layout()
+            plt.show()
+        
+        elif format == '3D':
+            raise NotImplementedError("3D plotting is not yet implemented in this function.")
+        else:
+            raise ValueError("format must be '2D'")
         
