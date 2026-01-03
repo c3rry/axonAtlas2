@@ -171,7 +171,7 @@ def volume3D(input_volume, temp_dir, voxel_size, regions, output_dir, colormaps=
             try:
                 print(f"[INFO] Rendering scene for view: {view}")
                 scene.render(interactive=False, camera=view, zoom=1)
-                screenshot_path = os.path.join(screenshots_dir, f"screenshot_{view}.png")
+                screenshot_path = os.path.join(screenshots_dir, f"screenshot_{view}.tif")
                 scene.screenshot(screenshot_path)
                 print(f"[INFO] Saved screenshot: {screenshot_path}")
             except KeyError:

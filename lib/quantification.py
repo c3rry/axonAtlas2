@@ -16,92 +16,11 @@ from sklearn.preprocessing import StandardScaler
 from scipy.cluster.hierarchy import linkage
 from scipy.spatial.distance import pdist, squareform
 from collections import defaultdict
+from matplotlib.colors import Normalize  # <-- NEW IMPORT
+import matplotlib.cm as cm             # <-- NEW IMPORT
+from matplotlib import transforms
 
 
-
-"""def calculate_axon_percentage(axon_mask_path, atlas_name='allen_mouse_25um'):
-    
-    Calculate percentage of axon voxels per brain region in 25um atlas space.
-    
-    Args:
-        axon_mask_path (str): Path to 3D binary axon segmentation TIFF file
-        atlas_name (str): Name of BrainGlobe atlas (default: 'allen_mouse_25um')
-    
-    Returns:
-        pd.DataFrame: Results with all atlas metadata plus axon statistics
-    
-    # Load atlas and annotation
-    atlas = BrainGlobeAtlas(atlas_name)
-    annotation = atlas.annotation
-    
-    # Load axon mask
-    axon_mask = tifffile.imread(axon_mask_path).astype(bool)
-    
-    # Verify shape compatibility
-    if axon_mask.shape != annotation.shape:
-        raise ValueError(f"Mask shape {axon_mask.shape} doesn't match atlas shape {annotation.shape}")
-    
-    # Prepare results storage
-    results = []
-    lookup_df = atlas.lookup_df
-    
-    print(f"Processing {len(lookup_df)} brain regions...")
-
-    # Assume axis 0 is the left/right hemisphere axis (check atlas documentation if unsure)
-    midline = annotation.shape[0] // 2
-    
-    # Calculate axon percentages per region
-    for region_id, region_info in lookup_df.iterrows():
-        # Skip background/root regions
-        if region_id == 0 or region_info['acronym'] == 'root': 
-            continue
-        
-        for hemi, hemi_suffix, hemi_slice in [
-            ('Left', '_left', slice(0, midline)),
-            ('Right', '_right', slice(midline, annotation.shape[0]))
-        ]:
-            region_mask = (annotation[hemi_slice, :, :] == region_id)
-
-            # --- Insert this block here ---
-            atlas_mask = atlas.get_structure_mask(region_info['acronym'])
-            if hemi == 'Left':
-                left_manual = region_mask
-                left_atlas = atlas_mask[0:midline, :, :]
-                print(f"{region_info['acronym']} Left: {np.array_equal(left_manual, left_atlas)}")
-            else:
-                right_manual = region_mask
-                right_atlas = atlas_mask[midline:, :, :]
-                print(f"{region_info['acronym']} Right: {np.array_equal(right_manual, right_atlas)}")
-        # --- End insert ---
-
-
-            total_voxels = np.sum(region_mask)
-            if total_voxels == 0:
-                continue
-
-            axon_in_region = np.logical_and(axon_mask[hemi_slice, :, :], region_mask)
-            axon_voxels = np.sum(axon_in_region)
-            percentage = (axon_voxels / total_voxels) * 100
-
-            acronym_hemi = region_info['acronym'] + hemi_suffix
-            print(f"{acronym_hemi}: {percentage:.4f}%")
-
-            result = region_info.to_dict()
-            result.update({
-                'acronym': acronym_hemi,
-                'hemisphere': hemi,
-                'axon_voxels': axon_voxels,
-                'total_voxels': total_voxels,
-                'percentage': percentage
-            })
-            results.append(result)
-
-    result_df = pd.DataFrame(results)
-    result_df = result_df.sort_values('percentage', ascending=False)
-
-    print(f"\nCompleted! Processed {len(result_df)} region-hemisphere pairs.")
-    return result_df
-    """
 
 def plot_top_regions(df, top_n=20):
     plt.figure(figsize=(12, 8))
@@ -129,11 +48,11 @@ def get_hemisphere_from_acronym(acronym):
 
 def calculate_axon_percentage(input_volume, temp_dir, voxel_size, output_dir):
     """
-    Calculates axon percentages for ALL brain regions and returns a DataFrame.
+    Calculates axon percentages and fractions for ALL brain regions and returns a DataFrame.
     """
     print(f"[INFO] Starting calculation for input: {input_volume}")
     os.makedirs(output_dir, exist_ok=True)
-    
+
     results = []
     final_df = pd.DataFrame()
 
@@ -154,12 +73,12 @@ def calculate_axon_percentage(input_volume, temp_dir, voxel_size, output_dir):
         # 2. Load BrainGlobe Atlas
         print(f"[INFO] Loading BrainGlobe Atlas at {voxel_size}um resolution...")
         bg_atlas = BrainGlobeAtlas(f"allen_mouse_{voxel_size}um", check_latest=False)
-        
+
         # 3. Get all region acronyms from the atlas
         all_structure_data = bg_atlas.structures.values()
         all_regions = [s['acronym'] for s in all_structure_data if 'acronym' in s]
         print(f"[INFO] Found {len(all_regions)} named regions in the atlas to process.")
-        
+
         if not all_regions:
             print("[ERROR] Could not find any region acronyms in the loaded atlas.")
             return final_df
@@ -167,14 +86,14 @@ def calculate_axon_percentage(input_volume, temp_dir, voxel_size, output_dir):
         # 4. Process each region
         for i, region_acronym in enumerate(all_regions):
             print(f"--- Processing region {i+1}/{len(all_regions)}: {region_acronym} ---")
-            
+
             if region_acronym == 'root':
                 continue
 
             region_id = bg_atlas.structures[region_acronym]['id']
             region_name = bg_atlas.structures[region_acronym]['name']
-            hemisphere = get_hemisphere_from_acronym(region_acronym)
-            
+            hemisphere = get_hemisphere_from_acronym(region_acronym) # Assuming this function is defined elsewhere
+
             mask = bg_atlas.get_structure_mask(region_id)
 
             if data.shape != mask.shape:
@@ -185,15 +104,12 @@ def calculate_axon_percentage(input_volume, temp_dir, voxel_size, output_dir):
                 data_sliced, mask_sliced = data, mask
 
             total_voxels = np.sum(mask_sliced)
-            
+
             if total_voxels > 0:
-                # --- MEMORY-EFFICIENT CALCULATION (THIS IS THE FIX) ---
-                # This performs a boolean AND operation instead of creating a large data slice,
-                # which prevents the MemoryError.
                 axon_voxels = np.count_nonzero(np.logical_and(data_sliced > 0, mask_sliced))
             else:
-                axon_voxels, percentage = 0, 0.0
-            
+                axon_voxels = 0
+
             percentage = (axon_voxels / total_voxels) * 100.0 if total_voxels > 0 else 0.0
 
             results.append({
@@ -201,14 +117,30 @@ def calculate_axon_percentage(input_volume, temp_dir, voxel_size, output_dir):
                 'hemisphere': hemisphere, 'axon_voxels': axon_voxels,
                 'total_voxels': total_voxels, 'percentage': percentage
             })
-        
+
         del data
-        
-        # 5. Create DataFrame, save it, and prepare for return
+
+        # 5. Create DataFrame, calculate fraction, save it, and prepare for return
         if results:
-            df = pd.DataFrame(results)[['acronym', 'id', 'name', 'hemisphere', 'axon_voxels', 'total_voxels', 'percentage']]
+            df = pd.DataFrame(results)
+
+            # --- MODIFICATION START ---
+            # Calculate the total sum of axon_voxels
+            total_axon_voxels = df['axon_voxels'].sum()
+
+            # Add the new 'axon_fraction' column
+            if total_axon_voxels > 0:
+                df['axon_fraction'] = df['axon_voxels'] / total_axon_voxels
+            else:
+                df['axon_fraction'] = 0.0 # Avoid division by zero
+            
+            # Update the list of columns for the final DataFrame to include the new column
+            column_order = ['acronym', 'id', 'name', 'hemisphere', 'axon_voxels', 'total_voxels', 'percentage', 'axon_fraction']
+            final_df = df[column_order]
+            # --- MODIFICATION END ---
+            
+            final_df = final_df.sort_values(by='percentage', ascending=False)
             output_csv_path = os.path.join(output_dir, "axon_percentages_all_regions.csv")
-            final_df = df.sort_values(by='percentage', ascending=False)
             final_df.to_csv(output_csv_path, index=False)
             print(f"\n[SUCCESS] Successfully saved axon percentages to: {output_csv_path}")
         else:
@@ -221,6 +153,7 @@ def calculate_axon_percentage(input_volume, temp_dir, voxel_size, output_dir):
     finally:
         gc.collect()
         return final_df
+
 
 
 def axonDict(df):
@@ -255,51 +188,12 @@ def volumeExtract(directory, mode="threshold"):
                 return os.path.join(root, file)
     return None
 
-'''def bg_heatmap(
-    values,
-    vmin,
-    vmax,
-    cmap='Reds',
-    atlas_name='allen_mouse_25um',
-    thickness=1000,
-    annotate_regions=True,
-    format='2D',
-):
+def axonDict_fraction(df):
     """
-    Create and display anatomical heatmaps in frontal, sagittal, and horizontal orientations.
-    
-    Parameters:
-        values (dict): {acronym: value} region-value mapping.
-        vmin, vmax (float): Color scale limits.
-        cmap (str): Matplotlib colormap name.
-        atlas_name (str): Name of the atlas to use.
-        thickness (int): Thickness of the slice in microns.
-        annotate_regions (bool): Annotate region labels on the plot.
-        format (str): '2D' (matplotlib) or '3D' (brainrender).
+    Convert a DataFrame with 'acronym' and 'percentage' columns
+    to a dictionary: {acronym: percentage}
     """
-    import brainglobe_heatmap as bgh
-
-    orientations = [
-        ("frontal", "Frontal (coronal) view"),
-        ("sagittal", "Sagittal (side) view"),
-        ("horizontal", "Horizontal (top-down) view"),
-    ]
-    
-    for orientation, title in orientations:
-        print(f"Rendering {title}...")
-        bgh.Heatmap(
-            values=values,
-            position=None,  # Centered slice
-            orientation=orientation,
-            thickness=thickness,
-            atlas_name=atlas_name,
-            title=title,
-            vmin=vmin,
-            vmax=vmax,
-            cmap=cmap,
-            annotate_regions=annotate_regions,
-            format=format
-        ).show()'''
+    return pd.Series(df['axon_fraction'].values, index=df['acronym']).to_dict()
 
 def bg_heatmap(
     values,
@@ -385,6 +279,13 @@ def bg_heatmap(
         else:
             raise ValueError("format must be '2D'")
         
+import os
+import pandas as pd
+import matplotlib.pyplot as plt
+from matplotlib import cm, transforms
+from matplotlib.colors import Normalize
+from brainglobe_atlasapi import BrainGlobeAtlas
+import brainglobe_heatmap as bgh # Assuming this is the library alias
 
 def bg_heatmap_slices(
     values,
@@ -394,29 +295,25 @@ def bg_heatmap_slices(
     vmax,
     cmap='Reds',
     atlas_name='allen_mouse_25um',
-    annotate_regions=True
+    annotate_regions=True,
+    cbar_label='Value',
+    orientation=0,
+    specific_slice=None  # <--- NEW ARGUMENT
 ):
     """
-    Generates and saves a TIFF image for every single plane of a heatmap for a given view.
-
-    Args:
-        values (dict): A dictionary mapping region acronyms to values. 
-                       Keys must end in '_left' or '_right'.
-        output_dir (str): The directory where the output files will be saved.
-        view (str): The anatomical orientation to slice through. 
-                    Must be one of "frontal", "sagittal", or "horizontal".
-        vmin (float): The minimum value for the color scale.
-        vmax (float): The maximum value for the color scale.
-        cmap (str, optional): Matplotlib colormap name. Defaults to 'Reds'.
-        atlas_name (str, optional): Name of the brain atlas to use. Defaults to 'allen_mouse_25um'.
-        annotate_regions (bool, optional): Whether to annotate region labels on the plot. Defaults to True.
+    Generates and saves a TIFF image for every single plane OR a specific plane.
+    
+    Parameters:
+    -----------
+    specific_slice : int, optional
+        If provided, only this specific slice index is processed and saved.
+        If None, all slices in the volume are processed.
     """
     # --- 1. Setup and Data Processing ---
     print(f"--- Starting Heatmap Slice Generation for '{view}' view ---")
     
     heatmap_dir = os.path.join(output_dir, "heatmap")
     os.makedirs(heatmap_dir, exist_ok=True)
-    print(f"Output will be saved in: {heatmap_dir}")
 
     left_dict, right_dict = {}, {}
     for key, value in values.items():
@@ -428,8 +325,8 @@ def bg_heatmap_slices(
                 base_key = key.removesuffix('_right')
                 if base_key != 'nan': right_dict[base_key] = value
 
-    # --- 2. Determine Slicing Range from Atlas ---
-    print("Loading atlas to determine slicing range...")
+    # --- 2. Load Atlas ---
+    print("Loading atlas...")
     atlas = BrainGlobeAtlas(atlas_name)
     
     view_map = {
@@ -442,44 +339,103 @@ def bg_heatmap_slices(
     
     n_slices = view_map[view]
     slice_thickness_um = atlas.resolution[0] 
-    print(f"Atlas loaded. Found {n_slices} slices for the '{view}' view.")
+    
+    print(f"Atlas loaded. Total volume contains {n_slices} slices.")
 
-    # --- 3. Iterate Through Each Plane and Save ---
-    for i in range(n_slices):
-        position_um = i * slice_thickness_um
+    # --- 3. Define Scope (Single Frame vs All) ---
+    if specific_slice is not None:
+        # Validation
+        if not (0 <= specific_slice < n_slices):
+            raise ValueError(f"specific_slice {specific_slice} is out of bounds (0 to {n_slices-1})")
+        
+        # Process only this one
+        indices_to_process = [specific_slice]
+        preview_index = specific_slice
+        print(f"Processing ONLY slice index: {specific_slice}")
+    else:
+        # Process all
+        indices_to_process = range(n_slices)
+        preview_index = n_slices // 2
+        print("Processing ALL slices.")
+
+    # --- 4. Prepare Graphics Objects ---
+    norm = Normalize(vmin=vmin, vmax=vmax)
+    sm = cm.ScalarMappable(cmap=cmap, norm=norm)
+    sm.set_array([]) 
+
+    # --- HELPER FUNCTION ---
+    def render_slice(slice_index):
+        position_um = slice_index * slice_thickness_um
         fig, ax = plt.subplots(figsize=(10, 8))
 
-        # --- Plot Left Hemisphere ---
+        # Plot Left
         hm_left = bgh.Heatmap(
             left_dict, position=position_um, orientation=view, hemisphere='left',
             atlas_name=atlas_name, cmap=cmap, vmin=vmin, vmax=vmax,
             annotate_regions=annotate_regions
         )
-        # --- THIS IS THE FIX ---
         hm_left.plot_subplot(fig=fig, ax=ax, show_cbar=False)
 
-        # --- Plot Right Hemisphere on the same axes ---
+        # Plot Right
         hm_right = bgh.Heatmap(
             right_dict, position=position_um, orientation=view, hemisphere='right',
             atlas_name=atlas_name, cmap=cmap, vmin=vmin, vmax=vmax,
             annotate_regions=annotate_regions
         )
-        # --- THIS IS THE FIX ---
         hm_right.plot_subplot(fig=fig, ax=ax, show_cbar=False)
 
+        # Rotation Logic
+        if orientation == 90:
+            tr = transforms.Affine2D().rotate_deg(90) + ax.transData
+            for im in ax.images: im.set_transform(tr)
+            for col in ax.collections: col.set_transform(tr)
+            for txt in ax.texts: txt.set_transform(tr)
+
+            old_xlim = ax.get_xlim()
+            old_ylim = ax.get_ylim()
+            new_xlim = sorted([-y for y in old_ylim])
+            new_ylim = sorted(old_xlim)
+            ax.set_xlim(new_xlim)
+            ax.set_ylim(new_ylim)
+
         ax.axis('off')
-        fig.tight_layout(pad=0)
+        
+        # Colorbar
+        cbar_ax_coords = [0.88, 0.25, 0.02, 0.5] 
+        cbar_ax = fig.add_axes(cbar_ax_coords)
+        cbar = fig.colorbar(sm, cax=cbar_ax, orientation='vertical')
+        cbar.set_label(cbar_label, fontsize=10)
+        cbar.ax.tick_params(labelsize=8)
+        
+        return fig
+
+    # --- 5. PREVIEW ---
+    print(f"\n--- PREVIEW: Slice {preview_index} ---")
+    preview_fig = render_slice(preview_index)
+    plt.show()
+    plt.close(preview_fig)
+
+    # --- 6. GENERATION LOOP ---
+    print(f"\n--- Starting Generation ({len(indices_to_process)} slice(s)) ---")
+    
+    for i in indices_to_process:
+        fig = render_slice(i)
         
         filename = f"{view}_slice_{i:04d}.tif"
         filepath = os.path.join(heatmap_dir, filename)
-        
         fig.savefig(filepath, format='tiff', bbox_inches='tight', pad_inches=0, dpi=150)
+        
         plt.close(fig)
         
-        print(f"Saved: {filename}")
+        # Only print progress if doing bulk processing
+        if specific_slice is None:
+            if i % 50 == 0 or i == n_slices - 1:
+                 print(f"Saved: {filename} ({i+1}/{n_slices})")
+        else:
+            print(f"Saved single slice: {filename}")
 
     print("\n--- Heatmap slice generation complete! ---")
-
+    
 def plot_region_clustering(df, output_dir, top_n=50):
     """
     Creates a clustered heatmap (dendrogram) to visualize region similarity.
@@ -543,9 +499,12 @@ def plot_region_clustering(df, output_dir, top_n=50):
     print(f"\n[SUCCESS] Clustering plot saved to: {plot_path}")
     plt.show()
 # --- Main Analysis Function ---
+
+
+
 def calculate_hemisphere_axon_percentage(input_volume, output_dir, voxel_size=25, temp_dir=None):
     """
-    Splits every brain region by the midline and calculates axon percentages for each side.
+    Splits every brain region by the midline and calculates axon percentages and fractions for each side.
     """
     print("\n--- Starting Analysis for HEMISPHERE-SPLIT Brain Regions ---")
     os.makedirs(output_dir, exist_ok=True)
@@ -565,7 +524,7 @@ def calculate_hemisphere_axon_percentage(input_volume, output_dir, voxel_size=25
 
         all_acronyms = [s['acronym'] for s in bg_atlas.structures.values() if 'acronym' in s]
         base_acronyms = sorted(list(set(re.sub(r'(_left|_right|_l|_r)$', '', ac, flags=re.IGNORECASE) 
-                                        for ac in all_acronyms)))
+                                           for ac in all_acronyms)))
         
         for i, base_acronym in enumerate(base_acronyms):
             if base_acronym in ['root', 'CH']: continue
@@ -590,8 +549,23 @@ def calculate_hemisphere_axon_percentage(input_volume, output_dir, voxel_size=25
                     })
         
         if results:
-            cols = ['acronym', 'id', 'name', 'hemisphere', 'axon_voxels', 'total_voxels', 'percentage']
-            final_df = pd.DataFrame(results)[cols]
+            df = pd.DataFrame(results)
+            
+            # --- MODIFICATION START ---
+            # Calculate the total sum of axon_voxels
+            total_axon_voxels = df['axon_voxels'].sum()
+
+            # Add the new 'axon_fraction' column
+            if total_axon_voxels > 0:
+                df['axon_fraction'] = df['axon_voxels'] / total_axon_voxels
+            else:
+                df['axon_fraction'] = 0.0 # Avoid division by zero
+            
+            # Update the list of columns for the final DataFrame
+            cols = ['acronym', 'id', 'name', 'hemisphere', 'axon_voxels', 'total_voxels', 'percentage', 'axon_fraction']
+            final_df = df[cols]
+            # --- MODIFICATION END ---
+            
             output_csv_path = os.path.join(output_dir, "axon_percentages_hemispheres.csv")
             final_df.sort_values(by='percentage', ascending=False).to_csv(output_csv_path, index=False)
             print(f"\n[SUCCESS] Saved hemisphere analysis to: {output_csv_path}")
@@ -701,7 +675,7 @@ def plot_anatomical_clustering(df_hemispheres, output_dir, parent_region='grey',
     plt.show()
 
 # --- NEW 1D DENDROGRAM HEATMAP FUNCTION ---
-def plot_1d_cluster_heatmap(df_hemispheres, output_dir, parent_region='grey', max_depth=4, c_map='viridis'):
+def plot_1d_cluster_heatmap(df_hemispheres, output_dir, parent_region='grey', max_depth=4, c_map='viridis', d_ratio=(0.3, 0.05)):
     """
     Creates a 1D clustered heatmap for a specific anatomical subdivision.
     """
@@ -768,9 +742,11 @@ def plot_1d_cluster_heatmap(df_hemispheres, output_dir, parent_region='grey', ma
         row_linkage=data_linkage,
         col_cluster=False,
         cmap=c_map,
-        figsize=(8, 14),
+        figsize=(12, 14),
         cbar_pos=(0.85, 0.8, 0.05, 0.15),
-        cbar_kws={'label': 'Axon Percentage (%)'}
+        cbar_kws={'label': 'Axon Percentage (%)'},
+        dendrogram_ratio=d_ratio
+        
     )
     
     g.fig.suptitle(f"Functional Clustering of Regions in {parent_region}", fontsize=16, weight='bold', y=0.98)
@@ -784,4 +760,206 @@ def plot_1d_cluster_heatmap(df_hemispheres, output_dir, parent_region='grey', ma
     plot_path = os.path.join(output_dir, f"clustering_1D_{parent_region}.png")
     g.savefig(plot_path, dpi=300, bbox_inches='tight')
     print(f"\n[SUCCESS] 1D Clustering plot saved to: {plot_path}")
+    plt.show()
+    
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+import os
+from collections import defaultdict
+from bg_atlasapi import BrainGlobeAtlas
+from sklearn.preprocessing import StandardScaler
+from scipy.spatial.distance import pdist, squareform
+from scipy.cluster.hierarchy import linkage
+
+# --- Helper Functions for Anatomical Tree ---
+
+def _get_atlas_maps(atlas):
+    """Generates parent and depth maps from the atlas structure."""
+    parent_map = {}
+    depth_map = {}
+    for struct_id, struct_info in atlas.structures.items():
+        # Store depth (path length)
+        depth_map[struct_id] = len(struct_info['structure_id_path'])
+        # Store parent ID
+        if len(struct_info['structure_id_path']) > 1:
+            parent_id = struct_info['structure_id_path'][-2]
+            parent_map[struct_id] = parent_id
+    return parent_map, depth_map
+
+def _get_lca(id1, id2, parent_map):
+    """Finds the Lowest Common Ancestor (LCA) for two region IDs."""
+    path1 = {}
+    current = id1
+    # Build path to root for id1
+    while current in parent_map:
+        path1[current] = True
+        current = parent_map[current]
+    path1[current] = True # Add the root node (e.g., 997)
+
+    # Traverse path for id2 until a node in path1 is found
+    current = id2
+    while current in parent_map:
+        if current in path1:
+            return current
+        current = parent_map[current]
+    if current in path1: # Check root node itself
+        return current
+    return None # Should not happen if both are in the tree
+
+# --- Main Plotting Function ---
+
+def plot_anatomical_similarity_matrix(
+    df_hemispheres, 
+    output_dir, 
+    parent_region='grey', 
+    max_depth=4, 
+    c_map='vlag',
+    metric='euclidean',
+    plot_filename=None
+):
+    """
+    Creates a 2D similarity matrix where the dendrogram is based on the
+    anatomical hierarchy, not data clustering.
+
+    Args:
+        df_hemispheres (pd.DataFrame): DataFrame with hemisphere-specific axon data.
+        output_dir (str): Directory to save the plot image.
+        parent_region (str, optional): Root region acronym (e.g., 'grey', 'CTX'). Defaults to 'grey'.
+        max_depth (int, optional): Max depth from the parent to fetch regions. Defaults to 4.
+        c_map (str, optional): Colormap for the heatmap. Defaults to 'vlag'.
+        metric (str, optional): Similarity metric for heatmap colors ('euclidean' or 'cosine'). Defaults to 'euclidean'.
+        plot_filename (str, optional): Custom filename for the output plot. Defaults to None.
+    """
+    print("\n--- Generating Anatomical Hierarchy Similarity Matrix ---")
+
+    # --- 1. Aggregate Hemisphere Data ---
+    print("[INFO] Aggregating hemisphere data...")
+    df_hemispheres['base_acronym'] = df_hemispheres['acronym'].str.replace(r'_left|_right$', '', regex=True)
+    df_bilateral = df_hemispheres.groupby('base_acronym').agg(
+        id=('id', 'first'), 
+        name=('name', 'first'),
+        axon_voxels=('axon_voxels', 'sum'), 
+        total_voxels=('total_voxels', 'sum')
+    ).reset_index()
+    df_bilateral.rename(columns={'base_acronym': 'acronym'}, inplace=True)
+    df_bilateral['percentage'] = (df_bilateral['axon_voxels'] / df_bilateral['total_voxels'].replace(0, np.nan)) * 100
+    df_bilateral['percentage'].fillna(0, inplace=True)
+
+    # --- 2. Select Anatomical Regions ---
+    print(f"[INFO] Fetching anatomical descendants of '{parent_region}' (depth={max_depth})...")
+    atlas = BrainGlobeAtlas('allen_mouse_25um')
+    children_map = defaultdict(list)
+    for struct_id, struct_info in atlas.structures.items():
+        if len(struct_info['structure_id_path']) > 1:
+            parent_id = struct_info['structure_id_path'][-2]
+            children_map[parent_id].append(struct_info)
+
+    def get_descendants(region_id, current_depth, max_depth):
+        if current_depth >= max_depth: return [atlas.structures[region_id]['acronym']]
+        children = children_map.get(region_id, [])
+        if not children: return [atlas.structures[region_id]['acronym']]
+        desc_list = []
+        for child in children:
+            desc_list.extend(get_descendants(child['id'], current_depth + 1, max_depth))
+        return desc_list
+
+    try:
+        parent_id = atlas.structures[parent_region]['id']
+    except KeyError:
+        print(f"[ERROR] Parent region '{parent_region}' not found in atlas.")
+        return
+    anatomical_leaves = sorted(list(set(get_descendants(parent_id, 0, max_depth))))
+
+    # --- 3. Prepare Plotting Data ---
+    plot_df = df_bilateral[df_bilateral['acronym'].isin(anatomical_leaves)].copy()
+    plot_df = plot_df[plot_df['axon_voxels'] > 0]
+    if plot_df.empty:
+        print("[ERROR] No overlapping data with axon signal found for the specified regions.")
+        return
+    
+    plot_df = plot_df.set_index('name')
+    plot_df['log_total_voxels'] = np.log10(plot_df['total_voxels'].replace(0, 1))
+    print(f"Found {len(plot_df)} matching regions with axon signal to plot.")
+
+    # --- 4. Build Anatomical Linkage Matrix ---
+    print("[INFO] Building anatomical hierarchy linkage...")
+    parent_map, depth_map = _get_atlas_maps(atlas)
+    
+    leaf_ids = plot_df['id'].to_list()
+    n = len(leaf_ids)
+    anat_dist_matrix = np.zeros((n, n))
+
+    for i in range(n):
+        for j in range(i + 1, n):
+            id_i = leaf_ids[i]
+            id_j = leaf_ids[j]
+            lca = _get_lca(id_i, id_j, parent_map)
+            
+            if lca and lca in depth_map:
+                dist = (depth_map[id_i] - depth_map[lca]) + (depth_map[id_j] - depth_map[lca])
+            else:
+                dist = 0
+            
+            anat_dist_matrix[i, j] = dist
+            anat_dist_matrix[j, i] = dist
+
+    condensed_anat_dist = squareform(anat_dist_matrix)
+    anatomical_linkage = linkage(condensed_anat_dist, method='average')
+
+    # --- 5. Calculate Data Similarity Matrix (for Heatmap Colors) ---
+    print(f"[INFO] Calculating data-driven similarity ({metric}) for heatmap colors...")
+    features_for_similarity = plot_df[['log_total_voxels', 'percentage']]
+    
+    scaler = StandardScaler()
+    scaled_features = scaler.fit_transform(features_for_similarity)
+    
+    data_distance_condensed = pdist(scaled_features, metric=metric)
+    data_distance_square = squareform(data_distance_condensed)
+    
+    data_distance_df = pd.DataFrame(data_distance_square, 
+                                    index=plot_df.index, 
+                                    # *** CORRECTION HERE ***
+                                    columns=plot_df.index)
+
+    # --- 6. Create the Clustered Heatmap ---
+    print("[INFO] Generating clustermap...")
+    
+    plot_size = max(15, len(plot_df.index) * 0.3) 
+    
+    g = sns.clustermap(
+        data_distance_df,
+        row_linkage=anatomical_linkage,
+        col_linkage=anatomical_linkage,
+        cmap=c_map,
+        figsize=(plot_size, plot_size),
+        cbar_pos=(-0.1, 0.8, 0.03, 0.15), 
+        cbar_kws={'label': f'Data Similarity ({metric.capitalize()} Distance)'},
+        dendrogram_ratio=0.15,
+        xticklabels=True,
+        yticklabels=True
+    )
+
+    # --- 7. Style and Save the Plot ---
+    g.fig.suptitle(f"Data Similarity of Regions in {parent_region} (Organized by Anatomy)", 
+                   fontsize=16, weight='bold', y=1.03) 
+    
+    ax = g.ax_heatmap
+    ax.set_xlabel('Brain Region', fontsize=12, weight='bold')
+    ax.set_ylabel('Brain Region', fontsize=12, weight='bold')
+    
+    label_fontsize = max(6, 12 - (len(plot_df.index) // 10))
+    plt.setp(g.ax_heatmap.get_xticklabels(), rotation=90, fontsize=label_fontsize)
+    plt.setp(g.ax_heatmap.get_yticklabels(), rotation=0, fontsize=label_fontsize)
+
+    if plot_filename is None:
+        plot_filename = f"anatomical_matrix_{parent_region}_{metric}.png"
+    
+    os.makedirs(output_dir, exist_ok=True)
+    plot_path = os.path.join(output_dir, plot_filename)
+    
+    g.savefig(plot_path, dpi=300, bbox_inches='tight')
+    print(f"\n[SUCCESS] Anatomical matrix saved to: {plot_path}")
+    
     plt.show()
