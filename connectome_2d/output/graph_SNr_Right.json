@@ -1,0 +1,486 @@
+{
+  "directed": true,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "region_id": 1001,
+      "name": "Globus Pallidus external",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "BG",
+      "id": "GPe"
+    },
+    {
+      "region_id": 1002,
+      "name": "Globus Pallidus internal",
+      "x": 0.4,
+      "y": -0.2,
+      "parent": "BG",
+      "id": "GPi"
+    },
+    {
+      "region_id": 1003,
+      "name": "Subthalamic nucleus",
+      "x": 1.1,
+      "y": 0.2,
+      "parent": "BG",
+      "id": "STN"
+    },
+    {
+      "region_id": 1004,
+      "name": "Substantia nigra reticulata",
+      "x": 1.2,
+      "y": -0.7,
+      "parent": "BG",
+      "id": "SNr"
+    },
+    {
+      "region_id": 1005,
+      "name": "Substantia nigra compacta",
+      "x": 1.4,
+      "y": -0.3,
+      "parent": "BG",
+      "id": "SNc"
+    },
+    {
+      "region_id": 1006,
+      "name": "Dorsal striatum",
+      "x": -0.8,
+      "y": 0.2,
+      "parent": "BG",
+      "id": "STR"
+    },
+    {
+      "region_id": 1007,
+      "name": "Thalamus",
+      "x": 0.6,
+      "y": 0.9,
+      "parent": "TH",
+      "id": "TH"
+    },
+    {
+      "region_id": 1008,
+      "name": "Primary motor cortex",
+      "x": -0.4,
+      "y": 1.6,
+      "parent": "CTX",
+      "id": "MOp"
+    },
+    {
+      "region_id": 1009,
+      "name": "Secondary motor cortex",
+      "x": -0.1,
+      "y": 1.8,
+      "parent": "CTX",
+      "id": "MOs"
+    },
+    {
+      "region_id": 1010,
+      "name": "Primary somatosensory cortex",
+      "x": -0.9,
+      "y": 1.5,
+      "parent": "CTX",
+      "id": "SSp"
+    },
+    {
+      "region_id": 1011,
+      "name": "Supplemental somatosensory cortex",
+      "x": -1.2,
+      "y": 1.2,
+      "parent": "CTX",
+      "id": "SSs"
+    },
+    {
+      "region_id": 1012,
+      "name": "Visual cortex",
+      "x": 1.8,
+      "y": 1.6,
+      "parent": "CTX",
+      "id": "VIS"
+    },
+    {
+      "region_id": 1013,
+      "name": "Auditory cortex",
+      "x": 1.5,
+      "y": 1.2,
+      "parent": "CTX",
+      "id": "AUD"
+    },
+    {
+      "region_id": 1014,
+      "name": "Hippocampus",
+      "x": 2.0,
+      "y": 0.5,
+      "parent": "HIP",
+      "id": "HIP"
+    },
+    {
+      "region_id": 1015,
+      "name": "Amygdala",
+      "x": 2.2,
+      "y": -0.2,
+      "parent": "AMY",
+      "id": "AMY"
+    },
+    {
+      "region_id": 1016,
+      "name": "Periaqueductal gray",
+      "x": 1.6,
+      "y": -1.2,
+      "parent": "MB",
+      "id": "PAG"
+    },
+    {
+      "region_id": 1017,
+      "name": "Prefrontal cortex",
+      "x": 0.2,
+      "y": 2.1,
+      "parent": "CTX",
+      "id": "PFC"
+    },
+    {
+      "region_id": 1018,
+      "name": "Cerebellum",
+      "x": 3.0,
+      "y": -1.5,
+      "parent": "CB",
+      "id": "CB"
+    },
+    {
+      "id": "SNr_Right"
+    },
+    {
+      "id": "root_Right"
+    },
+    {
+      "id": "MB_Left"
+    },
+    {
+      "id": "ORBl1_Left"
+    },
+    {
+      "id": "CP_Left"
+    },
+    {
+      "id": "VL_Right"
+    },
+    {
+      "id": "AON_Left"
+    },
+    {
+      "id": "OLF_Left"
+    },
+    {
+      "id": "PIR_Right"
+    },
+    {
+      "id": "ml_Left"
+    },
+    {
+      "id": "nst_Right"
+    },
+    {
+      "id": "CP_Right"
+    },
+    {
+      "id": "PO_Right"
+    },
+    {
+      "id": "CLA_Left"
+    },
+    {
+      "id": "MD_Right"
+    },
+    {
+      "id": "SSs5_Right"
+    },
+    {
+      "id": "GU6a_Left"
+    },
+    {
+      "id": "VMH_Left"
+    },
+    {
+      "id": "DMH_Right"
+    },
+    {
+      "id": "ACB_Right"
+    },
+    {
+      "id": "SSs4_Right"
+    },
+    {
+      "id": "SCig_Left"
+    },
+    {
+      "id": "AD_Right"
+    },
+    {
+      "id": "SI_Right"
+    },
+    {
+      "id": "BLAa_Right"
+    },
+    {
+      "id": "VISC1_Right"
+    },
+    {
+      "id": "ACB_Left"
+    },
+    {
+      "id": "alv_Right"
+    },
+    {
+      "id": "CA1_Right"
+    },
+    {
+      "id": "CL_Right"
+    },
+    {
+      "id": "PR_Left"
+    }
+  ],
+  "edges": [
+    {
+      "weight": 1865926.209,
+      "weight_norm": 0.2461228928869464,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "SNr_Right",
+      "target": "root_Right"
+    },
+    {
+      "weight": 450718.84,
+      "weight_norm": 0.0594515604338396,
+      "rank_pct": 0.9736842105263158,
+      "metric": "length_um",
+      "source": "SNr_Right",
+      "target": "MB_Left"
+    },
+    {
+      "weight": 418161.1,
+      "weight_norm": 0.0551570684458871,
+      "rank_pct": 0.9473684210526316,
+      "metric": "length_um",
+      "source": "SNr_Right",
+      "target": "ORBl1_Left"
+    },
+    {
+      "weight": 387694.25,
+      "weight_norm": 0.0511383729460413,
+      "rank_pct": 0.9210526315789472,
+      "metric": "length_um",
+      "source": "SNr_Right",
+      "target": "CP_Left"
+    },
+    {
+      "weight": 347421.25,
+      "weight_norm": 0.0458262082862458,
+      "rank_pct": 0.8947368421052632,
+      "metric": "length_um",
+      "source": "SNr_Right",
+      "target": "VL_Right"
+    },
+    {
+      "weight": 345608.12,
+      "weight_norm": 0.0455870494177826,
+      "rank_pct": 0.868421052631579,
+      "metric": "length_um",
+      "source": "SNr_Right",
+      "target": "AON_Left"
+    },
+    {
+      "weight": 336040.5,
+      "weight_norm": 0.0443250432885558,
+      "rank_pct": 0.8421052631578947,
+      "metric": "length_um",
+      "source": "SNr_Right",
+      "target": "OLF_Left"
+    },
+    {
+      "weight": 302652.155,
+      "weight_norm": 0.0399209912845318,
+      "rank_pct": 0.8157894736842105,
+      "metric": "length_um",
+      "source": "SNr_Right",
+      "target": "PIR_Right"
+    },
+    {
+      "weight": 292818.66,
+      "weight_norm": 0.0386239152131868,
+      "rank_pct": 0.7894736842105263,
+      "metric": "length_um",
+      "source": "SNr_Right",
+      "target": "ml_Left"
+    },
+    {
+      "weight": 213657.28,
+      "weight_norm": 0.0281822226336262,
+      "rank_pct": 0.7631578947368421,
+      "metric": "length_um",
+      "source": "SNr_Right",
+      "target": "nst_Right"
+    },
+    {
+      "weight": 207628.418,
+      "weight_norm": 0.0273869923886685,
+      "rank_pct": 0.736842105263158,
+      "metric": "length_um",
+      "source": "SNr_Right",
+      "target": "CP_Right"
+    },
+    {
+      "weight": 173620.58,
+      "weight_norm": 0.0229012268589178,
+      "rank_pct": 0.7105263157894737,
+      "metric": "length_um",
+      "source": "SNr_Right",
+      "target": "PO_Right"
+    },
+    {
+      "weight": 165420.64,
+      "weight_norm": 0.0218196230181201,
+      "rank_pct": 0.6842105263157895,
+      "metric": "length_um",
+      "source": "SNr_Right",
+      "target": "CLA_Left"
+    },
+    {
+      "weight": 163051.14,
+      "weight_norm": 0.0215070767920782,
+      "rank_pct": 0.6578947368421053,
+      "metric": "length_um",
+      "source": "SNr_Right",
+      "target": "MD_Right"
+    },
+    {
+      "weight": 145806.39899999998,
+      "weight_norm": 0.0192324286728041,
+      "rank_pct": 0.631578947368421,
+      "metric": "length_um",
+      "source": "SNr_Right",
+      "target": "SSs5_Right"
+    },
+    {
+      "weight": 129270.195,
+      "weight_norm": 0.0170512393276853,
+      "rank_pct": 0.6052631578947368,
+      "metric": "length_um",
+      "source": "SNr_Right",
+      "target": "GU6a_Left"
+    },
+    {
+      "weight": 128427.09,
+      "weight_norm": 0.0169400305132067,
+      "rank_pct": 0.5789473684210527,
+      "metric": "length_um",
+      "source": "SNr_Right",
+      "target": "VMH_Left"
+    },
+    {
+      "weight": 105798.55,
+      "weight_norm": 0.013955238456723,
+      "rank_pct": 0.5526315789473684,
+      "metric": "length_um",
+      "source": "SNr_Right",
+      "target": "DMH_Right"
+    },
+    {
+      "weight": 104662.195,
+      "weight_norm": 0.0138053488316148,
+      "rank_pct": 0.5263157894736843,
+      "metric": "length_um",
+      "source": "SNr_Right",
+      "target": "ACB_Right"
+    },
+    {
+      "weight": 104307.484,
+      "weight_norm": 0.0137585610770735,
+      "rank_pct": 0.5,
+      "metric": "length_um",
+      "source": "SNr_Right",
+      "target": "SSs4_Right"
+    },
+    {
+      "weight": 101232.25,
+      "weight_norm": 0.0133529258034311,
+      "rank_pct": 0.4736842105263158,
+      "metric": "length_um",
+      "source": "SNr_Right",
+      "target": "SCig_Left"
+    },
+    {
+      "weight": 97986.65,
+      "weight_norm": 0.0129248185946353,
+      "rank_pct": 0.4473684210526315,
+      "metric": "length_um",
+      "source": "SNr_Right",
+      "target": "AD_Right"
+    },
+    {
+      "weight": 95288.53,
+      "weight_norm": 0.0125689261179912,
+      "rank_pct": 0.4210526315789473,
+      "metric": "length_um",
+      "source": "SNr_Right",
+      "target": "SI_Right"
+    },
+    {
+      "weight": 94246.36,
+      "weight_norm": 0.0124314598591206,
+      "rank_pct": 0.3947368421052631,
+      "metric": "length_um",
+      "source": "SNr_Right",
+      "target": "BLAa_Right"
+    },
+    {
+      "weight": 90839.91,
+      "weight_norm": 0.0119821359124228,
+      "rank_pct": 0.368421052631579,
+      "metric": "length_um",
+      "source": "SNr_Right",
+      "target": "VISC1_Right"
+    },
+    {
+      "weight": 86491.47,
+      "weight_norm": 0.0114085598368078,
+      "rank_pct": 0.3421052631578947,
+      "metric": "length_um",
+      "source": "SNr_Right",
+      "target": "ACB_Left"
+    },
+    {
+      "weight": 78255.54,
+      "weight_norm": 0.0103222087756366,
+      "rank_pct": 0.3157894736842105,
+      "metric": "length_um",
+      "source": "SNr_Right",
+      "target": "alv_Right"
+    },
+    {
+      "weight": 73511.47,
+      "weight_norm": 0.0096964475709189,
+      "rank_pct": 0.2894736842105263,
+      "metric": "length_um",
+      "source": "SNr_Right",
+      "target": "CA1_Right"
+    },
+    {
+      "weight": 69864.27,
+      "weight_norm": 0.0092153677669011,
+      "rank_pct": 0.2631578947368421,
+      "metric": "length_um",
+      "source": "SNr_Right",
+      "target": "CL_Right"
+    },
+    {
+      "weight": 68315.805,
+      "weight_norm": 0.0090111192368703,
+      "rank_pct": 0.2368421052631578,
+      "metric": "length_um",
+      "source": "SNr_Right",
+      "target": "PR_Left"
+    }
+  ]
+}

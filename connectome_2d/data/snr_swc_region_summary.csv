@@ -1,0 +1,164 @@
+swc_name,length_um,start_x,start_y,start_z,start_structure,start_structure_name,start_hemisphere,end_x,end_y,end_z,end_structure,end_structure_name,end_hemisphere,start_region_hemi,end_region_hemi
+AA0001.swc,111945.66,2966.8877,2546.0754,4625.2505,MOs5,"Secondary motor area, layer 5",Left,5388.5713,6469.099,9317.188,root,root,Right,MOs5_Left,root_Right
+AA0011.swc,207335.67,6829.3438,2320.2852,2938.0967,ccb,"corpus callosum, body",Left,6509.0513,7432.469,11731.675,outside_brain,outside_brain,Right,ccb_Left,outside_brain_Right
+AA0012.swc,141154.9,7073.428,2796.918,3210.9368,CA3,Field CA3,Left,5385.108,8892.069,13488.063,outside_brain,outside_brain,Right,CA3_Left,outside_brain_Right
+AA0025.swc,66499.734,7883.849,1741.3098,9263.4795,VISal5,"Anterolateral visual area, layer 5",Right,5778.414,6229.203,7067.8594,LPO,Lateral preoptic area,Right,VISal5_Right,LPO_Right
+AA0066.swc,135525.25,5288.405,1294.9464,5823.0845,ACAd1,"Anterior cingulate area, dorsal part, layer 1",Right,5727.9062,6331.5254,9375.498,PIR,Piriform area,Right,ACAd1_Right,PIR_Right
+AA0087.swc,100954.59,5228.8003,5844.9683,6758.7134,HY,Hypothalamus,Right,5141.7915,2828.6965,10463.446,root,root,Right,HY_Right,root_Right
+AA0114.swc,171391.39,7532.245,3080.2974,2788.1194,CA3,Field CA3,Left,6213.543,6947.612,11593.019,outside_brain,outside_brain,Right,CA3_Left,outside_brain_Right
+AA0115.swc,106090.516,7328.9463,2732.5032,2621.4014,CA3,Field CA3,Left,5811.227,7093.015,11643.093,outside_brain,outside_brain,Right,CA3_Left,outside_brain_Right
+AA0119.swc,136216.34,7321.589,3351.8296,2753.714,fi,fimbria,Left,6356.583,6562.116,10623.919,root,root,Right,fi_Left,root_Right
+AA0121.swc,109347.09,7067.117,3211.6875,2539.838,CP,Caudoputamen,Left,6266.0283,4763.263,10096.197,VISC5,"Visceral area, layer 5",Right,CP_Left,VISC5_Right
+AA0122.swc,132567.03,7103.482,3096.6328,2536.5618,CP,Caudoputamen,Left,5656.5547,6155.5195,9494.281,PIR,Piriform area,Right,CP_Left,PIR_Right
+AA0128.swc,120127,4766.8325,5395.394,7080.2593,CP,Caudoputamen,Right,4621.19,3016.3901,10186.341,root,root,Right,CP_Right,root_Right
+AA0131.swc,58433.086,7530.773,2315.039,3970.026,DG-sg,"Dentate gyrus, granule cell layer",Left,5379.9565,6526.1133,13318.132,outside_brain,outside_brain,Right,DG-sg_Left,outside_brain_Right
+AA0132.swc,74712.33,7326.7417,1957.6456,4254.8887,CA1,Field CA1,Left,6024.7983,6479.3438,9231.35,PIR,Piriform area,Right,CA1_Left,PIR_Right
+AA0133.swc,102837.55,7414.166,2567.664,3677.4644,CA3,Field CA3,Left,5303.799,7408.2627,13542.017,outside_brain,outside_brain,Right,CA3_Left,outside_brain_Right
+AA0134.swc,64696.098,7381.0996,2627.2349,3743.425,CA3,Field CA3,Left,4976.675,6570.304,13105.838,outside_brain,outside_brain,Right,CA3_Left,outside_brain_Right
+AA0135.swc,49690.996,7512.275,2212.2476,3893.6636,DG-mo,"Dentate gyrus, molecular layer",Left,6210.262,6530.34,9132.953,PIR,Piriform area,Right,DG-mo_Left,PIR_Right
+AA0152.swc,24024.395,5325.4,5841.8506,6116.9956,MPO,Medial preoptic area,Right,4801.551,3956.1758,10263.341,root,root,Right,MPO_Right,root_Right
+AA0153.swc,18569.459,5498.472,5904.076,6333.912,MPO,Medial preoptic area,Right,5441.08,2889.2957,9986.518,SSp-n2/3,"Primary somatosensory area, nose, layer 2/3",Right,MPO_Right,SSp-n2/3_Right
+AA0169.swc,60902.39,7419.4297,2366.5195,3873.1338,DG-sg,"Dentate gyrus, granule cell layer",Left,5829.205,7527.912,12141.73,outside_brain,outside_brain,Right,DG-sg_Left,outside_brain_Right
+AA0174.swc,78667.53,4440.73,5260.947,6846.341,aco,"anterior commissure, olfactory limb",Right,5402.207,6286.818,12119.142,outside_brain,outside_brain,Right,aco_Right,outside_brain_Right
+AA0175.swc,128474.84,4600.6934,5460.807,6685.27,aco,"anterior commissure, olfactory limb",Right,4661.8477,3741.2737,11143.994,root,root,Right,aco_Right,root_Right
+AA0177.swc,60331.12,4433.1953,5346.746,6527.073,ACB,Nucleus accumbens,Right,5492.381,1383.0264,9964.662,root,root,Right,ACB_Right,root_Right
+AA0179.swc,134066.23,6837.7656,2586.6833,3304.5063,CA3,Field CA3,Left,5812.1714,7250.7974,13846.502,outside_brain,outside_brain,Right,CA3_Left,outside_brain_Right
+AA0180.swc,145829.67,6726.657,2540.018,3081.7632,VL,lateral ventricle,Left,5701.57,6913.994,13764.364,outside_brain,outside_brain,Right,VL_Left,outside_brain_Right
+AA0181.swc,106164.93,7070.274,2370.5188,3219.5742,CA3,Field CA3,Left,5767.4775,6175.0063,10967.766,root,root,Right,CA3_Left,root_Right
+AA0182.swc,133387.08,6998.4937,2219.1177,3436.857,CA2,Field CA2,Left,5878.7305,7204.6406,12448.344,outside_brain,outside_brain,Right,CA2_Left,outside_brain_Right
+AA0204.swc,104307.484,4937.474,5220.871,7629.0273,CP,Caudoputamen,Right,6591.514,3415.1855,10106.209,SSs4,"Supplemental somatosensory area, layer 4",Right,CP_Right,SSs4_Right
+AA0209.swc,22549.021,5078.379,5440.5854,7518.2817,CP,Caudoputamen,Right,5469.8193,5473.569,3998.4885,PAL,Pallidum,Left,CP_Right,PAL_Left
+AA0210.swc,54865.703,5050.408,5294.4688,7599.2085,CP,Caudoputamen,Right,5520.689,7606.6216,12718.163,outside_brain,outside_brain,Right,CP_Right,outside_brain_Right
+AA0211.swc,118943.12,5225.176,5218.9023,7718.3564,CP,Caudoputamen,Right,5108.469,7359.5474,11732.856,outside_brain,outside_brain,Right,CP_Right,outside_brain_Right
+AA0212.swc,68623.305,5129.9893,5656.2314,7438.9043,CP,Caudoputamen,Right,4917.969,2409.6116,9965.45,root,root,Right,CP_Right,root_Right
+AA0213.swc,40209.195,5325.8105,5278.328,7543.559,CP,Caudoputamen,Right,5571.176,5898.3984,3967.3623,SI,Substantia innominata,Left,CP_Right,SI_Left
+AA0215.swc,101813.83,4433.8076,5369.1543,7688.7495,CP,Caudoputamen,Right,7273.178,5870.2207,11623.765,outside_brain,outside_brain,Right,CP_Right,outside_brain_Right
+AA0216.swc,100987.24,4711.8867,5342.451,7440.94,CP,Caudoputamen,Right,5644.676,1773.3765,10297.364,root,root,Right,CP_Right,root_Right
+AA0218.swc,45364.652,4381.6904,5458.4326,7691.324,CP,Caudoputamen,Right,3936.7322,2205.742,9322.301,root,root,Right,CP_Right,root_Right
+AA0220.swc,125588.18,5274.327,5217.6206,7421.429,CP,Caudoputamen,Right,4501.476,1741.8809,10037.512,root,root,Right,CP_Right,root_Right
+AA0221.swc,94513.555,4823.398,5146.2495,7358.6553,CP,Caudoputamen,Right,7370.4766,2079.2646,9543.724,SSs5,"Supplemental somatosensory area, layer 5",Right,CP_Right,SSs5_Right
+AA0245.swc,214687.22,6852.341,2079.8777,3438.5332,CA2,Field CA2,Left,4463.2275,5208.5483,10495.488,root,root,Right,CA2_Left,root_Right
+AA0250.swc,178562.66,7109.2275,2360.1511,3242.6553,CA3,Field CA3,Left,5249.58,6688.164,13314.565,outside_brain,outside_brain,Right,CA3_Left,outside_brain_Right
+AA0261.swc,153332.6,6924.851,2000.6548,3592.6648,CA1,Field CA1,Left,5248.6055,5579.199,10514.24,root,root,Right,CA1_Left,root_Right
+AA0415.swc,51704.58,6890.8813,2403.7778,2743.9292,or,optic radiation,Left,5743.5854,6576.1147,9271.111,PIR,Piriform area,Right,or_Left,PIR_Right
+AA0433.swc,48206.645,5808.426,2202.754,10235.389,root,root,Right,5409.539,7257.5117,10480.85,root,root,Right,root_Right,root_Right
+AA0435.swc,43777.39,4671.3584,5218.223,5528.7417,MS,Medial septal nucleus,Left,4468.8438,3723.2498,9757.399,SSs2/3,"Supplemental somatosensory area, layer 2/3",Right,MS_Left,SSs2/3_Right
+AA0438.swc,28061.332,4707.7046,5445.6255,5725.822,MS,Medial septal nucleus,Right,5115.7134,4955.971,8632.378,CP,Caudoputamen,Right,MS_Right,CP_Right
+AA0443.swc,106956.74,4592.707,5381.254,6811.577,aco,"anterior commissure, olfactory limb",Right,5541.041,1631.283,10093.975,root,root,Right,aco_Right,root_Right
+AA0449.swc,116027.65,4868.3906,5331.8555,7159.661,CP,Caudoputamen,Right,5517.0234,6339.3867,11411.433,outside_brain,outside_brain,Right,CP_Right,outside_brain_Right
+AA0456.swc,142321.98,6768.2344,2982.5234,3410.1094,fi,fimbria,Left,6517.329,3741.372,11661.15,outside_brain,outside_brain,Right,fi_Left,outside_brain_Right
+AA0457.swc,53051.09,6804.535,2869.8125,3358.3584,fi,fimbria,Left,7606.227,4471.289,8830.029,fi,fimbria,Right,fi_Left,fi_Right
+AA0469.swc,58502.793,6844.4185,1942.4779,2459.938,SSp-bfd5,"Primary somatosensory area, barrel field, layer 5",Left,7580.6504,4771.782,9124.554,CP,Caudoputamen,Right,SSp-bfd5_Left,CP_Right
+AA0510.swc,97986.65,5206.799,4944.868,10054.761,GU2/3,"Gustatory areas, layer 2/3",Right,6367.1016,3385.6362,6479.035,AD,Anterodorsal nucleus,Right,GU2/3_Right,AD_Right
+AA0514.swc,173620.58,5471.305,4153.906,9784.4375,SSs5,"Supplemental somatosensory area, layer 5",Right,7311.1875,4267.8105,6670.7246,PO,Posterior complex of the thalamus,Right,SSs5_Right,PO_Right
+AA0537.swc,66139.97,4785.7695,5916.6978,6708.4575,HY,Hypothalamus,Right,3950.4258,5929.1445,11877.549,outside_brain,outside_brain,Right,HY_Right,outside_brain_Right
+AA0542.swc,62728.336,4501.6567,6287.5576,7023.2925,ACB,Nucleus accumbens,Right,5220.477,2289.186,10650.357,root,root,Right,ACB_Right,root_Right
+AA0576.swc,155648.12,6638.331,2342.2847,3333.9954,VL,lateral ventricle,Left,4733.0703,7352.554,13235.493,outside_brain,outside_brain,Right,VL_Left,outside_brain_Right
+AA0583.swc,159243.08,6508.2812,1414.9385,4569.9062,SSp-tr6a,"Primary somatosensory area, trunk, layer 6a",Left,6270.946,6491.5747,9675.098,root,root,Right,SSp-tr6a_Left,root_Right
+AA0584.swc,114885.445,7014.5234,1875.459,4577.418,CA1,Field CA1,Left,5025.588,7024.978,13632.414,outside_brain,outside_brain,Right,CA1_Left,outside_brain_Right
+AA0587.swc,157368.58,6948.9062,1561.1074,4325.1934,CA1,Field CA1,Left,4462.6953,6033.9443,13526.27,outside_brain,outside_brain,Right,CA1_Left,outside_brain_Right
+AA0609.swc,74520.34,4546.214,5861.9224,6910.6636,ACB,Nucleus accumbens,Right,5658.547,6402.333,13334.58,outside_brain,outside_brain,Right,ACB_Right,outside_brain_Right
+AA0617.swc,88633.67,7295.078,1750.2324,4474.9727,CA1,Field CA1,Left,6393.422,6868.13,9296.348,PIR,Piriform area,Right,CA1_Left,PIR_Right
+AA0726.swc,132841.78,6663.8125,2087.454,3721.0645,CA3,Field CA3,Left,5441.1196,5483.5527,11822.968,outside_brain,outside_brain,Right,CA3_Left,outside_brain_Right
+AA0747.swc,72817.234,6881.578,2571.6748,3016.8047,VL,lateral ventricle,Left,8538.064,7303.5864,7214.34,root,root,Right,VL_Left,root_Right
+AA0751.swc,60415.324,7673.6606,3524.037,8802.598,CA3,Field CA3,Right,6561.2974,6639.213,10551.558,root,root,Right,CA3_Right,root_Right
+AA0752.swc,169408.06,7587.7007,4259.812,8335.47,LGv,Ventral part of the lateral geniculate complex,Right,6070.492,1225.875,10784.223,root,root,Right,LGv_Right,root_Right
+AA0760.swc,78255.54,4563.081,5733.26,6685.2056,ACB,Nucleus accumbens,Right,7424.4297,2882.9102,9025.172,alv,alveus,Right,ACB_Right,alv_Right
+AA0761.swc,121462.805,4485.285,5859.608,6594.066,ACB,Nucleus accumbens,Right,4528.164,6295.752,12766.277,outside_brain,outside_brain,Right,ACB_Right,outside_brain_Right
+AA0762.swc,147234.27,7646.0303,4091.3293,8425.232,LGv,Ventral part of the lateral geniculate complex,Right,6241.9375,1234.1465,10908.479,root,root,Right,LGv_Right,root_Right
+AA0764.swc,190256,6150.5625,1777.9316,4023.289,SSp-ll6a,"Primary somatosensory area, lower limb, layer 6a",Left,5764.5654,6886.308,10164.619,root,root,Right,SSp-ll6a_Left,root_Right
+AA0772.swc,174114.64,7252.521,2307.0166,3081.9568,CA1,Field CA1,Left,5669.2886,7129.6567,11067.666,root,root,Right,CA1_Left,root_Right
+AA0779.swc,90839.91,4593.1016,6163.759,6764.4004,ACB,Nucleus accumbens,Right,6609.0874,4483.546,10709.298,VISC1,"Visceral area, layer 1",Right,ACB_Right,VISC1_Right
+AA0780.swc,167578.06,6813.508,2689.0586,2594.5254,or,optic radiation,Left,5604.773,4970.6753,10973.908,root,root,Right,or_Left,root_Right
+AA0788.swc,199946.61,6664.1,2013.519,3179.3582,SSp-bfd6b,"Primary somatosensory area, barrel field, layer 6b",Left,5543.476,6993.063,13299.672,outside_brain,outside_brain,Right,SSp-bfd6b_Left,outside_brain_Right
+AA0791.swc,175345.05,6403.715,1582.7625,4547.374,SSp-ll6b,"Primary somatosensory area, lower limb, layer 6b",Left,3848.0237,6720.242,11608.307,outside_brain,outside_brain,Right,SSp-ll6b_Left,outside_brain_Right
+AA0792.swc,149503.4,6184.2314,1546.9315,4625.6343,MOp6a,"Primary motor area, Layer 6a",Left,5623.211,5071.2344,10867.107,root,root,Right,MOp6a_Left,root_Right
+AA0794.swc,139444.19,6255.8193,1268.1112,4786.719,MOp6a,"Primary motor area, Layer 6a",Left,6463.888,6479.034,8944.402,EPv,"Endopiriform nucleus, ventral part",Right,MOp6a_Left,EPv_Right
+AA0796.swc,171821.75,6119.137,2353.2634,4698.2446,CA3,Field CA3,Left,5340.385,4567.5986,11045.584,root,root,Right,CA3_Left,root_Right
+AA0830.swc,86491.47,7972.5347,2006.5696,8584.963,CA1,Field CA1,Right,4509.1484,5979.948,3664.2695,ACB,Nucleus accumbens,Left,CA1_Right,ACB_Left
+AA0917.swc,40307.836,4754.3984,6164.475,7027.41,ACB,Nucleus accumbens,Right,5520.461,5785.713,12959.809,outside_brain,outside_brain,Right,ACB_Right,outside_brain_Right
+AA0919.swc,68315.805,9761.907,2120.6323,7886.988,APr,Area prostriata,Right,7096.5312,5243.3486,5374.1074,PR,Perireunensis nucleus,Left,APr_Right,PR_Left
+AA0923.swc,137759.06,6915.873,1385.467,5679.2593,RSPv1,"Retrosplenial area, ventral part, layer 1",Left,5894.086,8407.895,14513.281,outside_brain,outside_brain,Right,RSPv1_Left,outside_brain_Right
+AA0926.swc,122644.14,7125.8867,1760.5713,4745.632,CA1,Field CA1,Left,6430.4062,6731.4873,9054.977,PIR,Piriform area,Right,CA1_Left,PIR_Right
+AA0927.swc,127135.48,7181.75,1901.0048,4419.3184,CA1,Field CA1,Left,6545.328,6699.0537,9042.936,PIR,Piriform area,Right,CA1_Left,PIR_Right
+AA0929.swc,40379.953,6447.675,4329.748,3080.107,GPe,"Globus pallidus, external segment",Left,5721.107,6218.82,9162.009,PIR,Piriform area,Right,GPe_Left,PIR_Right
+AA0931.swc,29595.865,6564.468,5458.365,7725.983,GPi,"Globus pallidus, internal segment",Right,3603.8506,5080.0757,8654.926,AIv2/3,"Agranular insular area, ventral part, layer 2/3",Right,GPi_Right,AIv2/3_Right
+AA0938.swc,73511.47,4618.3984,5769.8643,7755.078,CP,Caudoputamen,Right,7321.937,2242.6025,8518.771,CA1,Field CA1,Right,CP_Right,CA1_Right
+AA0941.swc,103822.086,1282.7904,3017.2893,7702.2803,root,root,Right,5438.742,1402.6016,10640.477,root,root,Right,root_Right,root_Right
+AA0944.swc,101221.13,9112.659,2770.8147,5263.3457,PAG,Periaqueductal gray,Left,4722.3125,6248.7617,14040.527,outside_brain,outside_brain,Right,PAG_Left,outside_brain_Right
+AA0945.swc,121041.76,8879.627,1659.898,7115.1255,RSPv1,"Retrosplenial area, ventral part, layer 1",Right,6027.6567,6689.718,9281.736,PIR,Piriform area,Right,RSPv1_Right,PIR_Right
+AA0956.swc,167253.34,2708.3599,3433.7617,3948.9368,ORBl5,"Orbital area, lateral part, layer 5",Left,5674.632,7284.921,13109.181,outside_brain,outside_brain,Right,ORBl5_Left,outside_brain_Right
+AA0992.swc,134988.58,5934.4556,4284.2188,8983.083,CP,Caudoputamen,Right,6492.9766,7161.203,13102.592,outside_brain,outside_brain,Right,CP_Right,outside_brain_Right
+AA1021.swc,68199.66,7164.6562,4085.2388,11939.394,outside_brain,outside_brain,Right,4287.039,4284.337,6205.416,LSr,"Lateral septal nucleus, rostral (rostroventral) part",Right,outside_brain_Right,LSr_Right
+AA1040.swc,22442.338,5729.978,5901.067,8027.995,FS,Fundus of striatum,Right,5126.125,4381.6846,6066.7676,SF,Septofimbrial nucleus,Right,FS_Right,SF_Right
+AA1043.swc,89038.03,8415.281,3448.8506,3907.6133,APN,Anterior pretectal nucleus,Left,5121.0625,6362.3506,13618.984,outside_brain,outside_brain,Right,APN_Left,outside_brain_Right
+AA1044.swc,292818.66,7091.187,5441.7476,7897.2817,int,internal capsule,Right,7752.508,4527.005,4317.867,ml,medial lemniscus,Left,int_Right,ml_Left
+AA1050.swc,102992.5,7514.922,2096.1323,4238.951,DG-mo,"Dentate gyrus, molecular layer",Left,5950.2734,7252.3438,11072.574,root,root,Right,DG-mo_Left,root_Right
+AA1051.swc,105402.27,8727.422,3286.0642,3949.8108,SCig,"Superior colliculus, motor related, intermediate gray layer",Left,4372.0547,4068.5693,10310.697,root,root,Right,SCig_Left,root_Right
+AA1069.swc,133953.5,7683.1025,6366.467,11690.818,outside_brain,outside_brain,Right,4482.539,3397.2822,6543.9863,VL,lateral ventricle,Right,outside_brain_Right,VL_Right
+AA1078.swc,50369.438,8812.911,3389.082,4021.653,MB,Midbrain,Left,6184.961,7300.2744,12856.334,outside_brain,outside_brain,Right,MB_Left,outside_brain_Right
+AA1100.swc,75489.74,4370.916,5765.8604,6885.087,ACB,Nucleus accumbens,Right,5304.8223,4556.875,11008.013,root,root,Right,ACB_Right,root_Right
+AA1107.swc,120031.78,4346.2515,6022.9033,7402.4336,ACB,Nucleus accumbens,Right,4101.875,7116.2666,12780.484,outside_brain,outside_brain,Right,ACB_Right,outside_brain_Right
+AA1132.swc,116665.53,4312.8125,5949.658,7349.7617,ACB,Nucleus accumbens,Right,4162.3516,7549.171,13300.896,outside_brain,outside_brain,Right,ACB_Right,outside_brain_Right
+AA1150.swc,89891.086,3930.2734,5699.368,6236.6074,ACB,Nucleus accumbens,Right,5806.668,4648.5356,8797.757,CP,Caudoputamen,Right,ACB_Right,CP_Right
+AA1152.swc,30225.668,4045.3984,5378.6484,6631.7734,ACB,Nucleus accumbens,Right,5097.8765,2833.3672,7363.934,CP,Caudoputamen,Right,ACB_Right,CP_Right
+AA1155.swc,205318.84,6260.6094,1489.4961,4245.4336,SSp-ll6a,"Primary somatosensory area, lower limb, layer 6a",Left,5817.664,6369.8467,9651.686,root,root,Right,SSp-ll6a_Left,root_Right
+AA1172.swc,193498.05,6435.5312,1527.8135,4399.463,SSp-ll6a,"Primary somatosensory area, lower limb, layer 6a",Left,7179.0425,6823.037,10993.206,root,root,Right,SSp-ll6a_Left,root_Right
+AA1175.swc,49319.78,3829.9844,5191.1514,7132.5605,ACB,Nucleus accumbens,Right,2594.837,3507.7651,5406.591,ORBm2/3,"Orbital area, medial part, layer 2/3",Left,ACB_Right,ORBm2/3_Left
+AA1185.swc,17634.791,4087.4502,3837.557,3996.948,CP,Caudoputamen,Left,4270.0923,5266.537,8914.779,AIv5,"Agranular insular area, ventral part, layer 5",Right,CP_Left,AIv5_Right
+AA1186.swc,14124.489,3420.9688,3726.1836,5012.625,ORBm6a,"Orbital area, medial part, layer 6a",Left,4061.7585,5328.7183,8791.116,PIR,Piriform area,Right,ORBm6a_Left,PIR_Right
+AA1190.swc,137558.97,8269.708,3231.1602,3586.003,LP,Lateral posterior nucleus of the thalamus,Left,6037.7656,7249.867,12011.665,outside_brain,outside_brain,Right,LP_Left,outside_brain_Right
+AA1193.swc,16020.617,7229.348,5003.297,4879.2764,VM,Ventral medial nucleus of the thalamus,Left,7073.635,5064.0337,8376.124,PAL,Pallidum,Right,VM_Left,PAL_Right
+AA1213.swc,128520.3,5013.8633,1719.1797,4517.667,MOp5,"Primary motor area, Layer 5",Left,5461.301,7239.839,12031.981,outside_brain,outside_brain,Right,MOp5_Left,outside_brain_Right
+AA1219.swc,136880,2647.706,1591.9034,6988.2754,root,root,Right,5239.39,6907.252,10390.142,root,root,Right,root_Right,root_Right
+AA1220.swc,450718.84,7517.9897,5211.0376,7625.2354,STN,Subthalamic nucleus,Right,8256.125,2895.916,5607.9463,MB,Midbrain,Left,STN_Right,MB_Left
+AA1221.swc,91903.56,6931.633,1738.9023,4518.6094,CA1,Field CA1,Left,6451.558,6279.6196,9256.446,PIR,Piriform area,Right,CA1_Left,PIR_Right
+AA1239.swc,55797.824,4852.3154,4455.8384,3436.2952,CP,Caudoputamen,Left,4625.891,5018.0923,8402.007,CP,Caudoputamen,Right,CP_Left,CP_Right
+AA1261.swc,71340.5,2973.6926,4000.0415,7628.219,ORBl5,"Orbital area, lateral part, layer 5",Right,4631.18,7306.0933,11925.078,outside_brain,outside_brain,Right,ORBl5_Right,outside_brain_Right
+AA1267.swc,117566.43,2939.4688,2493.1973,4612.09,MOs5,"Secondary motor area, layer 5",Left,5481.616,7024.197,10912.499,root,root,Right,MOs5_Left,root_Right
+AA1277.swc,58116.203,3316.593,2053.258,5219.2603,ACAd5,"Anterior cingulate area, dorsal part, layer 5",Left,5698.5366,6410.776,11488.592,outside_brain,outside_brain,Right,ACAd5_Left,outside_brain_Right
+AA1282.swc,105798.55,7194.1016,3274.95,8681.826,fi,fimbria,Right,7178.391,6268.7725,6164.381,DMH,Dorsomedial nucleus of the hypothalamus,Right,fi_Right,DMH_Right
+AA1287.swc,128427.09,6613.084,4271.194,9046.835,CP,Caudoputamen,Right,6605.913,6553.8257,5169.9336,VMH,Ventromedial hypothalamic nucleus,Left,CP_Right,VMH_Left
+AA1290.swc,46514.02,3535.5583,4836.762,7050.4727,OLF,Olfactory areas,Right,4404.5854,2424.7917,9876.056,root,root,Right,OLF_Right,root_Right
+AA1291.swc,163051.14,4109.5063,4195.4663,11568.61,outside_brain,outside_brain,Right,7176.4165,3974.5774,6400.245,MD,Mediodorsal nucleus of thalamus,Right,outside_brain_Right,MD_Right
+AA1294.swc,141296.12,3601.7854,3100.6306,3485.7405,MOp6a,"Primary motor area, Layer 6a",Left,5592.436,7233.067,12917.327,outside_brain,outside_brain,Right,MOp6a_Left,outside_brain_Right
+AA1296.swc,95288.53,5947.336,4170.1094,9662.768,SSs6a,"Supplemental somatosensory area, layer 6a",Right,4701.137,6120.169,6433.075,SI,Substantia innominata,Right,SSs6a_Right,SI_Right
+AA1314.swc,87898.18,7009.7617,5361.014,5351.2964,PR,Perireunensis nucleus,Left,6813.8955,3757.0923,9597.849,SSs6b,"Supplemental somatosensory area, layer 6b",Right,PR_Left,SSs6b_Right
+AA1365.swc,143566.64,8040.883,2359.8447,3902.9883,DG-po,"Dentate gyrus, polymorph layer",Left,5779.684,4263.0293,8452.215,CP,Caudoputamen,Right,DG-po_Left,CP_Right
+AA1398.swc,108858.65,4822.797,4882.0176,8679.895,CP,Caudoputamen,Right,5428.4873,7104.395,12952.301,outside_brain,outside_brain,Right,CP_Right,outside_brain_Right
+AA1407.swc,94246.36,6064.41,1913.064,6088.5283,ACAv5,"Anterior cingulate area, ventral part, layer 5",Right,6595.5117,6048.252,8969.089,BLAa,"Basolateral amygdalar nucleus, anterior part",Right,ACAv5_Right,BLAa_Right
+AA1411.swc,75965.08,1526.8871,3932.847,5878.1445,MOB,Main olfactory bulb,Right,5065.8394,4763.572,10268.913,root,root,Right,MOB_Right,root_Right
+AA1430.swc,112526.445,5006.561,4239.558,9179.4375,SSs6a,"Supplemental somatosensory area, layer 6a",Right,7113.6875,6961.1733,12221.144,outside_brain,outside_brain,Right,SSs6a_Right,outside_brain_Right
+AA1439.swc,101232.25,6510.5625,4198.414,7573.3516,VPM,Ventral posteromedial nucleus of the thalamus,Right,8641.694,2766.2922,4165.674,SCig,"Superior colliculus, motor related, intermediate gray layer",Left,VPM_Right,SCig_Left
+AA1446.swc,418161.1,4020.2656,4500.543,8871.793,AId5,"Agranular insular area, dorsal part, layer 5",Right,2990.2031,4270.2197,4322.617,ORBl1,"Orbital area, lateral part, layer 1",Left,AId5_Right,ORBl1_Left
+AA1447.swc,345608.12,4071.985,4816.9673,8953.364,AId5,"Agranular insular area, dorsal part, layer 5",Right,2880.3516,4472.084,4464.008,AON,Anterior olfactory nucleus,Left,AId5_Right,AON_Left
+AA1448.swc,387694.25,4615.345,5222.6274,8867.928,AIv6a,"Agranular insular area, ventral part, layer 6a",Right,3926.9517,4141.5645,3815.5464,CP,Caudoputamen,Left,AIv6a_Right,CP_Left
+AA1449.swc,336040.5,4269.256,4905.6123,8650.631,AId6a,"Agranular insular area, dorsal part, layer 6a",Right,3350.0059,4943.1636,4301.6787,OLF,Olfactory areas,Left,AId6a_Right,OLF_Left
+AA1459.swc,104662.195,6381.1094,4070.0117,8274.439,GPe,"Globus pallidus, external segment",Right,3771.3887,4947.9917,7197.3257,ACB,Nucleus accumbens,Right,GPe_Right,ACB_Right
+AA1467.swc,54037.83,2702.0938,5595.9346,7020.135,AON,Anterior olfactory nucleus,Right,6255.1787,5944.537,13263.388,outside_brain,outside_brain,Right,AON_Right,outside_brain_Right
+AA1469.swc,186331.31,7292.1934,6365.2305,4079.4302,root,root,Left,7118.2974,6622.159,12356.945,outside_brain,outside_brain,Right,root_Left,outside_brain_Right
+AA1501.swc,165420.64,5173.8438,4702.0605,10513.018,root,root,Right,4910.961,5029.622,2401.6895,CLA,Claustrum,Left,root_Right,CLA_Left
+AA1503.swc,129270.195,5821.828,4866.782,10562.555,root,root,Right,4875.9717,4618.8384,2114.947,GU6a,"Gustatory areas, layer 6a",Left,root_Right,GU6a_Left
+AA1539.swc,51966.43,7769.0635,2692.9954,4163.9507,bsc,brachium of the superior colliculus,Left,5854.9375,7280.3794,12024.265,outside_brain,outside_brain,Right,bsc_Left,outside_brain_Right
+AA1540.swc,55227.914,4002.5325,2338.1628,3787.8071,MOp5,"Primary motor area, Layer 5",Left,5441.006,7376.1245,12024.337,outside_brain,outside_brain,Right,MOp5_Left,outside_brain_Right
+AA1541.swc,85884.76,4330.2954,2492.7107,3050.277,MOp5,"Primary motor area, Layer 5",Left,5607.3306,7180.0522,12035.557,outside_brain,outside_brain,Right,MOp5_Left,outside_brain_Right
+AA1543.swc,90537,7508.83,2668.0474,3423.18,CA3,Field CA3,Left,6177.957,7344.0874,11999.845,outside_brain,outside_brain,Right,CA3_Left,outside_brain_Right
+AA1544.swc,69476.36,4734.841,1792.1003,4399.5977,MOp5,"Primary motor area, Layer 5",Left,5503.879,7207.4272,12033.223,outside_brain,outside_brain,Right,MOp5_Left,outside_brain_Right
+AA1576.swc,47060.566,8188.316,4399.2827,3948.2278,SPFp,"Subparafascicular nucleus, parvicellular part",Left,6956.099,4121.8257,10829.534,root,root,Right,SPFp_Left,root_Right
+AA1578.swc,73239.36,8450.281,4871.847,3886.7898,SNr,"Substantia nigra, reticular part",Left,5737.939,5071.251,8008.3467,CP,Caudoputamen,Right,SNr_Left,CP_Right
+AA1579.swc,93239.14,7423.6484,1948.3574,4597.506,CA1,Field CA1,Left,6440.3438,6951.533,9244.711,PIR,Piriform area,Right,CA1_Left,PIR_Right
+AA1581.swc,40333.316,9118.778,4698.592,4618.6177,rust,rubrospinal tract,Left,5705.2944,4124.795,7473.8813,int,internal capsule,Right,rust_Left,int_Right
+AA1587.swc,46206.668,7179.875,4234.382,3684.6504,VPM,Ventral posteromedial nucleus of the thalamus,Left,6580.6177,3821.912,9838.357,SSs6a,"Supplemental somatosensory area, layer 6a",Right,VPM_Left,SSs6a_Right
+AA1588.swc,51292.844,8517.664,4836.657,6104,VTA,Ventral tegmental area,Right,6723.617,3574.4785,9852.3125,SSs5,"Supplemental somatosensory area, layer 5",Right,VTA_Right,SSs5_Right
+AA1590.swc,213657.28,3764.664,4972.4805,10226.625,root,root,Right,7373.3994,5250.355,7358.3604,nst,nigrostriatal tract,Right,root_Right,nst_Right
+AA1599.swc,213467.75,6447.492,7192.0703,12808.993,outside_brain,outside_brain,Right,4276.9556,3841.435,6271.308,VL,lateral ventricle,Right,outside_brain_Right,VL_Right
+AA1601.swc,56527.375,4639.362,4588.1626,10419.319,root,root,Right,5795.2456,9550.121,12365.522,outside_brain,outside_brain,Right,root_Right,outside_brain_Right
+AA1613.swc,46085.145,6206.9316,1456.9851,7981.413,SSp-ul5,"Primary somatosensory area, upper limb, layer 5",Right,6551.188,6576.172,9525.221,PIR,Piriform area,Right,SSp-ul5_Right,PIR_Right
+AA1614.swc,57830.586,6177.594,2113.5605,5721.1855,ccb,"corpus callosum, body",Right,5971.1406,6549.659,10078.412,root,root,Right,ccb_Right,root_Right
+AA1625.swc,114450.42,6628.767,1703.083,4300.203,alv,alveus,Left,6462.5054,7443.5,11959.006,outside_brain,outside_brain,Right,alv_Left,outside_brain_Right
+AA1633.swc,116508.84,4995.7812,1608.5546,4790.617,MOs5,"Secondary motor area, layer 5",Left,5038.9688,6269.0703,9035.668,PIR,Piriform area,Right,MOs5_Left,PIR_Right
+AA1638.swc,94691.78,7739.633,6664.434,5541.842,PVp,"Periventricular hypothalamic nucleus, posterior part",Left,5756.508,1680.4849,10092.89,root,root,Right,PVp_Left,root_Right
+AA1639.swc,19170.19,2054.9182,4009.8071,6456.2295,MOB,Main olfactory bulb,Right,3766.9653,4576.373,9126.605,AId2/3,"Agranular insular area, dorsal part, layer 2/3",Right,MOB_Right,AId2/3_Right
+AA1640.swc,17288.838,3757.664,4858.3867,4639.589,ACB,Nucleus accumbens,Left,4119.996,4941.1836,8569.268,AIv5,"Agranular insular area, ventral part, layer 5",Right,ACB_Left,AIv5_Right
+AL0002.swc,59450.332,4522.5337,4664.544,11225.3545,root,root,Right,4405.66,3753.9531,6643.9688,CP,Caudoputamen,Right,root_Right,CP_Right
+AL0003.swc,69864.27,6922.7812,5324.2417,11181.808,root,root,Right,7005.004,4039.3552,6624.9873,CL,Central lateral nucleus of the thalamus,Right,root_Right,CL_Right

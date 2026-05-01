@@ -1,0 +1,310 @@
+{
+  "directed": true,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "region_id": 1001,
+      "name": "Globus Pallidus external",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "BG",
+      "id": "GPe"
+    },
+    {
+      "region_id": 1002,
+      "name": "Globus Pallidus internal",
+      "x": 0.4,
+      "y": -0.2,
+      "parent": "BG",
+      "id": "GPi"
+    },
+    {
+      "region_id": 1003,
+      "name": "Subthalamic nucleus",
+      "x": 1.1,
+      "y": 0.2,
+      "parent": "BG",
+      "id": "STN"
+    },
+    {
+      "region_id": 1004,
+      "name": "Substantia nigra reticulata",
+      "x": 1.2,
+      "y": -0.7,
+      "parent": "BG",
+      "id": "SNr"
+    },
+    {
+      "region_id": 1005,
+      "name": "Substantia nigra compacta",
+      "x": 1.4,
+      "y": -0.3,
+      "parent": "BG",
+      "id": "SNc"
+    },
+    {
+      "region_id": 1006,
+      "name": "Dorsal striatum",
+      "x": -0.8,
+      "y": 0.2,
+      "parent": "BG",
+      "id": "STR"
+    },
+    {
+      "region_id": 1007,
+      "name": "Thalamus",
+      "x": 0.6,
+      "y": 0.9,
+      "parent": "TH",
+      "id": "TH"
+    },
+    {
+      "region_id": 1008,
+      "name": "Primary motor cortex",
+      "x": -0.4,
+      "y": 1.6,
+      "parent": "CTX",
+      "id": "MOp"
+    },
+    {
+      "region_id": 1009,
+      "name": "Secondary motor cortex",
+      "x": -0.1,
+      "y": 1.8,
+      "parent": "CTX",
+      "id": "MOs"
+    },
+    {
+      "region_id": 1010,
+      "name": "Primary somatosensory cortex",
+      "x": -0.9,
+      "y": 1.5,
+      "parent": "CTX",
+      "id": "SSp"
+    },
+    {
+      "region_id": 1011,
+      "name": "Supplemental somatosensory cortex",
+      "x": -1.2,
+      "y": 1.2,
+      "parent": "CTX",
+      "id": "SSs"
+    },
+    {
+      "region_id": 1012,
+      "name": "Visual cortex",
+      "x": 1.8,
+      "y": 1.6,
+      "parent": "CTX",
+      "id": "VIS"
+    },
+    {
+      "region_id": 1013,
+      "name": "Auditory cortex",
+      "x": 1.5,
+      "y": 1.2,
+      "parent": "CTX",
+      "id": "AUD"
+    },
+    {
+      "region_id": 1014,
+      "name": "Hippocampus",
+      "x": 2.0,
+      "y": 0.5,
+      "parent": "HIP",
+      "id": "HIP"
+    },
+    {
+      "region_id": 1015,
+      "name": "Amygdala",
+      "x": 2.2,
+      "y": -0.2,
+      "parent": "AMY",
+      "id": "AMY"
+    },
+    {
+      "region_id": 1016,
+      "name": "Periaqueductal gray",
+      "x": 1.6,
+      "y": -1.2,
+      "parent": "MB",
+      "id": "PAG"
+    },
+    {
+      "region_id": 1017,
+      "name": "Prefrontal cortex",
+      "x": 0.2,
+      "y": 2.1,
+      "parent": "CTX",
+      "id": "PFC"
+    },
+    {
+      "region_id": 1018,
+      "name": "Cerebellum",
+      "x": 3.0,
+      "y": -1.5,
+      "parent": "CB",
+      "id": "CB"
+    },
+    {
+      "id": "STN_Left"
+    },
+    {
+      "id": "root_Right"
+    },
+    {
+      "id": "PIR_Right"
+    },
+    {
+      "id": "VISC5_Right"
+    },
+    {
+      "id": "CP_Right"
+    },
+    {
+      "id": "EPv_Right"
+    },
+    {
+      "id": "GPi_Right"
+    },
+    {
+      "id": "opt_Right"
+    },
+    {
+      "id": "SSs6b_Right"
+    },
+    {
+      "id": "SSp-n4_Right"
+    },
+    {
+      "id": "nst_Right"
+    },
+    {
+      "id": "SSs6a_Right"
+    },
+    {
+      "id": "SSs2/3_Right"
+    },
+    {
+      "id": "int_Right"
+    },
+    {
+      "id": "PAL_Right"
+    }
+  ],
+  "edges": [
+    {
+      "weight": 2437690.151000977,
+      "weight_norm": 0.551462064017102,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "STN_Left",
+      "target": "root_Right"
+    },
+    {
+      "weight": 889341.4247703552,
+      "weight_norm": 0.2011896620734937,
+      "rank_pct": 0.9230769230769232,
+      "metric": "length_um",
+      "source": "STN_Left",
+      "target": "PIR_Right"
+    },
+    {
+      "weight": 226465.6590576172,
+      "weight_norm": 0.0512317858451473,
+      "rank_pct": 0.8461538461538461,
+      "metric": "length_um",
+      "source": "STN_Left",
+      "target": "VISC5_Right"
+    },
+    {
+      "weight": 143566.6290512085,
+      "weight_norm": 0.0324781020869478,
+      "rank_pct": 0.7692307692307692,
+      "metric": "length_um",
+      "source": "STN_Left",
+      "target": "CP_Right"
+    },
+    {
+      "weight": 139444.20245361328,
+      "weight_norm": 0.0315455135545885,
+      "rank_pct": 0.6923076923076923,
+      "metric": "length_um",
+      "source": "STN_Left",
+      "target": "EPv_Right"
+    },
+    {
+      "weight": 127910.97855377196,
+      "weight_norm": 0.0289364307497184,
+      "rank_pct": 0.6153846153846154,
+      "metric": "length_um",
+      "source": "STN_Left",
+      "target": "GPi_Right"
+    },
+    {
+      "weight": 105417.33633041382,
+      "weight_norm": 0.0238478470498327,
+      "rank_pct": 0.5384615384615384,
+      "metric": "length_um",
+      "source": "STN_Left",
+      "target": "opt_Right"
+    },
+    {
+      "weight": 87898.17993164062,
+      "weight_norm": 0.019884607446334,
+      "rank_pct": 0.4615384615384615,
+      "metric": "length_um",
+      "source": "STN_Left",
+      "target": "SSs6b_Right"
+    },
+    {
+      "weight": 63601.14046478272,
+      "weight_norm": 0.0143880534530397,
+      "rank_pct": 0.3846153846153846,
+      "metric": "length_um",
+      "source": "STN_Left",
+      "target": "SSp-n4_Right"
+    },
+    {
+      "weight": 52739.442443847656,
+      "weight_norm": 0.0119308853806759,
+      "rank_pct": 0.3076923076923077,
+      "metric": "length_um",
+      "source": "STN_Left",
+      "target": "nst_Right"
+    },
+    {
+      "weight": 46206.66313934326,
+      "weight_norm": 0.0104530191483531,
+      "rank_pct": 0.2307692307692307,
+      "metric": "length_um",
+      "source": "STN_Left",
+      "target": "SSs6a_Right"
+    },
+    {
+      "weight": 43777.39263916016,
+      "weight_norm": 0.0099034618046781,
+      "rank_pct": 0.1538461538461538,
+      "metric": "length_um",
+      "source": "STN_Left",
+      "target": "SSs2/3_Right"
+    },
+    {
+      "weight": 40333.31718444824,
+      "weight_norm": 0.0091243320378757,
+      "rank_pct": 0.0769230769230768,
+      "metric": "length_um",
+      "source": "STN_Left",
+      "target": "int_Right"
+    },
+    {
+      "weight": 16020.617553710938,
+      "weight_norm": 0.0036242353522125,
+      "rank_pct": 0.0,
+      "metric": "length_um",
+      "source": "STN_Left",
+      "target": "PAL_Right"
+    }
+  ]
+}

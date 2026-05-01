@@ -1,0 +1,817 @@
+{
+  "directed": true,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "region_id": "1001",
+      "name": "Globus Pallidus external",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "BG",
+      "id": "GPe"
+    },
+    {
+      "region_id": "1001",
+      "name": "Globus Pallidus external",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "BG",
+      "id": "GPe_Left"
+    },
+    {
+      "region_id": "1001",
+      "name": "Globus Pallidus external",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "BG",
+      "id": "GPe_Right"
+    },
+    {
+      "region_id": "1002",
+      "name": "Globus Pallidus internal",
+      "x": 0.4,
+      "y": -0.2,
+      "parent": "BG",
+      "id": "GPi"
+    },
+    {
+      "region_id": "1002",
+      "name": "Globus Pallidus internal",
+      "x": 0.4,
+      "y": -0.2,
+      "parent": "BG",
+      "id": "GPi_Left"
+    },
+    {
+      "region_id": "1002",
+      "name": "Globus Pallidus internal",
+      "x": 0.4,
+      "y": -0.2,
+      "parent": "BG",
+      "id": "GPi_Right"
+    },
+    {
+      "region_id": "1003",
+      "name": "Subthalamic nucleus",
+      "x": 1.1,
+      "y": 0.2,
+      "parent": "BG",
+      "id": "STN"
+    },
+    {
+      "region_id": "1003",
+      "name": "Subthalamic nucleus",
+      "x": 1.1,
+      "y": 0.2,
+      "parent": "BG",
+      "id": "STN_Left"
+    },
+    {
+      "region_id": "1003",
+      "name": "Subthalamic nucleus",
+      "x": 1.1,
+      "y": 0.2,
+      "parent": "BG",
+      "id": "STN_Right"
+    },
+    {
+      "region_id": "1004",
+      "name": "Substantia nigra reticulata",
+      "x": 1.2,
+      "y": -0.7,
+      "parent": "BG",
+      "id": "SNr"
+    },
+    {
+      "region_id": "1004",
+      "name": "Substantia nigra reticulata",
+      "x": 1.2,
+      "y": -0.7,
+      "parent": "BG",
+      "id": "SNr_Left"
+    },
+    {
+      "region_id": "1004",
+      "name": "Substantia nigra reticulata",
+      "x": 1.2,
+      "y": -0.7,
+      "parent": "BG",
+      "id": "SNr_Right"
+    },
+    {
+      "region_id": "1005",
+      "name": "Substantia nigra compacta",
+      "x": 1.4,
+      "y": -0.3,
+      "parent": "BG",
+      "id": "SNc"
+    },
+    {
+      "region_id": "1005",
+      "name": "Substantia nigra compacta",
+      "x": 1.4,
+      "y": -0.3,
+      "parent": "BG",
+      "id": "SNc_Left"
+    },
+    {
+      "region_id": "1005",
+      "name": "Substantia nigra compacta",
+      "x": 1.4,
+      "y": -0.3,
+      "parent": "BG",
+      "id": "SNc_Right"
+    },
+    {
+      "region_id": "1006",
+      "name": "Dorsal striatum",
+      "x": -0.8,
+      "y": 0.2,
+      "parent": "BG",
+      "id": "STR"
+    },
+    {
+      "region_id": "1006",
+      "name": "Dorsal striatum",
+      "x": -0.8,
+      "y": 0.2,
+      "parent": "BG",
+      "id": "STR_Left"
+    },
+    {
+      "region_id": "1006",
+      "name": "Dorsal striatum",
+      "x": -0.8,
+      "y": 0.2,
+      "parent": "BG",
+      "id": "STR_Right"
+    },
+    {
+      "region_id": "1007",
+      "name": "Thalamus",
+      "x": 0.6,
+      "y": 0.9,
+      "parent": "TH",
+      "id": "TH"
+    },
+    {
+      "region_id": "1007",
+      "name": "Thalamus",
+      "x": 0.6,
+      "y": 0.9,
+      "parent": "TH",
+      "id": "TH_Left"
+    },
+    {
+      "region_id": "1007",
+      "name": "Thalamus",
+      "x": 0.6,
+      "y": 0.9,
+      "parent": "TH",
+      "id": "TH_Right"
+    },
+    {
+      "region_id": "1008",
+      "name": "Primary motor cortex",
+      "x": -0.4,
+      "y": 1.6,
+      "parent": "CTX",
+      "id": "MOp"
+    },
+    {
+      "region_id": "1008",
+      "name": "Primary motor cortex",
+      "x": -0.4,
+      "y": 1.6,
+      "parent": "CTX",
+      "id": "MOp_Left"
+    },
+    {
+      "region_id": "1008",
+      "name": "Primary motor cortex",
+      "x": -0.4,
+      "y": 1.6,
+      "parent": "CTX",
+      "id": "MOp_Right"
+    },
+    {
+      "region_id": "1009",
+      "name": "Secondary motor cortex",
+      "x": -0.1,
+      "y": 1.8,
+      "parent": "CTX",
+      "id": "MOs"
+    },
+    {
+      "region_id": "1009",
+      "name": "Secondary motor cortex",
+      "x": -0.1,
+      "y": 1.8,
+      "parent": "CTX",
+      "id": "MOs_Left"
+    },
+    {
+      "region_id": "1009",
+      "name": "Secondary motor cortex",
+      "x": -0.1,
+      "y": 1.8,
+      "parent": "CTX",
+      "id": "MOs_Right"
+    },
+    {
+      "region_id": "1010",
+      "name": "Primary somatosensory cortex",
+      "x": -0.9,
+      "y": 1.5,
+      "parent": "CTX",
+      "id": "SSp"
+    },
+    {
+      "region_id": "1010",
+      "name": "Primary somatosensory cortex",
+      "x": -0.9,
+      "y": 1.5,
+      "parent": "CTX",
+      "id": "SSp_Left"
+    },
+    {
+      "region_id": "1010",
+      "name": "Primary somatosensory cortex",
+      "x": -0.9,
+      "y": 1.5,
+      "parent": "CTX",
+      "id": "SSp_Right"
+    },
+    {
+      "region_id": "1011",
+      "name": "Supplemental somatosensory cortex",
+      "x": -1.2,
+      "y": 1.2,
+      "parent": "CTX",
+      "id": "SSs"
+    },
+    {
+      "region_id": "1011",
+      "name": "Supplemental somatosensory cortex",
+      "x": -1.2,
+      "y": 1.2,
+      "parent": "CTX",
+      "id": "SSs_Left"
+    },
+    {
+      "region_id": "1011",
+      "name": "Supplemental somatosensory cortex",
+      "x": -1.2,
+      "y": 1.2,
+      "parent": "CTX",
+      "id": "SSs_Right"
+    },
+    {
+      "region_id": "1012",
+      "name": "Visual cortex",
+      "x": 1.8,
+      "y": 1.6,
+      "parent": "CTX",
+      "id": "VIS"
+    },
+    {
+      "region_id": "1012",
+      "name": "Visual cortex",
+      "x": 1.8,
+      "y": 1.6,
+      "parent": "CTX",
+      "id": "VIS_Left"
+    },
+    {
+      "region_id": "1012",
+      "name": "Visual cortex",
+      "x": 1.8,
+      "y": 1.6,
+      "parent": "CTX",
+      "id": "VIS_Right"
+    },
+    {
+      "region_id": "1013",
+      "name": "Auditory cortex",
+      "x": 1.5,
+      "y": 1.2,
+      "parent": "CTX",
+      "id": "AUD"
+    },
+    {
+      "region_id": "1013",
+      "name": "Auditory cortex",
+      "x": 1.5,
+      "y": 1.2,
+      "parent": "CTX",
+      "id": "AUD_Left"
+    },
+    {
+      "region_id": "1013",
+      "name": "Auditory cortex",
+      "x": 1.5,
+      "y": 1.2,
+      "parent": "CTX",
+      "id": "AUD_Right"
+    },
+    {
+      "region_id": "1014",
+      "name": "Hippocampus",
+      "x": 2.0,
+      "y": 0.5,
+      "parent": "HIP",
+      "id": "HIP"
+    },
+    {
+      "region_id": "1014",
+      "name": "Hippocampus",
+      "x": 2.0,
+      "y": 0.5,
+      "parent": "HIP",
+      "id": "HIP_Left"
+    },
+    {
+      "region_id": "1014",
+      "name": "Hippocampus",
+      "x": 2.0,
+      "y": 0.5,
+      "parent": "HIP",
+      "id": "HIP_Right"
+    },
+    {
+      "region_id": "1015",
+      "name": "Amygdala",
+      "x": 2.2,
+      "y": -0.2,
+      "parent": "AMY",
+      "id": "AMY"
+    },
+    {
+      "region_id": "1015",
+      "name": "Amygdala",
+      "x": 2.2,
+      "y": -0.2,
+      "parent": "AMY",
+      "id": "AMY_Left"
+    },
+    {
+      "region_id": "1015",
+      "name": "Amygdala",
+      "x": 2.2,
+      "y": -0.2,
+      "parent": "AMY",
+      "id": "AMY_Right"
+    },
+    {
+      "region_id": "1016",
+      "name": "Periaqueductal gray",
+      "x": 1.6,
+      "y": -1.2,
+      "parent": "MB",
+      "id": "PAG"
+    },
+    {
+      "region_id": "1016",
+      "name": "Periaqueductal gray",
+      "x": 1.6,
+      "y": -1.2,
+      "parent": "MB",
+      "id": "PAG_Left"
+    },
+    {
+      "region_id": "1016",
+      "name": "Periaqueductal gray",
+      "x": 1.6,
+      "y": -1.2,
+      "parent": "MB",
+      "id": "PAG_Right"
+    },
+    {
+      "region_id": "1017",
+      "name": "Prefrontal cortex",
+      "x": 0.2,
+      "y": 2.1,
+      "parent": "CTX",
+      "id": "PFC"
+    },
+    {
+      "region_id": "1017",
+      "name": "Prefrontal cortex",
+      "x": 0.2,
+      "y": 2.1,
+      "parent": "CTX",
+      "id": "PFC_Left"
+    },
+    {
+      "region_id": "1017",
+      "name": "Prefrontal cortex",
+      "x": 0.2,
+      "y": 2.1,
+      "parent": "CTX",
+      "id": "PFC_Right"
+    },
+    {
+      "region_id": "1018",
+      "name": "Cerebellum",
+      "x": 3.0,
+      "y": -1.5,
+      "parent": "CB",
+      "id": "CB"
+    },
+    {
+      "region_id": "1018",
+      "name": "Cerebellum",
+      "x": 3.0,
+      "y": -1.5,
+      "parent": "CB",
+      "id": "CB_Left"
+    },
+    {
+      "region_id": "1018",
+      "name": "Cerebellum",
+      "x": 3.0,
+      "y": -1.5,
+      "parent": "CB",
+      "id": "CB_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "ACAv5_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "ACAv5_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "BLAa_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "BLAa_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "ACB_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "ACB_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "CP_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "CP_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "SSp-m4_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "SSp-m4_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "CA1_Left",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "CA1_Left"
+    },
+    {
+      "region_id": "unknown",
+      "name": "PIR_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "PIR_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "CM_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "CM_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "RSPagl1_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "RSPagl1_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "MOp1_Left",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "MOp1_Left"
+    },
+    {
+      "region_id": "unknown",
+      "name": "DG-po_Left",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "DG-po_Left"
+    },
+    {
+      "region_id": "unknown",
+      "name": "MB_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "MB_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "SSp-bfd6b_Left",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "SSp-bfd6b_Left"
+    },
+    {
+      "region_id": "unknown",
+      "name": "MOp5_Left",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "MOp5_Left"
+    },
+    {
+      "region_id": "unknown",
+      "name": "MOs6a_Left",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "MOs6a_Left"
+    },
+    {
+      "region_id": "unknown",
+      "name": "MS_Left",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "MS_Left"
+    },
+    {
+      "region_id": "unknown",
+      "name": "SSs2/3_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "SSs2/3_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "PH_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "PH_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "SSp-bfd5_Left",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "SSp-bfd5_Left"
+    },
+    {
+      "region_id": "unknown",
+      "name": "PR_Left",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "PR_Left"
+    },
+    {
+      "region_id": "unknown",
+      "name": "SSs6b_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "SSs6b_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "SSp-bfd6a_Left",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "SSp-bfd6a_Left"
+    },
+    {
+      "region_id": "unknown",
+      "name": "scp_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "scp_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "MB_Left",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "MB_Left"
+    },
+    {
+      "region_id": "unknown",
+      "name": "VL_Left",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "VL_Left"
+    },
+    {
+      "region_id": "unknown",
+      "name": "SSp-n4_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "SSp-n4_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "fi_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "fi_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "DMH_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "DMH_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "int_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "int_Right"
+    }
+  ],
+  "edges": [
+    {
+      "weight": 450718.8845214844,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "STN_Right",
+      "target": "MB_Left"
+    },
+    {
+      "weight": 94246.35473632812,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "ACAv5_Right",
+      "target": "BLAa_Right"
+    },
+    {
+      "weight": 120116.76013183594,
+      "weight_norm": 0.7479336475144691,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "ACB_Right",
+      "target": "CP_Right"
+    },
+    {
+      "weight": 40481.389892578125,
+      "weight_norm": 0.2520663524855309,
+      "rank_pct": 0.9411764705882352,
+      "metric": "length_um",
+      "source": "ACB_Right",
+      "target": "SSp-m4_Right"
+    },
+    {
+      "weight": 98251.59790039062,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "CP_Right",
+      "target": "MOp1_Left"
+    },
+    {
+      "weight": 181872.8220062256,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "CA1_Left",
+      "target": "PIR_Right"
+    },
+    {
+      "weight": 213616.64837646484,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "CM_Right",
+      "target": "RSPagl1_Right"
+    },
+    {
+      "weight": 143566.6290512085,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "DG-po_Left",
+      "target": "CP_Right"
+    },
+    {
+      "weight": 416538.8085327149,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "MB_Right",
+      "target": "SSp-bfd6b_Left"
+    },
+    {
+      "weight": 65004.97692871094,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "MOp5_Left",
+      "target": "PIR_Right"
+    },
+    {
+      "weight": 115871.9642944336,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "MOs6a_Left",
+      "target": "STR_Left"
+    },
+    {
+      "weight": 43777.39263916016,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "MS_Left",
+      "target": "SSs2/3_Right"
+    },
+    {
+      "weight": 328749.48462677,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "PH_Right",
+      "target": "SSp-bfd5_Left"
+    },
+    {
+      "weight": 87898.17993164062,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "PR_Left",
+      "target": "SSs6b_Right"
+    },
+    {
+      "weight": 58230.12506103516,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "SSp-bfd6a_Left",
+      "target": "scp_Right"
+    },
+    {
+      "weight": 63601.14046478272,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "VL_Left",
+      "target": "SSp-n4_Right"
+    },
+    {
+      "weight": 105798.54357910156,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "fi_Right",
+      "target": "DMH_Right"
+    },
+    {
+      "weight": 25741.09313964844,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "int_Right",
+      "target": "MB_Left"
+    }
+  ]
+}

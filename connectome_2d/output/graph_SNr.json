@@ -1,0 +1,1441 @@
+{
+  "directed": true,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "region_id": "1001",
+      "name": "Globus Pallidus external",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "BG",
+      "id": "GPe"
+    },
+    {
+      "region_id": "1001",
+      "name": "Globus Pallidus external",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "BG",
+      "id": "GPe_Left"
+    },
+    {
+      "region_id": "1001",
+      "name": "Globus Pallidus external",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "BG",
+      "id": "GPe_Right"
+    },
+    {
+      "region_id": "1002",
+      "name": "Globus Pallidus internal",
+      "x": 0.4,
+      "y": -0.2,
+      "parent": "BG",
+      "id": "GPi"
+    },
+    {
+      "region_id": "1002",
+      "name": "Globus Pallidus internal",
+      "x": 0.4,
+      "y": -0.2,
+      "parent": "BG",
+      "id": "GPi_Left"
+    },
+    {
+      "region_id": "1002",
+      "name": "Globus Pallidus internal",
+      "x": 0.4,
+      "y": -0.2,
+      "parent": "BG",
+      "id": "GPi_Right"
+    },
+    {
+      "region_id": "1003",
+      "name": "Subthalamic nucleus",
+      "x": 1.1,
+      "y": 0.2,
+      "parent": "BG",
+      "id": "STN"
+    },
+    {
+      "region_id": "1003",
+      "name": "Subthalamic nucleus",
+      "x": 1.1,
+      "y": 0.2,
+      "parent": "BG",
+      "id": "STN_Left"
+    },
+    {
+      "region_id": "1003",
+      "name": "Subthalamic nucleus",
+      "x": 1.1,
+      "y": 0.2,
+      "parent": "BG",
+      "id": "STN_Right"
+    },
+    {
+      "region_id": "1004",
+      "name": "Substantia nigra reticulata",
+      "x": 1.2,
+      "y": -0.7,
+      "parent": "BG",
+      "id": "SNr"
+    },
+    {
+      "region_id": "1004",
+      "name": "Substantia nigra reticulata",
+      "x": 1.2,
+      "y": -0.7,
+      "parent": "BG",
+      "id": "SNr_Left"
+    },
+    {
+      "region_id": "1004",
+      "name": "Substantia nigra reticulata",
+      "x": 1.2,
+      "y": -0.7,
+      "parent": "BG",
+      "id": "SNr_Right"
+    },
+    {
+      "region_id": "1005",
+      "name": "Substantia nigra compacta",
+      "x": 1.4,
+      "y": -0.3,
+      "parent": "BG",
+      "id": "SNc"
+    },
+    {
+      "region_id": "1005",
+      "name": "Substantia nigra compacta",
+      "x": 1.4,
+      "y": -0.3,
+      "parent": "BG",
+      "id": "SNc_Left"
+    },
+    {
+      "region_id": "1005",
+      "name": "Substantia nigra compacta",
+      "x": 1.4,
+      "y": -0.3,
+      "parent": "BG",
+      "id": "SNc_Right"
+    },
+    {
+      "region_id": "1006",
+      "name": "Dorsal striatum",
+      "x": -0.8,
+      "y": 0.2,
+      "parent": "BG",
+      "id": "STR"
+    },
+    {
+      "region_id": "1006",
+      "name": "Dorsal striatum",
+      "x": -0.8,
+      "y": 0.2,
+      "parent": "BG",
+      "id": "STR_Left"
+    },
+    {
+      "region_id": "1006",
+      "name": "Dorsal striatum",
+      "x": -0.8,
+      "y": 0.2,
+      "parent": "BG",
+      "id": "STR_Right"
+    },
+    {
+      "region_id": "1007",
+      "name": "Thalamus",
+      "x": 0.6,
+      "y": 0.9,
+      "parent": "TH",
+      "id": "TH"
+    },
+    {
+      "region_id": "1007",
+      "name": "Thalamus",
+      "x": 0.6,
+      "y": 0.9,
+      "parent": "TH",
+      "id": "TH_Left"
+    },
+    {
+      "region_id": "1007",
+      "name": "Thalamus",
+      "x": 0.6,
+      "y": 0.9,
+      "parent": "TH",
+      "id": "TH_Right"
+    },
+    {
+      "region_id": "1008",
+      "name": "Primary motor cortex",
+      "x": -0.4,
+      "y": 1.6,
+      "parent": "CTX",
+      "id": "MOp"
+    },
+    {
+      "region_id": "1008",
+      "name": "Primary motor cortex",
+      "x": -0.4,
+      "y": 1.6,
+      "parent": "CTX",
+      "id": "MOp_Left"
+    },
+    {
+      "region_id": "1008",
+      "name": "Primary motor cortex",
+      "x": -0.4,
+      "y": 1.6,
+      "parent": "CTX",
+      "id": "MOp_Right"
+    },
+    {
+      "region_id": "1009",
+      "name": "Secondary motor cortex",
+      "x": -0.1,
+      "y": 1.8,
+      "parent": "CTX",
+      "id": "MOs"
+    },
+    {
+      "region_id": "1009",
+      "name": "Secondary motor cortex",
+      "x": -0.1,
+      "y": 1.8,
+      "parent": "CTX",
+      "id": "MOs_Left"
+    },
+    {
+      "region_id": "1009",
+      "name": "Secondary motor cortex",
+      "x": -0.1,
+      "y": 1.8,
+      "parent": "CTX",
+      "id": "MOs_Right"
+    },
+    {
+      "region_id": "1010",
+      "name": "Primary somatosensory cortex",
+      "x": -0.9,
+      "y": 1.5,
+      "parent": "CTX",
+      "id": "SSp"
+    },
+    {
+      "region_id": "1010",
+      "name": "Primary somatosensory cortex",
+      "x": -0.9,
+      "y": 1.5,
+      "parent": "CTX",
+      "id": "SSp_Left"
+    },
+    {
+      "region_id": "1010",
+      "name": "Primary somatosensory cortex",
+      "x": -0.9,
+      "y": 1.5,
+      "parent": "CTX",
+      "id": "SSp_Right"
+    },
+    {
+      "region_id": "1011",
+      "name": "Supplemental somatosensory cortex",
+      "x": -1.2,
+      "y": 1.2,
+      "parent": "CTX",
+      "id": "SSs"
+    },
+    {
+      "region_id": "1011",
+      "name": "Supplemental somatosensory cortex",
+      "x": -1.2,
+      "y": 1.2,
+      "parent": "CTX",
+      "id": "SSs_Left"
+    },
+    {
+      "region_id": "1011",
+      "name": "Supplemental somatosensory cortex",
+      "x": -1.2,
+      "y": 1.2,
+      "parent": "CTX",
+      "id": "SSs_Right"
+    },
+    {
+      "region_id": "1012",
+      "name": "Visual cortex",
+      "x": 1.8,
+      "y": 1.6,
+      "parent": "CTX",
+      "id": "VIS"
+    },
+    {
+      "region_id": "1012",
+      "name": "Visual cortex",
+      "x": 1.8,
+      "y": 1.6,
+      "parent": "CTX",
+      "id": "VIS_Left"
+    },
+    {
+      "region_id": "1012",
+      "name": "Visual cortex",
+      "x": 1.8,
+      "y": 1.6,
+      "parent": "CTX",
+      "id": "VIS_Right"
+    },
+    {
+      "region_id": "1013",
+      "name": "Auditory cortex",
+      "x": 1.5,
+      "y": 1.2,
+      "parent": "CTX",
+      "id": "AUD"
+    },
+    {
+      "region_id": "1013",
+      "name": "Auditory cortex",
+      "x": 1.5,
+      "y": 1.2,
+      "parent": "CTX",
+      "id": "AUD_Left"
+    },
+    {
+      "region_id": "1013",
+      "name": "Auditory cortex",
+      "x": 1.5,
+      "y": 1.2,
+      "parent": "CTX",
+      "id": "AUD_Right"
+    },
+    {
+      "region_id": "1014",
+      "name": "Hippocampus",
+      "x": 2.0,
+      "y": 0.5,
+      "parent": "HIP",
+      "id": "HIP"
+    },
+    {
+      "region_id": "1014",
+      "name": "Hippocampus",
+      "x": 2.0,
+      "y": 0.5,
+      "parent": "HIP",
+      "id": "HIP_Left"
+    },
+    {
+      "region_id": "1014",
+      "name": "Hippocampus",
+      "x": 2.0,
+      "y": 0.5,
+      "parent": "HIP",
+      "id": "HIP_Right"
+    },
+    {
+      "region_id": "1015",
+      "name": "Amygdala",
+      "x": 2.2,
+      "y": -0.2,
+      "parent": "AMY",
+      "id": "AMY"
+    },
+    {
+      "region_id": "1015",
+      "name": "Amygdala",
+      "x": 2.2,
+      "y": -0.2,
+      "parent": "AMY",
+      "id": "AMY_Left"
+    },
+    {
+      "region_id": "1015",
+      "name": "Amygdala",
+      "x": 2.2,
+      "y": -0.2,
+      "parent": "AMY",
+      "id": "AMY_Right"
+    },
+    {
+      "region_id": "1016",
+      "name": "Periaqueductal gray",
+      "x": 1.6,
+      "y": -1.2,
+      "parent": "MB",
+      "id": "PAG"
+    },
+    {
+      "region_id": "1016",
+      "name": "Periaqueductal gray",
+      "x": 1.6,
+      "y": -1.2,
+      "parent": "MB",
+      "id": "PAG_Left"
+    },
+    {
+      "region_id": "1016",
+      "name": "Periaqueductal gray",
+      "x": 1.6,
+      "y": -1.2,
+      "parent": "MB",
+      "id": "PAG_Right"
+    },
+    {
+      "region_id": "1017",
+      "name": "Prefrontal cortex",
+      "x": 0.2,
+      "y": 2.1,
+      "parent": "CTX",
+      "id": "PFC"
+    },
+    {
+      "region_id": "1017",
+      "name": "Prefrontal cortex",
+      "x": 0.2,
+      "y": 2.1,
+      "parent": "CTX",
+      "id": "PFC_Left"
+    },
+    {
+      "region_id": "1017",
+      "name": "Prefrontal cortex",
+      "x": 0.2,
+      "y": 2.1,
+      "parent": "CTX",
+      "id": "PFC_Right"
+    },
+    {
+      "region_id": "1018",
+      "name": "Cerebellum",
+      "x": 3.0,
+      "y": -1.5,
+      "parent": "CB",
+      "id": "CB"
+    },
+    {
+      "region_id": "1018",
+      "name": "Cerebellum",
+      "x": 3.0,
+      "y": -1.5,
+      "parent": "CB",
+      "id": "CB_Left"
+    },
+    {
+      "region_id": "1018",
+      "name": "Cerebellum",
+      "x": 3.0,
+      "y": -1.5,
+      "parent": "CB",
+      "id": "CB_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "ACAd1_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "ACAd1_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "PIR_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "PIR_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "ACAv5_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "ACAv5_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "BLAa_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "BLAa_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "ACB_Left",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "ACB_Left"
+    },
+    {
+      "region_id": "unknown",
+      "name": "AIv5_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "AIv5_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "ACB_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "ACB_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "CP_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "CP_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "VISC1_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "VISC1_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "alv_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "alv_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "ORBm2/3_Left",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "ORBm2/3_Left"
+    },
+    {
+      "region_id": "unknown",
+      "name": "AId5_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "AId5_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "ORBl1_Left",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "ORBl1_Left"
+    },
+    {
+      "region_id": "unknown",
+      "name": "AON_Left",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "AON_Left"
+    },
+    {
+      "region_id": "unknown",
+      "name": "AId6a_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "AId6a_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "OLF_Left",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "OLF_Left"
+    },
+    {
+      "region_id": "unknown",
+      "name": "AIv6a_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "AIv6a_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "CP_Left",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "CP_Left"
+    },
+    {
+      "region_id": "unknown",
+      "name": "APr_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "APr_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "PR_Left",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "PR_Left"
+    },
+    {
+      "region_id": "unknown",
+      "name": "CA1_Left",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "CA1_Left"
+    },
+    {
+      "region_id": "unknown",
+      "name": "CA1_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "CA1_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "VISC5_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "VISC5_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "VMH_Left",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "VMH_Left"
+    },
+    {
+      "region_id": "unknown",
+      "name": "SSs4_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "SSs4_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "SSs5_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "SSs5_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "SI_Left",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "SI_Left"
+    },
+    {
+      "region_id": "unknown",
+      "name": "PAL_Left",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "PAL_Left"
+    },
+    {
+      "region_id": "unknown",
+      "name": "DG-mo_Left",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "DG-mo_Left"
+    },
+    {
+      "region_id": "unknown",
+      "name": "DG-po_Left",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "DG-po_Left"
+    },
+    {
+      "region_id": "unknown",
+      "name": "FS_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "FS_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "SF_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "SF_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "AIv2/3_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "AIv2/3_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "GU2/3_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "GU2/3_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "AD_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "AD_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "MOB_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "MOB_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "AId2/3_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "AId2/3_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "MOp6a_Left",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "MOp6a_Left"
+    },
+    {
+      "region_id": "unknown",
+      "name": "EPv_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "EPv_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "MOs5_Left",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "MOs5_Left"
+    },
+    {
+      "region_id": "unknown",
+      "name": "MPO_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "MPO_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "SSp-n2/3_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "SSp-n2/3_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "MS_Left",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "MS_Left"
+    },
+    {
+      "region_id": "unknown",
+      "name": "SSs2/3_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "SSs2/3_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "MS_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "MS_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "ORBm6a_Left",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "ORBm6a_Left"
+    },
+    {
+      "region_id": "unknown",
+      "name": "SSs6b_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "SSs6b_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "RSPv1_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "RSPv1_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "SSp-bfd5_Left",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "SSp-bfd5_Left"
+    },
+    {
+      "region_id": "unknown",
+      "name": "SSp-ul5_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "SSp-ul5_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "PO_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "PO_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "SSs6a_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "SSs6a_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "SI_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "SI_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "MB_Left",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "MB_Left"
+    },
+    {
+      "region_id": "unknown",
+      "name": "VISal5_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "VISal5_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "LPO_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "LPO_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "VM_Left",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "VM_Left"
+    },
+    {
+      "region_id": "unknown",
+      "name": "PAL_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "PAL_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "VPM_Left",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "VPM_Left"
+    },
+    {
+      "region_id": "unknown",
+      "name": "VPM_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "VPM_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "SCig_Left",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "SCig_Left"
+    },
+    {
+      "region_id": "unknown",
+      "name": "VTA_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "VTA_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "fi_Left",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "fi_Left"
+    },
+    {
+      "region_id": "unknown",
+      "name": "fi_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "fi_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "DMH_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "DMH_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "int_Right",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "int_Right"
+    },
+    {
+      "region_id": "unknown",
+      "name": "ml_Left",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "ml_Left"
+    },
+    {
+      "region_id": "unknown",
+      "name": "or_Left",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "or_Left"
+    },
+    {
+      "region_id": "unknown",
+      "name": "rust_Left",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "",
+      "id": "rust_Left"
+    }
+  ],
+  "edges": [
+    {
+      "weight": 40379.953,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "GPe_Left",
+      "target": "PIR_Right"
+    },
+    {
+      "weight": 104662.195,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "GPe_Right",
+      "target": "ACB_Right"
+    },
+    {
+      "weight": 29595.865,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "GPi_Right",
+      "target": "AIv2/3_Right"
+    },
+    {
+      "weight": 450718.84,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "STN_Right",
+      "target": "MB_Left"
+    },
+    {
+      "weight": 73239.36,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "SNr_Left",
+      "target": "CP_Right"
+    },
+    {
+      "weight": 135525.25,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "ACAd1_Right",
+      "target": "PIR_Right"
+    },
+    {
+      "weight": 94246.36,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "ACAv5_Right",
+      "target": "BLAa_Right"
+    },
+    {
+      "weight": 17288.838,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "ACB_Left",
+      "target": "AIv5_Right"
+    },
+    {
+      "weight": 120116.754,
+      "weight_norm": 0.3548165599620271,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "ACB_Right",
+      "target": "CP_Right"
+    },
+    {
+      "weight": 90839.91,
+      "weight_norm": 0.2683347934415556,
+      "rank_pct": 0.9818181818181818,
+      "metric": "length_um",
+      "source": "ACB_Right",
+      "target": "VISC1_Right"
+    },
+    {
+      "weight": 78255.54,
+      "weight_norm": 0.2311614373193169,
+      "rank_pct": 0.9636363636363636,
+      "metric": "length_um",
+      "source": "ACB_Right",
+      "target": "alv_Right"
+    },
+    {
+      "weight": 49319.78,
+      "weight_norm": 0.1456872092771003,
+      "rank_pct": 0.9454545454545454,
+      "metric": "length_um",
+      "source": "ACB_Right",
+      "target": "ORBm2/3_Left"
+    },
+    {
+      "weight": 128427.09,
+      "weight_norm": 0.277070450895183,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "CP_Right",
+      "target": "VMH_Left"
+    },
+    {
+      "weight": 104307.484,
+      "weight_norm": 0.2250344660431228,
+      "rank_pct": 0.9818181818181818,
+      "metric": "length_um",
+      "source": "CP_Right",
+      "target": "SSs4_Right"
+    },
+    {
+      "weight": 94513.555,
+      "weight_norm": 0.2039049027705655,
+      "rank_pct": 0.9636363636363636,
+      "metric": "length_um",
+      "source": "CP_Right",
+      "target": "SSs5_Right"
+    },
+    {
+      "weight": 73511.47,
+      "weight_norm": 0.1585947025574411,
+      "rank_pct": 0.9454545454545454,
+      "metric": "length_um",
+      "source": "CP_Right",
+      "target": "CA1_Right"
+    },
+    {
+      "weight": 40209.195,
+      "weight_norm": 0.0867478955474451,
+      "rank_pct": 0.9272727272727272,
+      "metric": "length_um",
+      "source": "CP_Right",
+      "target": "SI_Left"
+    },
+    {
+      "weight": 22549.021,
+      "weight_norm": 0.0486475821862424,
+      "rank_pct": 0.9090909090909092,
+      "metric": "length_um",
+      "source": "CP_Right",
+      "target": "PAL_Left"
+    },
+    {
+      "weight": 418161.1,
+      "weight_norm": 0.5474966639792056,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "AId5_Right",
+      "target": "ORBl1_Left"
+    },
+    {
+      "weight": 345608.12,
+      "weight_norm": 0.4525033360207943,
+      "rank_pct": 0.9818181818181818,
+      "metric": "length_um",
+      "source": "AId5_Right",
+      "target": "AON_Left"
+    },
+    {
+      "weight": 336040.5,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "AId6a_Right",
+      "target": "OLF_Left"
+    },
+    {
+      "weight": 387694.25,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "AIv6a_Right",
+      "target": "CP_Left"
+    },
+    {
+      "weight": 132567.03,
+      "weight_norm": 0.4203849771902664,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "CP_Left",
+      "target": "PIR_Right"
+    },
+    {
+      "weight": 109347.09,
+      "weight_norm": 0.3467519332331124,
+      "rank_pct": 0.9818181818181818,
+      "metric": "length_um",
+      "source": "CP_Left",
+      "target": "VISC5_Right"
+    },
+    {
+      "weight": 55797.824,
+      "weight_norm": 0.1769411819025175,
+      "rank_pct": 0.9636363636363636,
+      "metric": "length_um",
+      "source": "CP_Left",
+      "target": "CP_Right"
+    },
+    {
+      "weight": 17634.791,
+      "weight_norm": 0.0559219076741035,
+      "rank_pct": 0.9454545454545454,
+      "metric": "length_um",
+      "source": "CP_Left",
+      "target": "AIv5_Right"
+    },
+    {
+      "weight": 68315.805,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "APr_Right",
+      "target": "PR_Left"
+    },
+    {
+      "weight": 87898.18,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "PR_Left",
+      "target": "SSs6b_Right"
+    },
+    {
+      "weight": 598268.32,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "CA1_Left",
+      "target": "PIR_Right"
+    },
+    {
+      "weight": 86491.47,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "CA1_Right",
+      "target": "ACB_Left"
+    },
+    {
+      "weight": 173620.58,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "SSs5_Right",
+      "target": "PO_Right"
+    },
+    {
+      "weight": 49690.996,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "DG-mo_Left",
+      "target": "PIR_Right"
+    },
+    {
+      "weight": 143566.64,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "DG-po_Left",
+      "target": "CP_Right"
+    },
+    {
+      "weight": 22442.338,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "FS_Right",
+      "target": "SF_Right"
+    },
+    {
+      "weight": 97986.65,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "GU2/3_Right",
+      "target": "AD_Right"
+    },
+    {
+      "weight": 19170.19,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "MOB_Right",
+      "target": "AId2/3_Right"
+    },
+    {
+      "weight": 139444.19,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "MOp6a_Left",
+      "target": "EPv_Right"
+    },
+    {
+      "weight": 116508.84,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "MOs5_Left",
+      "target": "PIR_Right"
+    },
+    {
+      "weight": 18569.459,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "MPO_Right",
+      "target": "SSp-n2/3_Right"
+    },
+    {
+      "weight": 43777.39,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "MS_Left",
+      "target": "SSs2/3_Right"
+    },
+    {
+      "weight": 28061.332,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "MS_Right",
+      "target": "CP_Right"
+    },
+    {
+      "weight": 14124.489,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "ORBm6a_Left",
+      "target": "PIR_Right"
+    },
+    {
+      "weight": 121041.76,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "RSPv1_Right",
+      "target": "PIR_Right"
+    },
+    {
+      "weight": 58502.793,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "SSp-bfd5_Left",
+      "target": "CP_Right"
+    },
+    {
+      "weight": 46085.145,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "SSp-ul5_Right",
+      "target": "PIR_Right"
+    },
+    {
+      "weight": 95288.53,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "SSs6a_Right",
+      "target": "SI_Right"
+    },
+    {
+      "weight": 66499.734,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "VISal5_Right",
+      "target": "LPO_Right"
+    },
+    {
+      "weight": 16020.617,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "VM_Left",
+      "target": "PAL_Right"
+    },
+    {
+      "weight": 46206.668,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "VPM_Left",
+      "target": "SSs6a_Right"
+    },
+    {
+      "weight": 101232.25,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "VPM_Right",
+      "target": "SCig_Left"
+    },
+    {
+      "weight": 51292.844,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "VTA_Right",
+      "target": "SSs5_Right"
+    },
+    {
+      "weight": 53051.09,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "fi_Left",
+      "target": "fi_Right"
+    },
+    {
+      "weight": 105798.55,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "fi_Right",
+      "target": "DMH_Right"
+    },
+    {
+      "weight": 292818.66,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "int_Right",
+      "target": "ml_Left"
+    },
+    {
+      "weight": 51704.58,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "or_Left",
+      "target": "PIR_Right"
+    },
+    {
+      "weight": 40333.316,
+      "weight_norm": 1.0,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "rust_Left",
+      "target": "int_Right"
+    }
+  ]
+}

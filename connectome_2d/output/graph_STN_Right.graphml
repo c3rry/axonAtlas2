@@ -1,0 +1,302 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d8" for="edge" attr.name="metric" attr.type="string" />
+  <key id="d7" for="edge" attr.name="rank_pct" attr.type="double" />
+  <key id="d6" for="edge" attr.name="weight_norm" attr.type="double" />
+  <key id="d5" for="edge" attr.name="weight" attr.type="double" />
+  <key id="d4" for="node" attr.name="parent" attr.type="string" />
+  <key id="d3" for="node" attr.name="y" attr.type="double" />
+  <key id="d2" for="node" attr.name="x" attr.type="double" />
+  <key id="d1" for="node" attr.name="name" attr.type="string" />
+  <key id="d0" for="node" attr.name="region_id" attr.type="long" />
+  <graph edgedefault="directed">
+    <node id="GPe">
+      <data key="d0">1001</data>
+      <data key="d1">Globus Pallidus external</data>
+      <data key="d2">0.0</data>
+      <data key="d3">0.0</data>
+      <data key="d4">BG</data>
+    </node>
+    <node id="GPi">
+      <data key="d0">1002</data>
+      <data key="d1">Globus Pallidus internal</data>
+      <data key="d2">0.4</data>
+      <data key="d3">-0.2</data>
+      <data key="d4">BG</data>
+    </node>
+    <node id="STN">
+      <data key="d0">1003</data>
+      <data key="d1">Subthalamic nucleus</data>
+      <data key="d2">1.1</data>
+      <data key="d3">0.2</data>
+      <data key="d4">BG</data>
+    </node>
+    <node id="SNr">
+      <data key="d0">1004</data>
+      <data key="d1">Substantia nigra reticulata</data>
+      <data key="d2">1.2</data>
+      <data key="d3">-0.7</data>
+      <data key="d4">BG</data>
+    </node>
+    <node id="SNc">
+      <data key="d0">1005</data>
+      <data key="d1">Substantia nigra compacta</data>
+      <data key="d2">1.4</data>
+      <data key="d3">-0.3</data>
+      <data key="d4">BG</data>
+    </node>
+    <node id="STR">
+      <data key="d0">1006</data>
+      <data key="d1">Dorsal striatum</data>
+      <data key="d2">-0.8</data>
+      <data key="d3">0.2</data>
+      <data key="d4">BG</data>
+    </node>
+    <node id="TH">
+      <data key="d0">1007</data>
+      <data key="d1">Thalamus</data>
+      <data key="d2">0.6</data>
+      <data key="d3">0.9</data>
+      <data key="d4">TH</data>
+    </node>
+    <node id="MOp">
+      <data key="d0">1008</data>
+      <data key="d1">Primary motor cortex</data>
+      <data key="d2">-0.4</data>
+      <data key="d3">1.6</data>
+      <data key="d4">CTX</data>
+    </node>
+    <node id="MOs">
+      <data key="d0">1009</data>
+      <data key="d1">Secondary motor cortex</data>
+      <data key="d2">-0.1</data>
+      <data key="d3">1.8</data>
+      <data key="d4">CTX</data>
+    </node>
+    <node id="SSp">
+      <data key="d0">1010</data>
+      <data key="d1">Primary somatosensory cortex</data>
+      <data key="d2">-0.9</data>
+      <data key="d3">1.5</data>
+      <data key="d4">CTX</data>
+    </node>
+    <node id="SSs">
+      <data key="d0">1011</data>
+      <data key="d1">Supplemental somatosensory cortex</data>
+      <data key="d2">-1.2</data>
+      <data key="d3">1.2</data>
+      <data key="d4">CTX</data>
+    </node>
+    <node id="VIS">
+      <data key="d0">1012</data>
+      <data key="d1">Visual cortex</data>
+      <data key="d2">1.8</data>
+      <data key="d3">1.6</data>
+      <data key="d4">CTX</data>
+    </node>
+    <node id="AUD">
+      <data key="d0">1013</data>
+      <data key="d1">Auditory cortex</data>
+      <data key="d2">1.5</data>
+      <data key="d3">1.2</data>
+      <data key="d4">CTX</data>
+    </node>
+    <node id="HIP">
+      <data key="d0">1014</data>
+      <data key="d1">Hippocampus</data>
+      <data key="d2">2.0</data>
+      <data key="d3">0.5</data>
+      <data key="d4">HIP</data>
+    </node>
+    <node id="AMY">
+      <data key="d0">1015</data>
+      <data key="d1">Amygdala</data>
+      <data key="d2">2.2</data>
+      <data key="d3">-0.2</data>
+      <data key="d4">AMY</data>
+    </node>
+    <node id="PAG">
+      <data key="d0">1016</data>
+      <data key="d1">Periaqueductal gray</data>
+      <data key="d2">1.6</data>
+      <data key="d3">-1.2</data>
+      <data key="d4">MB</data>
+    </node>
+    <node id="PFC">
+      <data key="d0">1017</data>
+      <data key="d1">Prefrontal cortex</data>
+      <data key="d2">0.2</data>
+      <data key="d3">2.1</data>
+      <data key="d4">CTX</data>
+    </node>
+    <node id="CB">
+      <data key="d0">1018</data>
+      <data key="d1">Cerebellum</data>
+      <data key="d2">3.0</data>
+      <data key="d3">-1.5</data>
+      <data key="d4">CB</data>
+    </node>
+    <node id="STN_Right" />
+    <node id="root_Right" />
+    <node id="SSp-bfd5_Left" />
+    <node id="MB_Left" />
+    <node id="nst_Right" />
+    <node id="PO_Right" />
+    <node id="MD_Right" />
+    <node id="CP_Right" />
+    <node id="SSs5_Right" />
+    <node id="PIR_Right" />
+    <node id="VL_Right" />
+    <node id="CA1_Right" />
+    <node id="GU6a_Left" />
+    <node id="ZI_Right" />
+    <node id="CA1_Left" />
+    <node id="DMH_Right" />
+    <node id="SCig_Left" />
+    <node id="SI_Right" />
+    <node id="BLAa_Right" />
+    <node id="ACB_Right" />
+    <node id="SSs2/3_Right" />
+    <node id="ORBm2/3_Left" />
+    <node id="SSp-m4_Right" />
+    <node id="SI_Left" />
+    <edge source="STN_Right" target="root_Right">
+      <data key="d5">536311.8629302979</data>
+      <data key="d6">0.1433107998311991</data>
+      <data key="d7">1.0</data>
+      <data key="d8">length_um</data>
+    </edge>
+    <edge source="STN_Right" target="SSp-bfd5_Left">
+      <data key="d5">471538.693069458</data>
+      <data key="d6">0.1260024100267291</data>
+      <data key="d7">0.9545454545454546</data>
+      <data key="d8">length_um</data>
+    </edge>
+    <edge source="STN_Right" target="MB_Left">
+      <data key="d5">450718.8845214844</data>
+      <data key="d6">0.120439036136321</data>
+      <data key="d7">0.9090909090909092</data>
+      <data key="d8">length_um</data>
+    </edge>
+    <edge source="STN_Right" target="nst_Right">
+      <data key="d5">213657.27532958984</data>
+      <data key="d6">0.0570925186139649</data>
+      <data key="d7">0.8636363636363636</data>
+      <data key="d8">length_um</data>
+    </edge>
+    <edge source="STN_Right" target="PO_Right">
+      <data key="d5">173620.5810546875</data>
+      <data key="d6">0.0463940965283823</data>
+      <data key="d7">0.8181818181818181</data>
+      <data key="d8">length_um</data>
+    </edge>
+    <edge source="STN_Right" target="MD_Right">
+      <data key="d5">163051.12530517578</data>
+      <data key="d6">0.0435697749685964</data>
+      <data key="d7">0.7727272727272727</data>
+      <data key="d8">length_um</data>
+    </edge>
+    <edge source="STN_Right" target="CP_Right">
+      <data key="d5">157506.4732055664</data>
+      <data key="d6">0.0420881584277293</data>
+      <data key="d7">0.7272727272727273</data>
+      <data key="d8">length_um</data>
+    </edge>
+    <edge source="STN_Right" target="SSs5_Right">
+      <data key="d5">145806.40048217773</data>
+      <data key="d6">0.0389617185781414</data>
+      <data key="d7">0.6818181818181819</data>
+      <data key="d8">length_um</data>
+    </edge>
+    <edge source="STN_Right" target="PIR_Right">
+      <data key="d5">135525.23400878906</data>
+      <data key="d6">0.0362144323584246</data>
+      <data key="d7">0.6363636363636364</data>
+      <data key="d8">length_um</data>
+    </edge>
+    <edge source="STN_Right" target="VL_Right">
+      <data key="d5">133953.4952392578</data>
+      <data key="d6">0.035794439522621</data>
+      <data key="d7">0.5909090909090908</data>
+      <data key="d8">length_um</data>
+    </edge>
+    <edge source="STN_Right" target="CA1_Right">
+      <data key="d5">133246.20977783203</data>
+      <data key="d6">0.0356054419408183</data>
+      <data key="d7">0.5454545454545454</data>
+      <data key="d8">length_um</data>
+    </edge>
+    <edge source="STN_Right" target="GU6a_Left">
+      <data key="d5">129270.1986694336</data>
+      <data key="d6">0.0345429904616192</data>
+      <data key="d7">0.5</data>
+      <data key="d8">length_um</data>
+    </edge>
+    <edge source="STN_Right" target="ZI_Right">
+      <data key="d5">121676.52616882324</data>
+      <data key="d6">0.0325138440732238</data>
+      <data key="d7">0.4545454545454546</data>
+      <data key="d8">length_um</data>
+    </edge>
+    <edge source="STN_Right" target="CA1_Left">
+      <data key="d5">106155.94659423828</data>
+      <data key="d6">0.0283665058798737</data>
+      <data key="d7">0.409090909090909</data>
+      <data key="d8">length_um</data>
+    </edge>
+    <edge source="STN_Right" target="DMH_Right">
+      <data key="d5">105798.54357910156</data>
+      <data key="d6">0.0282710022829899</data>
+      <data key="d7">0.3636363636363636</data>
+      <data key="d8">length_um</data>
+    </edge>
+    <edge source="STN_Right" target="SCig_Left">
+      <data key="d5">101232.25247192384</data>
+      <data key="d6">0.0270508188858593</data>
+      <data key="d7">0.3181818181818182</data>
+      <data key="d8">length_um</data>
+    </edge>
+    <edge source="STN_Right" target="SI_Right">
+      <data key="d5">95288.53436279295</data>
+      <data key="d6">0.0254625657535555</data>
+      <data key="d7">0.2727272727272727</data>
+      <data key="d8">length_um</data>
+    </edge>
+    <edge source="STN_Right" target="BLAa_Right">
+      <data key="d5">94246.35473632812</data>
+      <data key="d6">0.0251840792867069</data>
+      <data key="d7">0.2272727272727273</data>
+      <data key="d8">length_um</data>
+    </edge>
+    <edge source="STN_Right" target="ACB_Right">
+      <data key="d5">85627.94091796875</data>
+      <data key="d6">0.0228811062164545</data>
+      <data key="d7">0.1818181818181817</data>
+      <data key="d8">length_um</data>
+    </edge>
+    <edge source="STN_Right" target="SSs2/3_Right">
+      <data key="d5">58056.09915161133</data>
+      <data key="d6">0.0155134849321394</data>
+      <data key="d7">0.1363636363636363</data>
+      <data key="d8">length_um</data>
+    </edge>
+    <edge source="STN_Right" target="ORBm2/3_Left">
+      <data key="d5">49319.77966308594</data>
+      <data key="d6">0.0131790056486853</data>
+      <data key="d7">0.0909090909090909</data>
+      <data key="d8">length_um</data>
+    </edge>
+    <edge source="STN_Right" target="SSp-m4_Right">
+      <data key="d5">40481.389892578125</data>
+      <data key="d6">0.0108172516119375</data>
+      <data key="d7">0.0454545454545454</data>
+      <data key="d8">length_um</data>
+    </edge>
+    <edge source="STN_Right" target="SI_Left">
+      <data key="d5">40209.19909667969</data>
+      <data key="d6">0.0107445180340268</data>
+      <data key="d7">0.0</data>
+      <data key="d8">length_um</data>
+    </edge>
+  </graph>
+</graphml>

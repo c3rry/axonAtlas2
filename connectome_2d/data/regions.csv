@@ -1,0 +1,19 @@
+region_id,acronym,name,x_2d,y_2d,parent_acronym
+1001,GPe,Globus Pallidus external,0.0,0.0,BG
+1002,GPi,Globus Pallidus internal,0.4,-0.2,BG
+1003,STN,Subthalamic nucleus,1.1,0.2,BG
+1004,SNr,Substantia nigra reticulata,1.2,-0.7,BG
+1005,SNc,Substantia nigra compacta,1.4,-0.3,BG
+1006,STR,Dorsal striatum,-0.8,0.2,BG
+1007,TH,Thalamus,0.6,0.9,TH
+1008,MOp,Primary motor cortex,-0.4,1.6,CTX
+1009,MOs,Secondary motor cortex,-0.1,1.8,CTX
+1010,SSp,Primary somatosensory cortex,-0.9,1.5,CTX
+1011,SSs,Supplemental somatosensory cortex,-1.2,1.2,CTX
+1012,VIS,Visual cortex,1.8,1.6,CTX
+1013,AUD,Auditory cortex,1.5,1.2,CTX
+1014,HIP,Hippocampus,2.0,0.5,HIP
+1015,AMY,Amygdala,2.2,-0.2,AMY
+1016,PAG,Periaqueductal gray,1.6,-1.2,MB
+1017,PFC,Prefrontal cortex,0.2,2.1,CTX
+1018,CB,Cerebellum,3.0,-1.5,CB

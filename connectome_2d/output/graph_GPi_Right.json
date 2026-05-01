@@ -1,0 +1,266 @@
+{
+  "directed": true,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "region_id": 1001,
+      "name": "Globus Pallidus external",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "BG",
+      "id": "GPe"
+    },
+    {
+      "region_id": 1002,
+      "name": "Globus Pallidus internal",
+      "x": 0.4,
+      "y": -0.2,
+      "parent": "BG",
+      "id": "GPi"
+    },
+    {
+      "region_id": 1003,
+      "name": "Subthalamic nucleus",
+      "x": 1.1,
+      "y": 0.2,
+      "parent": "BG",
+      "id": "STN"
+    },
+    {
+      "region_id": 1004,
+      "name": "Substantia nigra reticulata",
+      "x": 1.2,
+      "y": -0.7,
+      "parent": "BG",
+      "id": "SNr"
+    },
+    {
+      "region_id": 1005,
+      "name": "Substantia nigra compacta",
+      "x": 1.4,
+      "y": -0.3,
+      "parent": "BG",
+      "id": "SNc"
+    },
+    {
+      "region_id": 1006,
+      "name": "Dorsal striatum",
+      "x": -0.8,
+      "y": 0.2,
+      "parent": "BG",
+      "id": "STR"
+    },
+    {
+      "region_id": 1007,
+      "name": "Thalamus",
+      "x": 0.6,
+      "y": 0.9,
+      "parent": "TH",
+      "id": "TH"
+    },
+    {
+      "region_id": 1008,
+      "name": "Primary motor cortex",
+      "x": -0.4,
+      "y": 1.6,
+      "parent": "CTX",
+      "id": "MOp"
+    },
+    {
+      "region_id": 1009,
+      "name": "Secondary motor cortex",
+      "x": -0.1,
+      "y": 1.8,
+      "parent": "CTX",
+      "id": "MOs"
+    },
+    {
+      "region_id": 1010,
+      "name": "Primary somatosensory cortex",
+      "x": -0.9,
+      "y": 1.5,
+      "parent": "CTX",
+      "id": "SSp"
+    },
+    {
+      "region_id": 1011,
+      "name": "Supplemental somatosensory cortex",
+      "x": -1.2,
+      "y": 1.2,
+      "parent": "CTX",
+      "id": "SSs"
+    },
+    {
+      "region_id": 1012,
+      "name": "Visual cortex",
+      "x": 1.8,
+      "y": 1.6,
+      "parent": "CTX",
+      "id": "VIS"
+    },
+    {
+      "region_id": 1013,
+      "name": "Auditory cortex",
+      "x": 1.5,
+      "y": 1.2,
+      "parent": "CTX",
+      "id": "AUD"
+    },
+    {
+      "region_id": 1014,
+      "name": "Hippocampus",
+      "x": 2.0,
+      "y": 0.5,
+      "parent": "HIP",
+      "id": "HIP"
+    },
+    {
+      "region_id": 1015,
+      "name": "Amygdala",
+      "x": 2.2,
+      "y": -0.2,
+      "parent": "AMY",
+      "id": "AMY"
+    },
+    {
+      "region_id": 1016,
+      "name": "Periaqueductal gray",
+      "x": 1.6,
+      "y": -1.2,
+      "parent": "MB",
+      "id": "PAG"
+    },
+    {
+      "region_id": 1017,
+      "name": "Prefrontal cortex",
+      "x": 0.2,
+      "y": 2.1,
+      "parent": "CTX",
+      "id": "PFC"
+    },
+    {
+      "region_id": 1018,
+      "name": "Cerebellum",
+      "x": 3.0,
+      "y": -1.5,
+      "parent": "CB",
+      "id": "CB"
+    },
+    {
+      "id": "GPi_Right"
+    },
+    {
+      "id": "MB_Left"
+    },
+    {
+      "id": "SSp-bfd6b_Left"
+    },
+    {
+      "id": "root_Right"
+    },
+    {
+      "id": "SSp-bfd5_Left"
+    },
+    {
+      "id": "RSPagl1_Right"
+    },
+    {
+      "id": "CP_Right"
+    },
+    {
+      "id": "DMH_Right"
+    },
+    {
+      "id": "MOp1_Left"
+    },
+    {
+      "id": "BLAa_Right"
+    },
+    {
+      "id": "SSp-m4_Right"
+    }
+  ],
+  "edges": [
+    {
+      "weight": 476459.9776611328,
+      "weight_norm": 0.2135685583000122,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "GPi_Right",
+      "target": "MB_Left"
+    },
+    {
+      "weight": 416538.8085327149,
+      "weight_norm": 0.1867094761054757,
+      "rank_pct": 0.8888888888888888,
+      "metric": "length_um",
+      "source": "GPi_Right",
+      "target": "SSp-bfd6b_Left"
+    },
+    {
+      "weight": 336686.7005004883,
+      "weight_norm": 0.1509165440876085,
+      "rank_pct": 0.7777777777777778,
+      "metric": "length_um",
+      "source": "GPi_Right",
+      "target": "root_Right"
+    },
+    {
+      "weight": 328749.48462677,
+      "weight_norm": 0.1473587641469151,
+      "rank_pct": 0.6666666666666667,
+      "metric": "length_um",
+      "source": "GPi_Right",
+      "target": "SSp-bfd5_Left"
+    },
+    {
+      "weight": 213616.64837646484,
+      "weight_norm": 0.0957515883004329,
+      "rank_pct": 0.5555555555555556,
+      "metric": "length_um",
+      "source": "GPi_Right",
+      "target": "RSPagl1_Right"
+    },
+    {
+      "weight": 120116.76013183594,
+      "weight_norm": 0.0538411713297556,
+      "rank_pct": 0.4444444444444444,
+      "metric": "length_um",
+      "source": "GPi_Right",
+      "target": "CP_Right"
+    },
+    {
+      "weight": 105798.54357910156,
+      "weight_norm": 0.0474231697976947,
+      "rank_pct": 0.3333333333333333,
+      "metric": "length_um",
+      "source": "GPi_Right",
+      "target": "DMH_Right"
+    },
+    {
+      "weight": 98251.59790039062,
+      "weight_norm": 0.0440403246821766,
+      "rank_pct": 0.2222222222222222,
+      "metric": "length_um",
+      "source": "GPi_Right",
+      "target": "MOp1_Left"
+    },
+    {
+      "weight": 94246.35473632812,
+      "weight_norm": 0.0422450133269841,
+      "rank_pct": 0.1111111111111111,
+      "metric": "length_um",
+      "source": "GPi_Right",
+      "target": "BLAa_Right"
+    },
+    {
+      "weight": 40481.389892578125,
+      "weight_norm": 0.0181453899229443,
+      "rank_pct": 0.0,
+      "metric": "length_um",
+      "source": "GPi_Right",
+      "target": "SSp-m4_Right"
+    }
+  ]
+}

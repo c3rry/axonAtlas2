@@ -1,0 +1,409 @@
+{
+  "directed": true,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "region_id": 1001,
+      "name": "Globus Pallidus external",
+      "x": 0.0,
+      "y": 0.0,
+      "parent": "BG",
+      "id": "GPe"
+    },
+    {
+      "region_id": 1002,
+      "name": "Globus Pallidus internal",
+      "x": 0.4,
+      "y": -0.2,
+      "parent": "BG",
+      "id": "GPi"
+    },
+    {
+      "region_id": 1003,
+      "name": "Subthalamic nucleus",
+      "x": 1.1,
+      "y": 0.2,
+      "parent": "BG",
+      "id": "STN"
+    },
+    {
+      "region_id": 1004,
+      "name": "Substantia nigra reticulata",
+      "x": 1.2,
+      "y": -0.7,
+      "parent": "BG",
+      "id": "SNr"
+    },
+    {
+      "region_id": 1005,
+      "name": "Substantia nigra compacta",
+      "x": 1.4,
+      "y": -0.3,
+      "parent": "BG",
+      "id": "SNc"
+    },
+    {
+      "region_id": 1006,
+      "name": "Dorsal striatum",
+      "x": -0.8,
+      "y": 0.2,
+      "parent": "BG",
+      "id": "STR"
+    },
+    {
+      "region_id": 1007,
+      "name": "Thalamus",
+      "x": 0.6,
+      "y": 0.9,
+      "parent": "TH",
+      "id": "TH"
+    },
+    {
+      "region_id": 1008,
+      "name": "Primary motor cortex",
+      "x": -0.4,
+      "y": 1.6,
+      "parent": "CTX",
+      "id": "MOp"
+    },
+    {
+      "region_id": 1009,
+      "name": "Secondary motor cortex",
+      "x": -0.1,
+      "y": 1.8,
+      "parent": "CTX",
+      "id": "MOs"
+    },
+    {
+      "region_id": 1010,
+      "name": "Primary somatosensory cortex",
+      "x": -0.9,
+      "y": 1.5,
+      "parent": "CTX",
+      "id": "SSp"
+    },
+    {
+      "region_id": 1011,
+      "name": "Supplemental somatosensory cortex",
+      "x": -1.2,
+      "y": 1.2,
+      "parent": "CTX",
+      "id": "SSs"
+    },
+    {
+      "region_id": 1012,
+      "name": "Visual cortex",
+      "x": 1.8,
+      "y": 1.6,
+      "parent": "CTX",
+      "id": "VIS"
+    },
+    {
+      "region_id": 1013,
+      "name": "Auditory cortex",
+      "x": 1.5,
+      "y": 1.2,
+      "parent": "CTX",
+      "id": "AUD"
+    },
+    {
+      "region_id": 1014,
+      "name": "Hippocampus",
+      "x": 2.0,
+      "y": 0.5,
+      "parent": "HIP",
+      "id": "HIP"
+    },
+    {
+      "region_id": 1015,
+      "name": "Amygdala",
+      "x": 2.2,
+      "y": -0.2,
+      "parent": "AMY",
+      "id": "AMY"
+    },
+    {
+      "region_id": 1016,
+      "name": "Periaqueductal gray",
+      "x": 1.6,
+      "y": -1.2,
+      "parent": "MB",
+      "id": "PAG"
+    },
+    {
+      "region_id": 1017,
+      "name": "Prefrontal cortex",
+      "x": 0.2,
+      "y": 2.1,
+      "parent": "CTX",
+      "id": "PFC"
+    },
+    {
+      "region_id": 1018,
+      "name": "Cerebellum",
+      "x": 3.0,
+      "y": -1.5,
+      "parent": "CB",
+      "id": "CB"
+    },
+    {
+      "id": "GPe_Right"
+    },
+    {
+      "id": "root_Right"
+    },
+    {
+      "id": "SSp-bfd5_Left"
+    },
+    {
+      "id": "MB_Left"
+    },
+    {
+      "id": "nst_Right"
+    },
+    {
+      "id": "PO_Right"
+    },
+    {
+      "id": "MD_Right"
+    },
+    {
+      "id": "CP_Right"
+    },
+    {
+      "id": "SSs5_Right"
+    },
+    {
+      "id": "PIR_Right"
+    },
+    {
+      "id": "VL_Right"
+    },
+    {
+      "id": "CA1_Right"
+    },
+    {
+      "id": "GU6a_Left"
+    },
+    {
+      "id": "ZI_Right"
+    },
+    {
+      "id": "CA1_Left"
+    },
+    {
+      "id": "DMH_Right"
+    },
+    {
+      "id": "SCig_Left"
+    },
+    {
+      "id": "SI_Right"
+    },
+    {
+      "id": "BLAa_Right"
+    },
+    {
+      "id": "ACB_Right"
+    },
+    {
+      "id": "SSs2/3_Right"
+    },
+    {
+      "id": "ORBm2/3_Left"
+    },
+    {
+      "id": "SSp-m4_Right"
+    },
+    {
+      "id": "SI_Left"
+    }
+  ],
+  "edges": [
+    {
+      "weight": 536311.8629302979,
+      "weight_norm": 0.1433107998311991,
+      "rank_pct": 1.0,
+      "metric": "length_um",
+      "source": "GPe_Right",
+      "target": "root_Right"
+    },
+    {
+      "weight": 471538.693069458,
+      "weight_norm": 0.1260024100267291,
+      "rank_pct": 0.9545454545454546,
+      "metric": "length_um",
+      "source": "GPe_Right",
+      "target": "SSp-bfd5_Left"
+    },
+    {
+      "weight": 450718.8845214844,
+      "weight_norm": 0.120439036136321,
+      "rank_pct": 0.9090909090909092,
+      "metric": "length_um",
+      "source": "GPe_Right",
+      "target": "MB_Left"
+    },
+    {
+      "weight": 213657.27532958984,
+      "weight_norm": 0.0570925186139649,
+      "rank_pct": 0.8636363636363636,
+      "metric": "length_um",
+      "source": "GPe_Right",
+      "target": "nst_Right"
+    },
+    {
+      "weight": 173620.5810546875,
+      "weight_norm": 0.0463940965283823,
+      "rank_pct": 0.8181818181818181,
+      "metric": "length_um",
+      "source": "GPe_Right",
+      "target": "PO_Right"
+    },
+    {
+      "weight": 163051.12530517578,
+      "weight_norm": 0.0435697749685964,
+      "rank_pct": 0.7727272727272727,
+      "metric": "length_um",
+      "source": "GPe_Right",
+      "target": "MD_Right"
+    },
+    {
+      "weight": 157506.4732055664,
+      "weight_norm": 0.0420881584277293,
+      "rank_pct": 0.7272727272727273,
+      "metric": "length_um",
+      "source": "GPe_Right",
+      "target": "CP_Right"
+    },
+    {
+      "weight": 145806.40048217773,
+      "weight_norm": 0.0389617185781414,
+      "rank_pct": 0.6818181818181819,
+      "metric": "length_um",
+      "source": "GPe_Right",
+      "target": "SSs5_Right"
+    },
+    {
+      "weight": 135525.23400878906,
+      "weight_norm": 0.0362144323584246,
+      "rank_pct": 0.6363636363636364,
+      "metric": "length_um",
+      "source": "GPe_Right",
+      "target": "PIR_Right"
+    },
+    {
+      "weight": 133953.4952392578,
+      "weight_norm": 0.035794439522621,
+      "rank_pct": 0.5909090909090908,
+      "metric": "length_um",
+      "source": "GPe_Right",
+      "target": "VL_Right"
+    },
+    {
+      "weight": 133246.20977783203,
+      "weight_norm": 0.0356054419408183,
+      "rank_pct": 0.5454545454545454,
+      "metric": "length_um",
+      "source": "GPe_Right",
+      "target": "CA1_Right"
+    },
+    {
+      "weight": 129270.1986694336,
+      "weight_norm": 0.0345429904616192,
+      "rank_pct": 0.5,
+      "metric": "length_um",
+      "source": "GPe_Right",
+      "target": "GU6a_Left"
+    },
+    {
+      "weight": 121676.52616882324,
+      "weight_norm": 0.0325138440732238,
+      "rank_pct": 0.4545454545454546,
+      "metric": "length_um",
+      "source": "GPe_Right",
+      "target": "ZI_Right"
+    },
+    {
+      "weight": 106155.94659423828,
+      "weight_norm": 0.0283665058798737,
+      "rank_pct": 0.409090909090909,
+      "metric": "length_um",
+      "source": "GPe_Right",
+      "target": "CA1_Left"
+    },
+    {
+      "weight": 105798.54357910156,
+      "weight_norm": 0.0282710022829899,
+      "rank_pct": 0.3636363636363636,
+      "metric": "length_um",
+      "source": "GPe_Right",
+      "target": "DMH_Right"
+    },
+    {
+      "weight": 101232.25247192384,
+      "weight_norm": 0.0270508188858593,
+      "rank_pct": 0.3181818181818182,
+      "metric": "length_um",
+      "source": "GPe_Right",
+      "target": "SCig_Left"
+    },
+    {
+      "weight": 95288.53436279295,
+      "weight_norm": 0.0254625657535555,
+      "rank_pct": 0.2727272727272727,
+      "metric": "length_um",
+      "source": "GPe_Right",
+      "target": "SI_Right"
+    },
+    {
+      "weight": 94246.35473632812,
+      "weight_norm": 0.0251840792867069,
+      "rank_pct": 0.2272727272727273,
+      "metric": "length_um",
+      "source": "GPe_Right",
+      "target": "BLAa_Right"
+    },
+    {
+      "weight": 85627.94091796875,
+      "weight_norm": 0.0228811062164545,
+      "rank_pct": 0.1818181818181817,
+      "metric": "length_um",
+      "source": "GPe_Right",
+      "target": "ACB_Right"
+    },
+    {
+      "weight": 58056.09915161133,
+      "weight_norm": 0.0155134849321394,
+      "rank_pct": 0.1363636363636363,
+      "metric": "length_um",
+      "source": "GPe_Right",
+      "target": "SSs2/3_Right"
+    },
+    {
+      "weight": 49319.77966308594,
+      "weight_norm": 0.0131790056486853,
+      "rank_pct": 0.0909090909090909,
+      "metric": "length_um",
+      "source": "GPe_Right",
+      "target": "ORBm2/3_Left"
+    },
+    {
+      "weight": 40481.389892578125,
+      "weight_norm": 0.0108172516119375,
+      "rank_pct": 0.0454545454545454,
+      "metric": "length_um",
+      "source": "GPe_Right",
+      "target": "SSp-m4_Right"
+    },
+    {
+      "weight": 40209.19909667969,
+      "weight_norm": 0.0107445180340268,
+      "rank_pct": 0.0,
+      "metric": "length_um",
+      "source": "GPe_Right",
+      "target": "SI_Left"
+    }
+  ]
+}
