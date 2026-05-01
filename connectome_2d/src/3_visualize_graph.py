@@ -1006,7 +1006,7 @@ def main():
         table_rows=args.table_rows,
     )
 
-    print(f"[Circular Connectome] Saved figure → {out_path}")
+    print(f"[Circular Connectome] Saved figure -> {out_path}")
 
 
 if __name__ == "__main__":

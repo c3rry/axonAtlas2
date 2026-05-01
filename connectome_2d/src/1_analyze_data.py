@@ -48,7 +48,7 @@ def build_full_connectome_from_swc_summary(
 ) -> pd.DataFrame:
     """
     Build FULL region-to-region connectome:
-    start_region_hemi → end_region_hemi
+    start_region_hemi -> end_region_hemi
 
     No forced source labeling.
     Preserves true biological connectivity.
@@ -221,11 +221,11 @@ def main():
     edges_df = pathways_to_edges(pathways, metric=args.swc_weight_col)
     edges_path = OUTPUT_DIR / f"edges_{source}.csv"
     edges_df.to_csv(edges_path, index=False)
-    print(f"Saved edges → {edges_path}")
+    print(f"Saved edges -> {edges_path}")
 
     print(f"\n[Analyze] Source: {source}")
     print(f"Mode: SWC summary ({swc_path})")
-    print(f"Saved pathways → {out_path}")
+    print(f"Saved pathways -> {out_path}")
     print("\nTop pathways:")
     print(pathways.head(15).to_string(index=False))
 

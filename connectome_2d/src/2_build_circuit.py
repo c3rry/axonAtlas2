@@ -194,8 +194,8 @@ def main():
     #nx.write_graphml(G, graphml_path)
 
     print(f"\n[Build] Dataset: {args.region}")
-    print(f"Saved graph JSON → {json_path}")
-    print(f"Saved graph GraphML → {graphml_path}")
+    print(f"Saved graph JSON -> {json_path}")
+    print(f"Saved graph GraphML -> {graphml_path}")
     print(f"Nodes: {G.number_of_nodes()} | Edges: {G.number_of_edges()}")
 
 
