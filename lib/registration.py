@@ -1,5 +1,5 @@
 import os
-from auxilary import run_command_line
+from lib.auxilary import run_command_line
 import os
 
 import os

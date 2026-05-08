@@ -278,228 +278,191 @@ def bg_heatmap(
             raise NotImplementedError("3D plotting is not yet implemented in this function.")
         else:
             raise ValueError("format must be '2D'")
-        
+import cv2
 import os
+import glob
+import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from matplotlib import cm, transforms
-from matplotlib.colors import Normalize
+from matplotlib import cm
+from matplotlib.colors import Normalize, to_rgb, LinearSegmentedColormap
+import importlib
+
+# BrainGlobe imports
 from brainglobe_atlasapi import BrainGlobeAtlas
-import brainglobe_heatmap as bgh # Assuming this is the library alias
+import brainglobe_heatmap as bgh
+from brainrender.atlas import Atlas 
+
+# =================================================================
+# FAIL-SAFE & PATCHING
+# =================================================================
+def find_plane_class():
+    search_paths = ["brainrender.actors.plane", "brainrender.actors", "brainrender.actor"]
+    for name in search_paths:
+        try:
+            mod = importlib.import_module(name)
+            if hasattr(mod, "Plane"): return getattr(mod, "Plane")
+        except: continue
+    class MinimalPlane:
+        def __init__(self, pos, normal, **kwargs):
+            self.center, self.normal = pos, normal
+    return MinimalPlane
+
+PlaneClass = find_plane_class()
+
+def fixed_get_plane(self, pos=None, norm=None, **kwargs):
+    try:
+        atlas_obj = self.atlas
+    except AttributeError:
+        atlas_obj = self
+        
+    shape = atlas_obj.reference.shape
+    res = atlas_obj.resolution
+    
+    if pos is None:
+        pos = [s * r / 2 for s, r in zip(shape, res)]
+    
+    if norm is None: norm = [0, 0, 1]
+    
+    full_dims = [float(s * r) for s, r in zip(shape, res)]
+    idx_pair = [i for i in range(3) if norm[i] == 0]
+    if len(idx_pair) < 2: idx_pair = [0, 1]
+    
+    sx = kwargs.get('sx') or full_dims[idx_pair[0]]
+    sy = kwargs.get('sy') or full_dims[idx_pair[1]]
+    
+    try: return PlaneClass(pos=pos, normal=norm, sx=sx, sy=sy, **kwargs)
+    except: return PlaneClass(pos=pos, normal=norm, s=(sx, sy), **kwargs)
+
+Atlas.get_plane = fixed_get_plane
+
+# =================================================================
+# HEATMAP GENERATION
+# =================================================================
 
 def bg_heatmap_slices(
-    values,
-    output_dir,
-    view,
-    vmin,
-    vmax,
-    cmap='Reds',
-    atlas_name='allen_mouse_25um',
-    annotate_regions=True,
-    cbar_label='Value',
-    orientation=0,
-    specific_slice=None  # <--- NEW ARGUMENT
+    values, output_dir, view, vmin, vmax, cmap='Reds',
+    atlas_name='allen_mouse_25um', annotate_regions=True,
+    cbar_label='Value', hor_swap=False, ver_swap=False, 
+    labels_csv=None, specific_slice=None, frame_rate=10 
 ):
     """
-    Generates and saves a TIFF image for every single plane OR a specific plane.
-    
-    Parameters:
-    -----------
-    specific_slice : int, optional
-        If provided, only this specific slice index is processed and saved.
-        If None, all slices in the volume are processed.
+    Generates brain heatmaps for every slice, saves scalebars, 
+    and stitches results into an MP4 video.
     """
-    # --- 1. Setup and Data Processing ---
-    print(f"--- Starting Heatmap Slice Generation for '{view}' view ---")
+    use_custom_gradients = (cmap is None)
+    base_cmap = cmap if cmap is not None else 'Reds'
+    display_cmap = 'Greys' if use_custom_gradients else base_cmap
     
     heatmap_dir = os.path.join(output_dir, "heatmap")
     os.makedirs(heatmap_dir, exist_ok=True)
-
-    left_dict, right_dict = {}, {}
-    for key, value in values.items():
-        if isinstance(key, str) and pd.notna(value):
-            if key.endswith('_left'):
-                base_key = key.removesuffix('_left')
-                if base_key != 'nan': left_dict[base_key] = value
-            elif key.endswith('_right'):
-                base_key = key.removesuffix('_right')
-                if base_key != 'nan': right_dict[base_key] = value
-
-    # --- 2. Load Atlas ---
-    print("Loading atlas...")
-    atlas = BrainGlobeAtlas(atlas_name)
     
-    view_map = {
-        "frontal": atlas.reference.shape[0],
-        "horizontal": atlas.reference.shape[1],
-        "sagittal": atlas.reference.shape[2]
-    }
-    if view not in view_map:
-        raise ValueError(f"View must be one of {list(view_map.keys())}")
-    
-    n_slices = view_map[view]
-    slice_thickness_um = atlas.resolution[0] 
-    
-    print(f"Atlas loaded. Total volume contains {n_slices} slices.")
+    atlas_bg = BrainGlobeAtlas(atlas_name)
+    res = atlas_bg.resolution
+    shape = atlas_bg.reference.shape 
+    n_slices = shape[{"frontal": 0, "horizontal": 1, "sagittal": 2}[view]]
 
-    # --- 3. Define Scope (Single Frame vs All) ---
-    if specific_slice is not None:
-        # Validation
-        if not (0 <= specific_slice < n_slices):
-            raise ValueError(f"specific_slice {specific_slice} is out of bounds (0 to {n_slices-1})")
-        
-        # Process only this one
-        indices_to_process = [specific_slice]
-        preview_index = specific_slice
-        print(f"Processing ONLY slice index: {specific_slice}")
-    else:
-        # Process all
-        indices_to_process = range(n_slices)
-        preview_index = n_slices // 2
-        print("Processing ALL slices.")
-
-    # --- 4. Prepare Graphics Objects ---
+    # 1. Save Standalone Scalebar SVG
+    print("[INFO] Saving standalone scalebar SVG...")
+    fig_cbar, ax_cbar = plt.subplots(figsize=(1, 5))
     norm = Normalize(vmin=vmin, vmax=vmax)
-    sm = cm.ScalarMappable(cmap=cmap, norm=norm)
-    sm.set_array([]) 
+    sm = cm.ScalarMappable(cmap=display_cmap, norm=norm)
+    cb = fig_cbar.colorbar(sm, cax=ax_cbar, orientation='vertical')
+    cb.set_label(cbar_label)
+    fig_cbar.savefig(os.path.join(heatmap_dir, "scalebar.svg"), format='svg', bbox_inches='tight')
+    plt.close(fig_cbar)
 
-    # --- HELPER FUNCTION ---
-    def render_slice(slice_index):
-        position_um = slice_index * slice_thickness_um
-        fig, ax = plt.subplots(figsize=(10, 8))
+    # 2. Load Colors
+    acronym_to_color = {}
+    if use_custom_gradients and labels_csv and os.path.exists(labels_csv):
+        try:
+            ldf = pd.read_csv(labels_csv)
+            for _, row in ldf.iterrows():
+                acronym = str(row['acronym']).lower()
+                hex_c = str(row['color_hex_triplet']).strip()
+                if not hex_c.startswith("#"): hex_c = "#" + hex_c
+                if len(hex_c) == 7: acronym_to_color[acronym] = hex_c
+        except: pass
 
-        # Plot Left
-        hm_left = bgh.Heatmap(
-            left_dict, position=position_um, orientation=view, hemisphere='left',
-            atlas_name=atlas_name, cmap=cmap, vmin=vmin, vmax=vmax,
-            annotate_regions=annotate_regions
-        )
-        hm_left.plot_subplot(fig=fig, ax=ax, show_cbar=False)
+    # 3. Data Split
+    left_dict = {k.removesuffix('_left'): float(v) for k, v in values.items() if k.endswith('_left') and not pd.isna(v)}
+    right_dict = {k.removesuffix('_right'): float(v) for k, v in values.items() if k.endswith('_right') and not pd.isna(v)}
 
-        # Plot Right
-        hm_right = bgh.Heatmap(
-            right_dict, position=position_um, orientation=view, hemisphere='right',
-            atlas_name=atlas_name, cmap=cmap, vmin=vmin, vmax=vmax,
-            annotate_regions=annotate_regions
-        )
-        hm_right.plot_subplot(fig=fig, ax=ax, show_cbar=False)
+    def render_slice(idx):
+        pos_um = idx * res[{"frontal": 0, "horizontal": 1, "sagittal": 2}[view]]
+        fig, ax = plt.subplots(figsize=(12, 10))
 
-        # Rotation Logic
-        if orientation == 90:
-            tr = transforms.Affine2D().rotate_deg(90) + ax.transData
-            for im in ax.images: im.set_transform(tr)
-            for col in ax.collections: col.set_transform(tr)
-            for txt in ax.texts: txt.set_transform(tr)
+        for d, h in [(left_dict, 'left'), (right_dict, 'right')]:
+            if not d: continue
+            hm = bgh.Heatmap(d, position=pos_um, orientation=view, hemisphere=h,
+                             atlas_name=atlas_name, cmap=base_cmap, vmin=vmin, vmax=vmax, 
+                             annotate_regions=annotate_regions)
+            
+            if use_custom_gradients:
+                for acronym, val in d.items():
+                    color_key = acronym.lower()
+                    if color_key in acronym_to_color:
+                        base_rgb = to_rgb(acronym_to_color[color_key])
+                        region_cm = LinearSegmentedColormap.from_list("custom", [(1, 1, 1), base_rgb])
+                        norm_val = np.clip((val - vmin) / (vmax - vmin), 0, 1)
+                        hm.colors[acronym] = list(region_cm(norm_val)[:3])
+            
+            hm.plot_subplot(fig=fig, ax=ax, show_cbar=False)
 
-            old_xlim = ax.get_xlim()
-            old_ylim = ax.get_ylim()
-            new_xlim = sorted([-y for y in old_ylim])
-            new_ylim = sorted(old_xlim)
-            ax.set_xlim(new_xlim)
-            ax.set_ylim(new_ylim)
-
+        ax.autoscale(True) 
+        if ver_swap: ax.invert_xaxis() 
+        if hor_swap: ax.set_ylim(ax.get_ylim()[::-1])
         ax.axis('off')
+        plt.tight_layout()
         
-        # Colorbar
-        cbar_ax_coords = [0.88, 0.25, 0.02, 0.5] 
-        cbar_ax = fig.add_axes(cbar_ax_coords)
-        cbar = fig.colorbar(sm, cax=cbar_ax, orientation='vertical')
-        cbar.set_label(cbar_label, fontsize=10)
-        cbar.ax.tick_params(labelsize=8)
-        
+        cbar_ax = fig.add_axes([0.96, 0.25, 0.02, 0.5]) 
+        sm_slice = cm.ScalarMappable(cmap=display_cmap, norm=Normalize(vmin=vmin, vmax=vmax))
+        fig.colorbar(sm_slice, cax=cbar_ax, orientation='vertical').set_label(cbar_label)
         return fig
 
-    # --- 5. PREVIEW ---
-    print(f"\n--- PREVIEW: Slice {preview_index} ---")
-    preview_fig = render_slice(preview_index)
+    # 4. Midplane Preview
+    mid_idx = n_slices // 2
+    print(f"[PREVIEW] Rendering Midplane Slice ({mid_idx})...")
+    fig_mid = render_slice(mid_idx)
     plt.show()
-    plt.close(preview_fig)
+    plt.close(fig_mid)
 
-    # --- 6. GENERATION LOOP ---
-    print(f"\n--- Starting Generation ({len(indices_to_process)} slice(s)) ---")
-    
-    for i in indices_to_process:
+    # 5. Full Processing Run (Removed manual input for batch automation)
+    indices = [specific_slice] if specific_slice is not None else range(0, n_slices, 1)
+
+    frame_paths = []
+    for i in indices:
+        print(f"[PROCESS] Slice {i}/{n_slices}...")
         fig = render_slice(i)
-        
-        filename = f"{view}_slice_{i:04d}.tif"
-        filepath = os.path.join(heatmap_dir, filename)
-        fig.savefig(filepath, format='tiff', bbox_inches='tight', pad_inches=0, dpi=150)
-        
+        save_path = os.path.join(heatmap_dir, f"{view}_{i:04d}.tif")
+        fig.savefig(save_path, dpi=150, bbox_inches='tight')
+        frame_paths.append(save_path)
         plt.close(fig)
+
+    # 6. VIDEO GENERATION
+    if len(frame_paths) > 1:
+        print(f"[VIDEO] Stitching {len(frame_paths)} frames into heatmap.mp4...")
         
-        # Only print progress if doing bulk processing
-        if specific_slice is None:
-            if i % 50 == 0 or i == n_slices - 1:
-                 print(f"Saved: {filename} ({i+1}/{n_slices})")
-        else:
-            print(f"Saved single slice: {filename}")
+        # Determine dimensions from first frame
+        first_frame = cv2.imread(frame_paths[0])
+        height, width, layers = first_frame.shape
+        
+        # Video saved to base output_dir (not the heatmap subfolder)
+        video_name = os.path.join(output_dir, f"heatmap_{view}.mp4")
+        
+        # Initialize VideoWriter (OpenCV Headless compatible)
+        fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+        video = cv2.VideoWriter(video_name, fourcc, frame_rate, (width, height))
 
-    print("\n--- Heatmap slice generation complete! ---")
-    
-def plot_region_clustering(df, output_dir, top_n=50):
-    """
-    Creates a clustered heatmap (dendrogram) to visualize region similarity.
+        for path in frame_paths:
+            img = cv2.imread(path)
+            video.write(img)
 
-    Args:
-        df (pd.DataFrame): DataFrame with axon data ('acronym', 'total_voxels', 'percentage', 'axon_voxels').
-        output_dir (str): Directory to save the plot image.
-        top_n (int, optional): Number of top innervated regions to include in the plot. Defaults to 50.
-    """
-    print("\n--- Generating Region Clustering Visualization ---")
-    
-    # --- 1. Prepare data for clustering ---
-    # Filter for relevant data and select the top N regions by percentage
-    cluster_df = df[df['axon_voxels'] > 0].copy()
-    cluster_df = cluster_df.sort_values(by='percentage', ascending=False).head(top_n)
-    cluster_df['log_total_voxels'] = np.log10(cluster_df['total_voxels'])
-    cluster_df = cluster_df.set_index('name')
+        video.release()
+        # Headless fix: cv2.destroyAllWindows() removed to prevent implementation errors
+        print(f"[VIDEO SUCCESS] Video saved to: {video_name}")
 
-    # --- 2. Define and scale features for clustering ---
-    # We cluster based on the region's size and its innervation percentage
-    features_for_clustering = cluster_df[['log_total_voxels', 'percentage']]
-    
-    # Scale features to have a mean of 0 and variance of 1. This is crucial for accurate clustering.
-    scaler = StandardScaler()
-    scaled_features = scaler.fit_transform(features_for_clustering)
-
-    # --- 3. Perform Hierarchical Clustering ---
-    # We use the 'ward' method, which is effective at finding distinct clusters
-    linkage_matrix = linkage(scaled_features, method='ward')
-
-    # --- 4. Create the Clustered Heatmap ---
-    # The heatmap color will represent the axon percentage
-    heatmap_data = cluster_df[['percentage']]
-
-    # Use seaborn's clustermap to combine the heatmap and dendrogram
-    g = sns.clustermap(
-        heatmap_data,
-        row_linkage=linkage_matrix,  # Use our custom clustering
-        col_cluster=False,           # Don't cluster the single column
-        cmap='viridis',              # Colormap for the heatmap
-        figsize=(12, 16),
-        cbar_pos=(0.05, 0.85, 0.03, 0.1), # Position the colorbar
-        cbar_kws={'label': 'Axon Percentage (%)'}
-    )
-
-    # --- 5. Style and Save the Plot ---
-    g.fig.suptitle('Hierarchical Clustering of Axon Innervation', fontsize=16, weight='bold', y=0.95)
-    ax = g.ax_heatmap
-    ax.set_xlabel('') # Remove default x-label
-    ax.set_ylabel('Brain Region', fontsize=12)
-    ax.tick_params(axis='y', labelsize=10) # Adjust y-tick label size
-    
-    # Adjust the dendrogram line width
-    g.ax_row_dendrogram.set_visible(True)
-    for collection in g.ax_row_dendrogram.collections:
-        collection.set_linewidth(1.5)
-
-    os.makedirs(output_dir, exist_ok=True)
-    plot_path = os.path.join(output_dir, "axon_clustering_heatmap.png")
-    g.savefig(plot_path, dpi=300, bbox_inches='tight')
-    print(f"\n[SUCCESS] Clustering plot saved to: {plot_path}")
-    plt.show()
-# --- Main Analysis Function ---
-
+    print(f"\n[SUCCESS] Heatmaps and Scalebar saved to: {heatmap_dir}")
 
 
 def calculate_hemisphere_axon_percentage(input_volume, output_dir, voxel_size=25, temp_dir=None):

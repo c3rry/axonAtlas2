@@ -29,13 +29,16 @@ def connections(
     output_dir=None, 
     filename_prefix="cluster", 
     metadata=None, 
-    scale_factor=25  # <--- NEW PARAMETER
+    scale_factor=25,
+    annotation_volume=None, # <--- NEW: 3D Numpy array (Z, Y, X) of region IDs
+    structure_map=None      # <--- NEW: Dict {id: {'acronym': 'STR', 'name': 'Striatum'}}
 ):
     """
     Modified to:
       1. Accept batch lists or single files.
       2. Generate SWC files with specific Janelia/MouseLight formatting.
-      3. Scale coordinates by scale_factor (default 25).
+      3. Scale coordinates by scale_factor.
+      4. Append Region ID, Acronym, and Name columns (Extended SWC).
     """
 
     # --- 0. Handle List Input (Batch Processing) ---
@@ -50,7 +53,9 @@ def connections(
                 output_dir=output_dir,
                 filename_prefix=None,
                 metadata=metadata,
-                scale_factor=scale_factor # Pass it down recursively
+                scale_factor=scale_factor,
+                annotation_volume=annotation_volume, # Pass atlas down
+                structure_map=structure_map          # Pass map down
             )
             tif_list.append(saved_tif)
             csv_list.append(saved_csv)
@@ -117,34 +122,68 @@ def connections(
             f.write(f"# Scaling Factor: {scale_factor} (Applied to x,y,z)\n")
             f.write("# Annotation Space: CCFv2.5 (ML legacy) Axes> Z: Anterior-Posterior; Y: Inferior-Superior; X:Left-Right\n")
         
-        # B. Write Column Headers
-        f.write("# n\ttype\tx\ty\tz\tradius\tparent\n")
+        # B. Write Column Headers (Extended)
+        # Standard: n, type, x, y, z, radius, parent
+        # Extended: region_id, region_acronym, region_name
+        f.write("# n\ttype\tx\ty\tz\tradius\tparent\tregion_id\tregion_acronym\tregion_name\n")
         
         # C. Write Data Rows
         for i in range(len(points)):
             sample_number = i + 1 
             
-            # Apply Scaling Factor here
-            # Numpy points are [Z, Y, X]
-            z_coord = points[i, 0] * scale_factor
-            y_coord = points[i, 1] * scale_factor
-            x_coord = points[i, 2] * scale_factor
+            # Raw Indices (for Atlas Lookup)
+            z_idx, y_idx, x_idx = points[i, 0], points[i, 1], points[i, 2]
+
+            # 1. Look up Region Info
+            region_id = 0
+            region_acronym = "undefined"
+            region_name = "undefined"
+
+            if annotation_volume is not None:
+                try:
+                    # Check bounds just in case the mask is slightly larger than the atlas
+                    if (z_idx < annotation_volume.shape[0] and 
+                        y_idx < annotation_volume.shape[1] and 
+                        x_idx < annotation_volume.shape[2]):
+                        
+                        region_id = annotation_volume[z_idx, y_idx, x_idx]
+                        
+                        # Fetch details from map if available
+                        if structure_map and region_id in structure_map:
+                            info = structure_map[region_id]
+                            # Handle different map structures safely
+                            if isinstance(info, dict):
+                                region_acronym = info.get('acronym', "undefined")
+                                region_name = info.get('name', "undefined")
+                                # Sanitize strings to remove tabs or newlines
+                                region_name = str(region_name).replace('\t', ' ').replace('\n', '')
+                except IndexError:
+                    pass # Keep default 0/undefined
+
+            # 2. Apply Scaling Factor (Physical Coordinates)
+            z_coord = z_idx * scale_factor
+            y_coord = y_idx * scale_factor
+            x_coord = x_idx * scale_factor
             
-            # Optional: Scale radius too? usually radius is physical units.
             radius = 1.0 
             
             if i == 0:
-                # ROOT Node: Must be Soma (1) to anchor the tree
+                # ROOT Node
                 structure_id = 1
                 parent_number = -1
             else:
-                # BRANCH Nodes: Must be Axon (2) to avoid "Soma Bifurcation" errors
+                # BRANCH Node
                 structure_id = 2
                 parent_idx = parents.get(i, -1) 
                 parent_number = parent_idx + 1 if parent_idx != -1 else -1
 
-            # Format: Tab-separated, 6 decimal places
-            line = f"{sample_number}\t{structure_id}\t{x_coord:.6f}\t{y_coord:.6f}\t{z_coord:.6f}\t{radius:.6f}\t{parent_number}\n"
+            # 3. Format Line with Extended Columns
+            # Note: region_id is usually integer, but written as string for safety
+            line = (f"{sample_number}\t{structure_id}\t"
+                    f"{x_coord:.6f}\t{y_coord:.6f}\t{z_coord:.6f}\t"
+                    f"{radius:.6f}\t{parent_number}\t"
+                    f"{region_id}\t{region_acronym}\t{region_name}\n")
+            
             f.write(line)
 
     # --- 6. "Burn" Lines into New Stack (Visuals) ---
@@ -159,12 +198,14 @@ def connections(
         p1 = points[node1]
         p2 = points[node2]
         try:
+            # Assuming line_nd is available in your scope
             zz, yy, xx = line_nd(p1, p2)
             zz = np.clip(zz, 0, output_stack.shape[0]-1)
             yy = np.clip(yy, 0, output_stack.shape[1]-1)
             xx = np.clip(xx, 0, output_stack.shape[2]-1)
             output_stack[zz, yy, xx] = draw_value
         except NameError:
+             # print("line_nd function missing, skipping visualization.")
              pass 
 
     # --- 7. Save TIFF and Return ---

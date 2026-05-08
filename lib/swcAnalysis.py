@@ -6,115 +6,13 @@ from pathlib import Path
 from bg_atlasapi import BrainGlobeAtlas
 from collections import defaultdict
 import csv # Added for CSV writing
+import random
 
-def calculate_metadata_with_bg_atlas(swc_directory, output_csv_file, atlas_name="allen_mouse_10um"):
-    """
-    Scans a directory of .swc files, calculates their soma coordinates,
-    and uses the BrainGlobeAtlas API to determine the brain region
-    (acronym) and hemisphere for each soma.
-    
-    This function creates a new CSV file from scratch.
-
-    Parameters:
-    - swc_directory (str): The path to the folder containing your .swc files.
-    - output_csv_file (str): The name for the new CSV file to be created.
-    - atlas_name (str): The name of the atlas to use (e.g., "allen_mouse_10um").
-    """
-    
-    print(f"Initializing Brain Globe Atlas: '{atlas_name}'...")
-    try:
-        # 1. Initialize the Atlas
-        # This will download the atlas on the first run.
-        atlas = BrainGlobeAtlas(atlas_name)
-    except Exception as e:
-        print(f"Error initializing atlas. Is 'bg-atlasapi' installed?")
-        print(f"You might need to run: pip install bg-atlasapi")
-        print(f"Error details: {e}")
-        return
-
-    swc_dir_path = Path(swc_directory)
-    
-    # --- 2. Extract Soma Coordinates from all SWC files ---
-    
-    print(f"Scanning '{swc_directory}' for .swc files...")
-    swc_files = list(swc_dir_path.glob("*.swc"))
-    
-    if not swc_files:
-        print(f"Error: No .swc files found in '{swc_directory}'.")
-        return
-
-    print(f"Found {len(swc_files)} .swc files. Extracting soma coordinates...")
-    
-    soma_coords_list = []
-    swc_filenames = []
-    
-    for swc_file in swc_files:
-        try:
-            # Load the morphology
-            morph = nm.load_morphology(str(swc_file))
-            
-            # Get the soma coordinates (the first point in the file)
-            # We assume coordinates are already in atlas microns (um)
-            soma_xyz = morph.points[0, :3] 
-            
-            soma_coords_list.append(soma_xyz)
-            swc_filenames.append(swc_file.name)
-            
-        except Exception as e:
-            print(f"  Warning: Could not load {swc_file.name}. Skipping. Error: {e}")
-
-    # Convert list of coordinates to a single Nx3 numpy array for batch lookup
-    # This is much faster than looking up one coordinate at a time.
-    coordinates_array = np.array(soma_coords_list)
-
-    # --- 3. Get Region and Hemisphere from Atlas ---
-    
-    print(f"Looking up {len(coordinates_array)} coordinates in atlas...")
-    
-    # Use lookup_df for efficient batch processing.
-    # This returns a DataFrame with 'acronym', 'name', and 'hemisphere'
-    atlas_results_df = atlas.lookup_df(coordinates_array)
-
-    # --- 4. Create Final DataFrame ---
-    
-    print("Assembling final DataFrame...")
-    
-    # Create a new DataFrame with our file-specific info
-    final_df = pd.DataFrame({
-        "swc_name": swc_filenames,
-        "soma_xyz": [list(coord) for coord in coordinates_array] # Store as list
-    })
-    
-    # Rename atlas columns to be clear
-    atlas_results_df = atlas_results_df.rename(columns={
-        "acronym": "calculated_structure",
-        "hemisphere": "calculated_hemisphere"
-    })
-    
-    # Join our file info with the atlas results
-    # We reset indexes to ensure a clean join
-    final_df = pd.concat([
-        final_df.reset_index(drop=True), 
-        atlas_results_df[['calculated_structure', 'calculated_hemisphere']].reset_index(drop=True)
-    ], axis=1)
-
-    # --- 5. Create 'structure_hemisphere' Column ---
-    
-    print("Creating 'structure_hemisphere' column...")
-    final_df['calculated_structure_hemisphere'] = (
-        final_df['calculated_structure'] + "_" + 
-        final_df['calculated_hemisphere']
-    )
-
-    # --- 6. Save New CSV File ---
-    
-    try:
-        final_df.to_csv(output_csv_file, index=False)
-        print(f"\nSuccessfully created '{output_csv_file}' with {len(final_df)} entries.")
-        print("This file was generated *only* from the SWC files and the BrainGlobe Atlas.")
-    except Exception as e:
-        print(f"Error writing output file: {e}")
-
+import numpy as np
+import pandas as pd
+from pathlib import Path
+import neurom as nm
+from bg_atlasapi.bg_atlas import BrainGlobeAtlas
 
 
 # --- Single SWC File Processing Function (Mostly Unchanged) ---
@@ -325,4 +223,286 @@ def process_swc_directory_to_csv(directory_path, output_csv_path, atlas_name="al
         print("CSV file written successfully.")
     except Exception as e:
         print(f"Error writing CSV file: {e}")
+
+import numpy as np
+import pandas as pd
+from pathlib import Path
+import neurom as nm
+from bg_atlasapi.bg_atlas import BrainGlobeAtlas
+
+import numpy as np
+import pandas as pd
+from pathlib import Path
+import neurom as nm
+from bg_atlasapi.bg_atlas import BrainGlobeAtlas
+
+def calculate_metadata_with_bg_atlas(swc_directory, output_csv_file, atlas_name="allen_mouse_25um"):
+    """
+    Scans a directory of .swc files and calculates:
+      - Total Length
+      - Start Coordinates, Acronym, Full Name, & Hemisphere
+      - End Coordinates, Acronym, Full Name, & Hemisphere
+    """
+    
+    print(f"Initializing Brain Globe Atlas: '{atlas_name}'...")
+    try:
+        atlas = BrainGlobeAtlas(atlas_name)
+    except Exception as e:
+        print(f"Error initializing atlas. Is 'bg-atlasapi' installed?")
+        print(f"Error details: {e}")
+        return
+
+    swc_dir_path = Path(swc_directory)
+    swc_files = list(swc_dir_path.glob("*.swc"))
+    
+    if not swc_files:
+        print(f"Error: No .swc files found in '{swc_directory}'.")
+        return
+
+    print(f"Found {len(swc_files)} .swc files. Extracting morphology data...")
+    
+    # Storage lists
+    swc_filenames = []
+    start_coords = []
+    end_coords = []
+    lengths = []
+    
+    for swc_file in swc_files:
+        try:
+            morph = nm.load_morphology(str(swc_file))
+            
+            # 1. Get Length
+            total_len = nm.get('total_length', morph)
+            if isinstance(total_len, (list, np.ndarray)):
+                total_len = sum(total_len)
+            
+            # 2. Get Start Coordinate (Soma)
+            soma_xyz = morph.points[0, :3] 
+            
+            # 3. Get End Coordinate (Farthest point from Soma)
+            all_points = morph.points[:, :3]
+            distances = np.linalg.norm(all_points - soma_xyz, axis=1)
+            farthest_idx = np.argmax(distances)
+            end_xyz = all_points[farthest_idx]
+            
+            # Append to lists
+            swc_filenames.append(swc_file.name)
+            lengths.append(total_len)
+            start_coords.append(soma_xyz)
+            end_coords.append(end_xyz)
+            
+        except Exception as e:
+            print(f"  Warning: Could not load {swc_file.name}. Skipping. Error: {e}")
+
+    n_samples = len(start_coords)
+    if n_samples == 0:
+        print("No valid data found.")
+        return
+
+    start_coords_arr = np.array(start_coords)
+    end_coords_arr = np.array(end_coords)
+    
+    # Stack for atlas lookup
+    combined_coords = np.vstack([start_coords_arr, end_coords_arr])
+
+    # --- 3. Get Region and Hemisphere from Atlas ---
+    print(f"Looking up {len(combined_coords)} coordinates (Start + End) in atlas...")
+    
+    acronyms = []
+    full_names = []  # New list for full names
+    hemispheres = []
+    z_midpoint = (atlas.shape[2] * atlas.resolution[2]) / 2
+
+    for coord in combined_coords:
+        # A. Find Structure Info (ID -> Acronym + Name)
+        try:
+            # Get the ID first (microns=True for physical units)
+            region_id = atlas.structure_from_coords(coord, microns=True)
+            
+            if region_id is not None and region_id > 0:
+                # Look up details in the atlas dictionary
+                struct_info = atlas.structures[region_id]
+                acronym = struct_info['acronym']
+                name = struct_info['name']
+            else:
+                acronym = "outside atlas"
+                name = "outside atlas"
+        except Exception:
+            print(f"  Warning: Could not find structure for coordinate {coord}")
+            #acronym = "outside_brain"
+            #name = "outside_brain"
+            
+        acronyms.append(acronym)
+        full_names.append(name)
+
+        # B. Find Hemisphere
+        if coord[2] < z_midpoint:
+            hemispheres.append("Left")
+        else:
+            hemispheres.append("Right")
+
+    # Split results back into Start and End
+    start_acronyms = acronyms[:n_samples]
+    end_acronyms = acronyms[n_samples:]
+    
+    start_names = full_names[:n_samples] # Split names
+    end_names = full_names[n_samples:]
+    
+    start_hemispheres = hemispheres[:n_samples]
+    end_hemispheres = hemispheres[n_samples:]
+
+    # --- 4. Create Final DataFrame ---
+    print("Assembling final DataFrame...")
+    
+    final_df = pd.DataFrame({
+        "swc_name": swc_filenames,
+        "length_um": lengths,
+        
+        # Start Metadata (Soma)
+        "start_x": start_coords_arr[:, 0],
+        "start_y": start_coords_arr[:, 1],
+        "start_z": start_coords_arr[:, 2],
+        "start_structure": start_acronyms,
+        "start_structure_name": start_names, # New Column
+        "start_hemisphere": start_hemispheres,
+        
+        # End Metadata (Tip)
+        "end_x": end_coords_arr[:, 0],
+        "end_y": end_coords_arr[:, 1],
+        "end_z": end_coords_arr[:, 2],
+        "end_structure": end_acronyms,
+        "end_structure_name": end_names,     # New Column
+        "end_hemisphere": end_hemispheres,
+    })
+
+    # Optional: Composite columns
+    final_df['start_region_hemi'] = final_df['start_structure'].astype(str) + "_" + final_df['start_hemisphere']
+    final_df['end_region_hemi'] = final_df['end_structure'].astype(str) + "_" + final_df['end_hemisphere']
+
+    # --- 5. Save New CSV File ---
+    try:
+        final_df.to_csv(output_csv_file, index=False)
+        print(f"\nSuccessfully created '{output_csv_file}' with {len(final_df)} entries.")
+    except Exception as e:
+        print(f"Error writing output file: {e}")
+def generate_point_cloud_metadata(swc_directory, output_csv_file, atlas_name="allen_mouse_25um"):
+    """
+    Scans a directory of .swc files and creates a row for EVERY single coordinate
+    in every file, identifying its brain region acronym, FULL NAME, and hemisphere.
+    """
+    
+    print(f"Initializing Brain Globe Atlas: '{atlas_name}'...")
+    try:
+        atlas = BrainGlobeAtlas(atlas_name)
+    except Exception as e:
+        print(f"Error initializing atlas: {e}")
+        return
+
+    swc_dir_path = Path(swc_directory)
+    swc_files = list(swc_dir_path.glob("*.swc"))
+    
+    if not swc_files:
+        print(f"Error: No .swc files found in '{swc_directory}'.")
+        return
+
+    print(f"Found {len(swc_files)} .swc files. Extracting ALL points...")
+    
+    all_filenames = []
+    all_x = []
+    all_y = []
+    all_z = []
+    
+    # 1. READ ALL DATA
+    for swc_file in swc_files:
+        try:
+            morph = nm.load_morphology(str(swc_file))
+            points = morph.points[:, :3]
+            
+            n_points = len(points)
+            all_filenames.extend([swc_file.name] * n_points)
+            all_x.extend(points[:, 0])
+            all_y.extend(points[:, 1])
+            all_z.extend(points[:, 2])
+            
+        except Exception as e:
+            print(f"  Skipping {swc_file.name}: {e}")
+
+    total_points = len(all_x)
+    print(f"\nTotal points to analyze: {total_points}")
+    print("Starting atlas lookup... (This may take a while)")
+
+    # 2. PREPARE FOR LOOKUP
+    coords_array = np.vstack((all_x, all_y, all_z)).T
+    
+    acronyms = []
+    full_names = [] # New list
+    hemispheres = []
+    z_midpoint = (atlas.shape[2] * atlas.resolution[2]) / 2
+
+    # 3. RUN LOOKUP LOOP
+    for i, coord in enumerate(coords_array):
+        if i % 5000 == 0:
+            print(f"  Processed {i}/{total_points} points...", end='\r')
+            
+        # A. Region (ID lookup strategy)
+        try:
+            region_id = atlas.structure_from_coords(coord, microns=True)
+            
+            if region_id is not None and region_id > 0:
+                struct_info = atlas.structures[region_id]
+                acronym = struct_info['acronym']
+                name = struct_info['name']
+            else:
+                acronym = "root"
+                name = "root"
+        except:
+            acronym = "outside_brain"
+            name = "outside_brain"
+            
+        acronyms.append(acronym)
+        full_names.append(name)
+        
+        # B. Hemisphere
+        if coord[2] < z_midpoint:
+            hemispheres.append("Left")
+        else:
+            hemispheres.append("Right")
+            
+    print(f"  Processed {total_points}/{total_points} points. Done.")
+
+    # 4. SAVE
+    print("Constructing final DataFrame...")
+    df = pd.DataFrame({
+        "swc_name": all_filenames,
+        "x": all_x,
+        "y": all_y,
+        "z": all_z,
+        "structure": acronyms,
+        "structure_name": full_names, # New Column
+        "hemisphere": hemispheres
+    })
+    
+    df['structure_hemisphere'] = df['structure'].astype(str) + "_" + df['hemisphere'].astype(str)
+
+    print(f"Saving to '{output_csv_file}'...")
+    try:
+        df.to_csv(output_csv_file, index=False)
+        print(f"Success! Saved {len(df)} rows.")
+    except Exception as e:
+        print(f"Error saving CSV: {e}")
+
+
+def get_all_file_paths(directory):
+    file_paths = []
+    for root, _, files in os.walk(directory):
+        for file in files:
+            file_paths.append(os.path.join(root, file))
+    return file_paths
+
+def generate_random_rgb():
+    """Generates a random RGB color tuple."""
+    r = random.randint(0, 255)
+    g = random.randint(0, 255)
+    b = random.randint(0, 255)
+    return (r, g, b)
 

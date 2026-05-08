@@ -164,7 +164,7 @@ def run_command_line(command: str):
         print(f"An unexpected error occurred: {e}")
         return None, str(e), -1
 
-def createExperiment(experiment_name: str, base_experiments_dir: str = "experiments") -> str:
+def createExperiment(experiment_name: str, base_experiments_dir: str = "experiments", path=None) -> str:
     """
     Creates a new folder for an experiment within a specified base directory.
     The new folder will be named with the experiment_name and the current date and time.
@@ -173,12 +173,15 @@ def createExperiment(experiment_name: str, base_experiments_dir: str = "experime
         experiment_name (str): The desired name for the experiment.
         base_experiments_dir (str): The base directory where the 'experiments' folder
                                     is located or will be created. Defaults to "experiments".
+        path (str, optional): If provided, this path is used instead of the default base_experiments_dir.
 
     Returns:
         str: The full **file path** to the newly created experiment folder, or an empty string if creation failed.
     """
     # Ensure the base 'experiments' directory exists
     full_base_path = os.path.join(os.getcwd(), base_experiments_dir)
+    if path is not None:
+        full_base_path = path
     os.makedirs(full_base_path, exist_ok=True)
     print(f"Ensured base experiments directory exists: '{full_base_path}'")
 

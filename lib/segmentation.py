@@ -8,7 +8,7 @@ from skimage.io import imread, imsave
 import subprocess
 import shutil
 import datetime
-from auxilary import run_command_line
+from lib.auxilary import run_command_line
 
 def check_trailmap():
     """

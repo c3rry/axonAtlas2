@@ -434,3 +434,35 @@ def surgical_mask(tiff_path_or_array, output_dir, output_filename=None, erosion_
     
     # Save using the safe helper with Normalization enabled
     return _save_chunked(masked_img, output_dir, output_filename, normalize=True)
+
+def multisample_processing(exp_dict, output_dir):
+    for key, path in exp_dict.items():
+        print(f"Processing {key}...")
+        exp_path = createExperiment(key, path=output_dir)
+        
+        check_trailmap()
+        
+        axon_stack = path
+        
+        surgical_mask_stack = surgical_mask(axon_stack, exp_path, erosion_iterations=30)
+        
+        seg_axon_stack = axonSegment(surgical_mask_stack, exp_path)
+        
+        d_scaled_axon_stack = downscale(axon_stack, scale_factor=0.5, output_dir=exp_path)
+        d_scaled_seg_stack = downscale(seg_axon_stack, scale_factor=0.5, output_dir=exp_path)
+        
+        binary = binarize(d_scaled_seg_stack, exp_path)
+        axon_proc = dimCompose(binary, d_scaled_axon_stack, exp_path, dim_factor = 0.5)
+        
+        reg_path = Registration(autof_path=axon_proc, v1=10, v2=10, v3=10, orientation="sal", output_dir=exp_path, atlas="allen_mouse_25um")
+        
+        
+        reg_list = regExtract(reg_path)
+        print(reg_list)
+        downsampled_standard_autof = reg_list[3]
+        
+        downsampled_standard_autof_skeleton = skeletonize2(downsampled_standard_autof, exp_path)
+        
+        print(f"Finished processing {key}.")
+        print(exp_path)
+
