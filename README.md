@@ -36,7 +36,7 @@ These notebooks analyze the complex networks of simple neurite tracer data. They
 This notebook processes and visualizes the structured `.swc` tracer files post-clustering. It prepares the 3D coordinates and topological data of the reconstructed individual neurons to allow for detailed morphological evaluation. Also creates swc_coordinate.csv and swc_region_summary.csv, which are nescasary for connectome_2D and clustering tasks.
 
 ### `AxonAtlas2_visualization.ipynb`
-Responsible for the spatial rendering of processed TIFF stacks within the Allen Atlas space. This notebook generates interactive 3D visualizations using tools like BrainRender to showcase whole-brain axon pathways and overlay pairwise subtractive comparison heatmaps directly onto brain models.
+Responsible for the spatial rendering of processed TIFF stacks within the Allen Atlas space. This notebook generates interactive 3D visualizations using BrainRender (https://brainglobe.info/documentation/brainrender/index.html) to showcase whole-brain axon pathways.
 
 ### `AxonAtlas2_sankey.ipynb`
 A specialized visualization notebook that ingests analyzed `.swc` projection data to generate interactive Sankey diagrams. These flow diagrams illustrate mesoscale connectivity, displaying how output pathways diverge from specific source regions (like the GPe, GPi, or SNr) toward various downstream cortical and subcortical targets.
