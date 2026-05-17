@@ -33,7 +33,7 @@ Dedicated to cellular-level mapping, this notebook handles 3D cell detection via
 These notebooks analyze the complex networks of simple neurite tracer data. They ingest CSV files containing extracted numeric neuron features and utilize advanced clustering methods, specifically K-Means and DBSCAN. The algorithms autonomously determine optimal cluster counts (maximizing the Silhouette Score) and subsequently organize the `.swc` files into localized directories categorized by their structural group and anatomical region.
 
 ### `AxonAtlas2_swcAnalysis.ipynb`
-This notebook processes and visualizes the structured `.swc` tracer files post-clustering. It prepares the 3D coordinates and topological data of the reconstructed individual neurons to allow for detailed morphological evaluation.
+This notebook processes and visualizes the structured `.swc` tracer files post-clustering. It prepares the 3D coordinates and topological data of the reconstructed individual neurons to allow for detailed morphological evaluation. Also creates swc_coordinate.csv and swc_region_summary.csv, which are nescasary for connectome_2D and clustering tasks.
 
 ### `AxonAtlas2_visualization.ipynb`
 Responsible for the spatial rendering of processed TIFF stacks within the Allen Atlas space. This notebook generates interactive 3D visualizations using tools like BrainRender to showcase whole-brain axon pathways and overlay pairwise subtractive comparison heatmaps directly onto brain models.
