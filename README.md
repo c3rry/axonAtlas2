@@ -18,16 +18,16 @@ This notebook serves as an early data preparation step following raw image acqui
 This is the core preprocessing and segmentation engine for axon data. It sequentially handles:
 * **Surgical Masking:** Utilizes SciPy to perform subtractive binary erosion, which removes unnecessary border signals and imaging artifacts that often decrease the performance of downstream segmentation.
 * **Downscaling:** Reduces the initially massive raw volumes by a factor of 0.5 across the X, Y, and Z dimensions to make computation feasible.
-* **Axon Segmentation:** Deploys a pre-trained UNET model (TrailMap) to generate a pixel-by-pixel segmentation mask where pixel intensity represents the probability of axon classification (from black for "no axon" to white for "100% axon").
+* **Axon Segmentation:** Deploys a pre-trained UNET model (TrailMap: https://github.com/albert597/TRAILMAP) to generate a pixel-by-pixel segmentation mask where pixel intensity represents the probability of axon classification (from black for "no axon" to white for "100% axon").
 * **Image Binary Dim Composition:** Overlays a binarized version of the segmentation mask onto a scaled-down, dimmed raw volume. This creates a composite where the axonal tracts brightly "pop out" against the structural outline of the brain.
-* **Atlas Registration:** Uses BrainReg to apply both affine (global) and b-spline (local deformation) transformations, aligning the raw sample volume precisely to the 25µm Allen Mouse Brain Atlas coordinate space.
+* **Atlas Registration:** Uses BrainReg (https://brainglobe.info/documentation/brainreg/index.html) to apply both affine (global) and b-spline (local deformation) transformations, aligning the raw sample volume precisely to the 25µm Allen Mouse Brain Atlas coordinate space.
 * **Binned Skeletonization:** Extracts axonal content by segmenting pixel probabilities into 10 distinct volumetric bins, ascendingly scaling and heavily weighting high-probability bins to isolate the final structural paths.
 
 ### `AxonAtlas2_quantification.ipynb` *(Primary Analysis for Axon Data)*
 This notebook calculates quantitative metrics from the registered pipeline outputs. It utilizes tools like BrainGlobe to perform region condensation—collapsing hierarchical brain structure trees into parent structures based on specified depths. This allows for the calculation of relative fractional and projection axon densities for each target region. The notebook also generates distribution plots, data summaries, and thresholded heatmaps.
 
 ### `AxonAtlas2_cells.ipynb`
-Dedicated to cellular-level mapping, this notebook handles 3D cell detection via BrainMapper. By comparing the fluorescently labeled cell signal channel against the background autofluorescence channel, it extracts raw coordinates for millions of individual cells and projects them into the standardized Allen Atlas space.
+Dedicated to cellular-level mapping, this notebook handles 3D cell detection via BrainMapper (https://brainglobe.info/documentation/brainglobe-workflows/index.html). By comparing the fluorescently labeled cell signal channel against the background autofluorescence channel, it extracts raw coordinates for millions of individual cells and projects them into the standardized Allen Atlas space.
 
 ### `AxonAtlas2_connections.ipynb` & `AxonAtlas2_clustering.ipynb`
 These notebooks analyze the complex networks of simple neurite tracer data. They ingest CSV files containing extracted numeric neuron features and utilize advanced clustering methods, specifically K-Means and DBSCAN. The algorithms autonomously determine optimal cluster counts (maximizing the Silhouette Score) and subsequently organize the `.swc` files into localized directories categorized by their structural group and anatomical region.
